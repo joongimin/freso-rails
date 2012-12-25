@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-FresoRails::Application.load_tasks
+Freso::Application.load_tasks

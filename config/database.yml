@@ -17,4 +17,4 @@ test:
 production:
   <<: *common
   database: freso_production
-  host: db1.fre.so
+  host: localhost

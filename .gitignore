@@ -20,3 +20,6 @@ Thumbs.db
 
 # Ignore files for development
 .routes
+
+.DB_Store
+.DS_Store
