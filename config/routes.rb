@@ -3,6 +3,10 @@ Freso::Application.routes.draw do
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
     root :to => "home#index"
+
+    controller :nuvo do
+      get "nuvo/login" => :login
+    end
   end
 
   match "*path", :to => "home#no_locale_matched"
