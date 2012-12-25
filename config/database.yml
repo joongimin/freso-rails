@@ -1,0 +1,20 @@
+common: &common
+  adapter: postgresql
+  encoding: utf8
+  username: freso
+  password: welcome2nv
+
+development:
+  <<: *common
+  database: freso_development
+  host: localhost
+
+test:
+  <<: *common
+  database: freso_test
+  host: localhost
+
+production:
+  <<: *common
+  database: freso_production
+  host: db1.fre.so
