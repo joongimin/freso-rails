@@ -13,10 +13,28 @@ a {
   cursor: pointer;
 }
 
+ul, li {
+  list-style: none;
+}
+
 #top_container {
   height: 100%;
   min-width: 960px;
   min-height: 700px;
   position: relative;
   overflow: hidden;
+}
+
+.tooltip_container {
+  position: relative;
+  .tooltip {
+    display: none;
+  }
+
+  &:hover {
+    div.tooltip {
+      display: block;
+      position: absolute;
+    }
+  }
 }

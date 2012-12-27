@@ -56,6 +56,10 @@ $ ->
     $background_container = $("div.background_container")
     $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
     $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
+
+    if $("div#param").data("type") == "1"
+      $("ul.side_menu").animate({opacity: 0}, 400, "linear", -> $(this).hide())
+
     $logo_container.
       css("top", offset.top + "px").
       css("left", offset.left + "px").
@@ -75,9 +79,11 @@ $ ->
         visible_width = 250
         $left.animate({left: visible_width - $left.width()}, speed, easing, -> $("div.back_container").show().animate({opacity: 1}))
         $right.animate({right: visible_width - $right.width()}, speed, easing)
+
+        if $("div#param").data("type") != "1"
+          $("ul.side_menu").animate({right: visible_width - $right.width()}, speed, easing)
         )
 
-    # $logo_container.animate({top: "12%", left: "6%"}, speed, easing)
     $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
 
   $("a#link_back").click ->
@@ -96,9 +102,13 @@ $ ->
       $("div.iframe_container").hide()
       $background_container.find("div.solid").show().animate({opacity: 1}, 80, "linear")
       $background_container.find("div.split").animate({opacity: 0}, 80, "linear", -> $(this).hide())
+      if $("div#param").data("type") == "1"
+        $("ul.side_menu").show().animate({opacity: 1}, 400, "linear")
       )
 
     $right.animate({right: 0}, speed, easing)
+    if $("div#param").data("type") != "1"
+      $("ul.side_menu").animate({right: 0}, speed, easing)
 
     $logo_container = $("div.logo_container")
     org_style = $logo_container.attr("style")

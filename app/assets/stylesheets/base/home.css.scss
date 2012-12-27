@@ -63,4 +63,33 @@
     height: 500px;
     border: none;
   }
+
+  ul.side_menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 64px;
+    height: 100%;
+    background-color: white;
+
+    li {
+      text-align: center;
+      margin-top: 20px;
+
+      div.tooltip {
+        top: 5px;
+        right: 45px;
+
+        .description {
+          top: 5px;
+          left: 50px;
+          width: 110px;
+          height: 46px;
+          position: absolute;
+          color: white;
+          font-size: 13px;
+        }
+      }
+    }
+  }
 }

@@ -1,3 +1,5 @@
+<% menu_tooltip = ["What's Freso?", "Why should I use Freso?", "How does Freso earn money?", "Who is making Freso?", "Donate money for Freso"] %>
+<%= content_tag :div, nil, :id => "param", :"data-type" => params[:type] %>
 <div id="home-index">
   <div class="iframe_container">
     <iframe id="login_with_nuvo" height="100%"></iframe>
@@ -9,6 +11,17 @@
       <canvas class="right"></canvas>
     </div>
   </div>
+  <ul class="side_menu">
+    <% (0...5).each do |i| %>
+      <li class="tooltip_container">
+        <%= image_tag "home/side-menu-dot.png" %>
+        <div class="tooltip">
+          <%= image_tag "home/side-menu-indicator.png" %>
+          <div class="description"><%= menu_tooltip[i] %></div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
   <div class="logo_container">
     <div class="logo"><%= image_tag "home/logo.png" %></div>
     <div class="login"><a id="link_login_with_nuvo"><%= image_tag "home/login-with-nuvo.png" %></a></div>
