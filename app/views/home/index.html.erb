@@ -14,7 +14,9 @@
   <ul class="side_menu">
     <% (0...5).each do |i| %>
       <li class="tooltip_container">
-        <%= image_tag "home/side-menu-dot.png" %>
+        <a>
+          <%= image_tag "home/side-menu-dot.png" %>
+        </a>
         <div class="tooltip">
           <%= image_tag "home/side-menu-indicator.png" %>
           <div class="description"><%= menu_tooltip[i] %></div>

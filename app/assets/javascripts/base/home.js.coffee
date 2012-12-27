@@ -57,7 +57,7 @@ $ ->
     $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
     $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
 
-    if $("div#param").data("type") == "1"
+    if $("div#param").data("type") == 1
       $("ul.side_menu").animate({opacity: 0}, 400, "linear", -> $(this).hide())
 
     $logo_container.
@@ -80,7 +80,7 @@ $ ->
         $left.animate({left: visible_width - $left.width()}, speed, easing, -> $("div.back_container").show().animate({opacity: 1}))
         $right.animate({right: visible_width - $right.width()}, speed, easing)
 
-        if $("div#param").data("type") != "1"
+        if $("div#param").data("type") != 1
           $("ul.side_menu").animate({right: visible_width - $right.width()}, speed, easing)
         )
 
@@ -102,12 +102,12 @@ $ ->
       $("div.iframe_container").hide()
       $background_container.find("div.solid").show().animate({opacity: 1}, 80, "linear")
       $background_container.find("div.split").animate({opacity: 0}, 80, "linear", -> $(this).hide())
-      if $("div#param").data("type") == "1"
+      if $("div#param").data("type") == 1
         $("ul.side_menu").show().animate({opacity: 1}, 400, "linear")
       )
 
     $right.animate({right: 0}, speed, easing)
-    if $("div#param").data("type") != "1"
+    if $("div#param").data("type") != 1
       $("ul.side_menu").animate({right: 0}, speed, easing)
 
     $logo_container = $("div.logo_container")
