@@ -61,5 +61,6 @@ module Freso
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+    config.action_mailer.delivery_method = :amazon_ses
   end
 end
