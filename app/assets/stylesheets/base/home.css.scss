@@ -1,41 +1,27 @@
 #home-index {
+  canvas {
+    position: absolute;
+  }
+
   .logo_container {
     position: absolute;
 
-    top: 0;
+    top: 50%;
     left: 50%;
 
-    width: 900px;
-    height: 100%;
+    width: 200px;
+    height: 150px;
 
-    margin: 0 0 0 -450px;
+    margin: -75px 0 0 -100px;
 
     text-align: center;
+  }
 
-    .logo {
-      position: absolute;
-
-      top: 25%;
-      left: 50%;
-
-      width: 196px;
-
-      margin: 14px 24px 0 -98px;
-
-      font-size: 50px;
-    }
-
-    .login {
-      position: absolute;
-
-      font-size: 14px;
-
-      top: 25%;
-      left: 50%;
-
-      width: 245px;
-
-      margin: 80px 0 0 -122px;
-    }
+  div.back_container {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    text-align: center;
+    opacity: 0;
   }
 }

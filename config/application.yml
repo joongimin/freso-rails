@@ -1,0 +1,14 @@
+defaults: &defaults
+  aws_access_key_id: "AKIAJFOBK2UY5AO6K4YA"
+  aws_secret_access_key: "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"
+
+  asset_base_url: "https://d341cts1zsmceb.cloudfront.net"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
