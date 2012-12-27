@@ -1,6 +1,7 @@
 @import "base/*";
 
 html, body {
+  height: 100%;
 }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
@@ -10,4 +11,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 a {
   cursor: pointer;
+}
+
+#top_container {
+  height: 100%;
+  min-width: 960px;
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
 }
