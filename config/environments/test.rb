@@ -34,4 +34,9 @@ Freso::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Freso-Test Exception] ",
+    :sender_address => %{"Exception Notifier" <noreply@xnuvo.com>},
+    :exception_recipients => %w{developers@xnuvo.com}
 end
