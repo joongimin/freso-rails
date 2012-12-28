@@ -2,6 +2,7 @@
 
 html, body {
   height: 100%;
+  font-family: Play, sans-serif;
 }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
@@ -18,7 +19,6 @@ ul, li {
 }
 
 #top_container {
-  height: 100%;
   min-width: 960px;
   min-height: 700px;
   position: relative;

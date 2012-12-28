@@ -3,8 +3,8 @@ draw_pane = ($canvas, args = {}) ->
   canvas = $canvas[0]
   ctx = canvas.getContext("2d")
 
-  screen_width = $("#top_container").width()
-  screen_height = $("#top_container").height()
+  screen_width = $("div#home").width()
+  screen_height = $("div#home").height()
 
   canvas.height = screen_height
   if args.left
@@ -41,15 +41,45 @@ draw_pane = ($canvas, args = {}) ->
 
   ctx.fill()
 
+on_resize = ->
+  screen_height = $(window).height()
+  if screen_height < 700
+    screen_height = 700
+
+  $("div#home").height(screen_height)
+
 $ ->
+  $('#nav').localScroll(800);
+  screen_height = $(window).height()
+  $("div.parallax").each ->
+    $this = $(this)
+    $this.parallax("50%", $this.data("parallax-speed"))
+
+  $(window).resize on_resize
+  on_resize()
+
+  # sequence_options = {
+  #   autoPlay: false,
+  #   cycle: false,
+  #   fadeFrameWhenSkipped: false
+  # }
+  # sequence = $("#sequence").sequence(sequence_options).data("sequence");
+
   $("a#link_login_with_nuvo").click ->
     speed = 1000
     easing = "easeInCubic"
 
+    # Scroll to top
+    $("html, body").animate {scrollTop: 0}, "fast", "linear", ->
+      # Hide all parallax scrolls
+      $("div.parallax").each ->
+        if $(this).attr("id") != "home"
+          $(this).hide()
+
     $iframe_container = $("div.iframe_container")
     $login_with_nuvo = $iframe_container.find("iframe#login_with_nuvo")
     if !$login_with_nuvo.attr("src")
-      $login_with_nuvo.attr("src", "http://naver.com")
+      $login_with_nuvo.attr("src", "https://xnuvo.com/robots.txt")
 
     $logo_container = $("div.logo_container")
     offset = $logo_container.offset()
@@ -57,14 +87,13 @@ $ ->
     $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
     $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
 
-    if $("div#param").data("type") == 1
-      $("ul.side_menu").animate({opacity: 0}, 400, "linear", -> $(this).hide())
+    $("ul#nav").animate({opacity: 0}, 400, "linear", -> $(this).hide())
 
-    $logo_container.
-      css("top", offset.top + "px").
-      css("left", offset.left + "px").
-      css("margin", "0").
-      animate({top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
+    $logo_container
+      .css("top", offset.top + "px")
+      .css("left", offset.left + "px")
+      .css("margin", "0")
+      .animate {top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
         $iframe_container.show()
         $logo_container.animate({top: 15, left: 0}, speed, easing)
 
@@ -80,10 +109,6 @@ $ ->
         $left.animate({left: visible_width - $left.width()}, speed, easing, -> $("div.back_container").show().animate({opacity: 1}))
         $right.animate({right: visible_width - $right.width()}, speed, easing)
 
-        if $("div#param").data("type") != 1
-          $("ul.side_menu").animate({right: visible_width - $right.width()}, speed, easing)
-        )
-
     $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
 
   $("a#link_back").click ->
@@ -97,18 +122,17 @@ $ ->
     $left = $background_container.find("div.split canvas.left")
     $right = $background_container.find("div.split canvas.right")
 
-    $left.animate({left: 0}, speed, easing, ->
+    $left.animate {left: 0}, speed, easing, ->
       $logo_container.find(".login").show().animate({opacity: 1})
       $("div.iframe_container").hide()
       $background_container.find("div.solid").show().animate({opacity: 1}, 80, "linear")
       $background_container.find("div.split").animate({opacity: 0}, 80, "linear", -> $(this).hide())
-      if $("div#param").data("type") == 1
-        $("ul.side_menu").show().animate({opacity: 1}, 400, "linear")
-      )
+      $("ul#nav").show().animate({opacity: 1}, 400, "linear")
+
+      # Show all parallax scrolls
+      $("div.parallax").show()
 
     $right.animate({right: 0}, speed, easing)
-    if $("div#param").data("type") != 1
-      $("ul.side_menu").animate({right: 0}, speed, easing)
 
     $logo_container = $("div.logo_container")
     org_style = $logo_container.attr("style")
