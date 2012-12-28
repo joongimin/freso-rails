@@ -1,7 +1,8 @@
 Freso::Application.routes.draw do
   devise_for :users
 
-  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
+  scope ":current_locale", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :translations
     root :to => "home#index"
 
     controller :nuvo do

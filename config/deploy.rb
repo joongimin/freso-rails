@@ -36,6 +36,7 @@ load "config/recipes/unicorn"
 load "config/recipes/rbenv"
 load "config/recipes/postgresql"
 load "config/recipes/delayed_job"
+load "config/recipes/redis"
 load "deploy/assets"
 
 after "deploy:update_code", "deploy:migrate"

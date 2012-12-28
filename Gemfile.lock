@@ -148,6 +148,9 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.2)
+    redis-namespace (1.2.1)
+      redis (~> 3.0.0)
     ruby-hmac (0.4.0)
     sass (3.2.4)
     sass-rails (3.2.5)
@@ -218,6 +221,8 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.2.9)
+  redis
+  redis-namespace
   sass-rails (~> 3.2.3)
   settingslogic
   therubyracer
