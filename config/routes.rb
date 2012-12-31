@@ -7,6 +7,7 @@ Freso::Application.routes.draw do
 
     controller :nuvo do
       get "nuvo/login" => :login
+      get "nuvo/callback" => :callback
     end
 
     match "*a", :to => "home#no_route_matched"
