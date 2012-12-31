@@ -97,8 +97,6 @@ $ ->
         $iframe_container.show()
         $logo_container.animate({top: 15, left: 0}, speed, easing)
 
-        $background_container.addClass("splitted")
-
         $left = $background_container.find("div.split canvas.left")
         $right = $background_container.find("div.split canvas.right")
 
