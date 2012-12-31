@@ -1,13 +1,15 @@
 Freso::Application.routes.draw do
   devise_for :users
 
-  scope ":current_locale", locale: /#{I18n.available_locales.join("|")}/ do
+  scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
     resources :translations
     root :to => "home#index"
 
     controller :nuvo do
       get "nuvo/login" => :login
     end
+
+    match "*a", :to => "home#no_route_matched"
   end
 
   match "*path", :to => "home#no_locale_matched"
