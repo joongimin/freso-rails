@@ -1,5 +1,5 @@
 draw_pane = ($canvas, args = {}) ->
-  tilt = 320
+  tilt = 400
   canvas = $canvas[0]
   ctx = canvas.getContext("2d")
 
@@ -29,8 +29,8 @@ draw_pane = ($canvas, args = {}) ->
     ctx.lineTo(5, canvas.height)
 
   ctx.closePath()
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  ctx.shadowBlur = 5;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+  ctx.shadowBlur = 13;
 
   if args.left
     ctx.shadowOffsetX = 1;
