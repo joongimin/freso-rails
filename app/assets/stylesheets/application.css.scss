@@ -5,13 +5,19 @@ html, body {
   font-family: Play, sans-serif;
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote {
   margin: 0;
   padding: 0;
 }
 
 a {
   cursor: pointer;
+  color: rgb(235, 162, 53);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 ul, li {
@@ -37,4 +43,73 @@ ul, li {
       position: absolute;
     }
   }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  td, th {
+    border: 1px solid black;
+  }
+}
+
+div.flash_notice {
+  color: green;
+}
+
+div.flash_warning {
+  color: red;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 8px;
+  }
+
+  ul {
+    margin: 2px 24px;
+
+    li {
+      font-size: 12px;
+      list-style: disc;
+    }
+  }
+}
+
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+div.admin-tool {
+  padding: 10px;
 }

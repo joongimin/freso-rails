@@ -64,6 +64,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     eventmachine (1.0.0)
     exception_notification (3.0.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   devise
+  dynamic_form
   exception_notification
   fog
   geocoder
