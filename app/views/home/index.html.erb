@@ -14,7 +14,7 @@
 <div id="home-index">
   <div id="home" class="parallax" data-parallax-speed="0.1">
     <div class="iframe_container">
-      <iframe id="login_with_nuvo" height="100%"></iframe>
+      <%= content_tag :iframe, nil, :id => "login_with_nuvo", :height => "100%", :data => {:url => "/auth/nuvo?current_locale=#{I18n.locale}"} %>
     </div>
     <div class="background_container">
       <div class="solid"></div>

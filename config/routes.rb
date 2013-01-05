@@ -12,11 +12,11 @@ Freso::Application.routes.draw do
       get "nuvo/callback" => :callback
     end
 
-    #match "*a", :to => "home#no_route_matched"
+    match "*a", :to => "home#no_route_matched"
   end
 
-  #match "*path", :to => "home#no_locale_matched"
-  #match "", :to => "home#no_locale_matched"
+  match "*path", :to => "home#no_locale_matched"
+  match "", :to => "home#no_locale_matched"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

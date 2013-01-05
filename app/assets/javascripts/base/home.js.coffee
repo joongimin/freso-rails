@@ -79,7 +79,7 @@ $ ->
     $iframe_container = $("div.iframe_container")
     $login_with_nuvo = $iframe_container.find("iframe#login_with_nuvo")
     if !$login_with_nuvo.attr("src")
-      $login_with_nuvo.attr("src", "http://d1.xnuvo.com/ko-KR/oauth/login?next=http://d1.xnuvo.com/oauth/authorize?redirect_uri=http://d1.fre.so/nuvo/callback")
+      $login_with_nuvo.attr("src", $login_with_nuvo.data("url"))
 
     $logo_container = $("div.logo_container")
     offset = $logo_container.offset()
