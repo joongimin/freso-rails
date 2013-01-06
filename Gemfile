@@ -34,9 +34,6 @@ group :production do
   gem 'unicorn'
 end
 
-# Use unicorn as the app server
-gem 'unicorn'
-
 # Deploy with Capistrano
 gem 'capistrano'
 

@@ -2,18 +2,30 @@
 <%= javascript_include_tag "external_lib/jquery.localScroll" %>
 <%= javascript_include_tag "external_lib/jquery.scrollTo" %>
 <%= javascript_include_tag "external_lib/jquery.parallax-1.1.3" %>
+<%= javascript_include_tag "external_lib/jquery.mousewheel" %>
 <% menu = [
     {:id => "home"},
     {:id => "intro", :title => "What's Freso?", :description => "Freso is a tool to create your own online store."},
     {:id => "strength", :title => "Why should I use Freso?", :description => "Freso is awesome. Unlike traditional store management tools it uses all the latest technique to guarantee that your store outstands. Freso is easy to use. You don't have to know any web technology and you can still customize and manage your store. Plus it is free and it always will be."},
-    {:id => "business-model", :title => "How does Freso earn money?", :description => "We reserve a space at the bottom-right corner of your store and use it for advertising. We promise to keep this area as neat as possible. If you still want to remove this, you can do so by joining our premium membership."},
+    {:id => "business_model", :title => "How does Freso earn money?", :description => "We reserve a space at the bottom-right corner of your store and use it for advertising. We promise to keep this area as neat as possible. If you still want to remove this, you can do so by joining our premium membership."},
     {:id => "donation", :title => "Support Freso by donating", :description => "Our goal is to destroy the barrier that stands between the sellers and buyers. We will do so by making the entire sales process free. We are very confident that we will be able to find our way to make enough money to survive in the future. But in the meanwhile, we need your support to stay Free! Please support us!"},
   ]
 %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var options = {
+      autoPlay: false,
+      nextButton: true,
+      prevButton: true
+    }
+    var sequence = $("#sequence").sequence(options).data("sequence");
+    var sequence2 = $("#sequence2").sequence(options).data("sequence");
+  });
+</script>
 <div id="home-index">
   <div id="home" class="parallax" data-parallax-speed="0.1">
     <div class="iframe_container">
-      <iframe id="login_with_nuvo" height="100%"></iframe>
+      <%= content_tag :iframe, :id => "login_with_nuvo", :height => "100%", :data => {:"nuvo-uri" => "" } %>
     </div>
     <div class="background_container">
       <div class="solid"></div>
@@ -31,13 +43,7 @@
   <% menu.each do |menu_item| %>
     <% next if menu_item[:id] == "home" %>
     <%= content_tag :div, :id => menu_item[:id], :class => "parallax", :"data-parallax-speed" => 0.1 do %>
-      <% if menu_item[:id] == "strength" %><div class="bg"></div><% end %>
-      <div class="story_container">
-        <div class="story">
-          <h1><%= menu_item[:title] %></h1>
-          <p><%= menu_item[:description] %></p>
-        </div>
-      </div>
+      <%= render "home/#{menu_item[:id]}", :menu_item => menu_item %>
     <% end %>
   <% end %>
   <ul id="nav">
