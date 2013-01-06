@@ -1,0 +1,17 @@
+div#translations-index {
+  tr {
+    div.editing {
+      display: none;
+    }
+
+    &.editing {
+      div.editing {
+        display: block;
+      }
+
+      div.static {
+        display: none;
+      }
+    }
+  }
+}

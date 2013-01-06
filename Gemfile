@@ -28,6 +28,7 @@ gem 'jquery-rails'
 
 group :development do
   gem 'thin'
+  gem 'nifty-generators'
 end
 
 group :production do
@@ -53,3 +54,9 @@ gem 'settingslogic'
 gem 'aws-sdk'
 gem 'redis'
 gem 'redis-namespace'
+gem 'dynamic_form'
+gem 'omniauth'
+gem 'omniauth-nuvo', :git => "git@github.com:joongimin/omniauth-nuvo.git"
+gem 'omniauth-twitter'
+
+gem "mocha", :group => :test

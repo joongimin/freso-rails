@@ -10,8 +10,9 @@
   </head>
   <body>
     <div id="top_container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

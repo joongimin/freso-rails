@@ -1,5 +1,5 @@
 draw_pane = ($canvas, args = {}) ->
-  tilt = 320
+  tilt = 400
   canvas = $canvas[0]
   ctx = canvas.getContext("2d")
 
@@ -29,8 +29,8 @@ draw_pane = ($canvas, args = {}) ->
     ctx.lineTo(5, canvas.height)
 
   ctx.closePath()
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  ctx.shadowBlur = 5;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+  ctx.shadowBlur = 13;
 
   if args.left
     ctx.shadowOffsetX = 1;
@@ -79,7 +79,7 @@ $ ->
     $iframe_container = $("div.iframe_container")
     $login_with_nuvo = $iframe_container.find("iframe#login_with_nuvo")
     if !$login_with_nuvo.attr("src")
-      $login_with_nuvo.attr("src", "http://d1.xnuvo.com/ko-KR/oauth/login?next=http://d1.xnuvo.com/oauth/authorize?redirect_uri=http://d1.fre.so/nuvo/callback")
+      $login_with_nuvo.attr("src", $login_with_nuvo.data("url"))
 
     $logo_container = $("div.logo_container")
     offset = $logo_container.offset()
@@ -96,8 +96,6 @@ $ ->
       .animate {top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
         $iframe_container.show()
         $logo_container.animate({top: 15, left: 0}, speed, easing)
-
-        $background_container.addClass("splitted")
 
         $left = $background_container.find("div.split canvas.left")
         $right = $background_container.find("div.split canvas.right")
