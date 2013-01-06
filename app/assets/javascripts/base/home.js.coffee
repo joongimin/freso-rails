@@ -140,3 +140,19 @@ $ ->
     target_offset = $logo_container.offset()
     $logo_container.attr("style", org_style)
     $logo_container.animate({top: target_offset.top, left: target_offset.left}, speed, easing, -> $logo_container.removeAttr("style"))
+
+  delta_down_threashold = -4;
+  delta_up_threashold = 4;
+  delta_acumulate = 0;
+  $('#home-index-false').mousewheel (event, delta, deltaX, deltaY) ->
+    delta_acumulate += deltaY
+    if delta_acumulate < delta_down_threashold
+      delta_acumulate = 0;
+      console.log("scroll down!!!");
+      window.location.href = '#intro';
+    else if delta_acumulate > delta_up_threashold
+      delta_acumulate = 0;
+      console.log("scroll up!!!");
+      window.location.href = '#home';
+    else
+      console.log(event, delta_acumulate, delta, deltaX, deltaY);
