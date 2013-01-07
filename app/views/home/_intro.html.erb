@@ -1,0 +1,62 @@
+<% intro_menu = [
+    {:id => "home"},
+    {:id => "intro", :title => "What's Freso?", :description => "Freso is a tool to create your own online store."},
+    {:id => "strength", :title => "Why should I use Freso?", :description => "Freso is awesome. Unlike traditional store management tools it uses all the latest technique to guarantee that your store outstands. Freso is easy to use. You don't have to know any web technology and you can still customize and manage your store. Plus it is free and it always will be."},
+    {:id => "business_model", :title => "How does Freso earn money?", :description => "We reserve a space at the bottom-right corner of your store and use it for advertising. We promise to keep this area as neat as possible. If you still want to remove this, you can do so by joining our premium membership."},
+    {:id => "donation", :title => "Support Freso by donating", :description => "Our goal is to destroy the barrier that stands between the sellers and buyers. We will do so by making the entire sales process free. We are very confident that we will be able to find our way to make enough money to survive in the future. But in the meanwhile, we need your support to stay Free! Please support us!"},
+  ]
+%>
+<div class="bg"></div>
+<div class="story_container" id="sequence">
+  <ul>
+    <li class="frame_container">
+      <div class="info1">
+        <%= image_tag "home/whats.png", :class => "title_forward" %>
+        <%= image_tag "home/freso.png", :class => "title_backward" %>
+        <div class="first_description"><%= t("about_freso_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="info2">
+        <div class="second_title"><%= t("intro.second_title") %></div>
+        <div class="second_description"><%= t("intro.second_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="info3">
+        <div class="third_title"><%= t("intro.third_title") %></div>
+        <div class="third_description"><%= t("intro.third_description") %></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="horizontal_scroll_container">
+  <ul>
+    <li class="sub_nav_back">
+      <%= content_tag :a, :class => "next", :title => menu_item[:title], :id => menu_item[:title] do %>
+        <%= image_tag "home/sub-nav-back-button.png" %>
+      <% end %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav toggle_menu">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav toggle_menu">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav_forward">
+      <%= content_tag :a, :class => "prev", :title => menu_item[:title], :id => menu_item[:title] do %>
+        <%= image_tag "home/sub-nav-foward-button.png" %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+

@@ -1,0 +1,69 @@
+<div class="story_container" id="sequence2">
+  <ul>
+    <li class="frame_container">
+      <div class="strength_info1">
+        <div class="first_title"><%= t("strength.first_title") %></div>
+        <div class="first_description"><%= t("strength.first_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="strength_info2">
+        <div class="second_title"><%= t("strength.second_title") %></div>
+        <div class="second_description"><%= t("strength.second_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="strength_info3">
+        <div class="third_title"><%= t("strength.third_title") %></div>
+        <div class="third_description"><%= t("strength.third_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="strength_info4">
+        <div class="fourth_title"><%= t("strength.fourth_title") %></div>
+        <div class="fourth_description"><%= t("strength.fourth_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="strength_info5">
+        <div class="fifth_title"><%= t("strength.fifth_title") %></div>
+        <div class="fifth_description"><%= t("strength.fifth_description") %></div>
+      </div>
+    </li>
+    <li class="frame_container">
+      <div class="strength_info6">
+        <div class="sixth_title"><%= t("strength.sixth_title") %></div>
+        <div class="sixth_description"><%= t("strength.sixth_description") %></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="horizontal_scroll_container">
+  <ul>
+    <li class="sub_nav_back">
+      <%= content_tag :a, :class => "next", :title => menu_item[:title], :id => menu_item[:title] do %>
+        <%= image_tag "home/sub-nav-back-button.png" %>
+      <% end %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav">
+      <%= image_tag "home/sub-nav-button.png" %>
+    </li>
+    <li class="sub_nav_forward">
+      <%= content_tag :a, :class => "prev", :title => menu_item[:title], :id => menu_item[:title] do %>
+        <%= image_tag "home/sub-nav-foward-button.png" %>
+      <% end %>
+    </li>
+  </ul>
+</div>

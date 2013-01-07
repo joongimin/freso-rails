@@ -62,7 +62,7 @@ module Freso
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += ["external_lib/excanvas.js", "external_lib/jquery.sequence.js", "external_lib/jquery.localScroll.js", "external_lib/jquery.scrollTo.js", "external_lib/jquery.parallax-1.1.3.js"]
+    config.assets.precompile += ["external_lib/excanvas.js", "external_lib/jquery.sequence.js", "external_lib/jquery.localScroll.js", "external_lib/jquery.scrollTo.js", "external_lib/jquery.parallax-1.1.3.js", "external_lib/jquery.mousewheel.js"]
 
     config.action_mailer.delivery_method = :amazon_ses
 
@@ -72,5 +72,7 @@ module Freso
       fallbacks[locale] = locales
     end
     Globalize.fallbacks = fallbacks
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end

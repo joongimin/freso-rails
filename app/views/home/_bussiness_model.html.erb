@@ -1,0 +1,36 @@
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="story_container">
+  <div class="story">
+  	<%= image_tag "home/business_model_title.png", :class => "title" %>
+    <div class="horizontal_scroll_container">
+      <ul>
+        <li class="sub_nav_back">
+          <%= content_tag :a, :class => "prev", :title => menu_item[:title] do %>
+            <%= image_tag "home/sub-nav-back-button.png" %>
+          <% end %>
+        </li>
+        <li class="sub_nav">
+          <%= image_tag "home/sub-nav-button.png" %>
+        </li>
+        <li class="sub_nav">
+          <%= image_tag "home/sub-nav-button.png" %>
+        </li>
+        <li class="sub_nav">
+          <%= image_tag "home/sub-nav-button.png" %>
+        </li>
+        <li class="sub_nav">
+          <%= image_tag "home/sub-nav-button.png" %>
+        </li>
+        <li class="sub_nav">
+          <%= image_tag "home/sub-nav-button.png" %>
+        </li>
+        <li class="sub_nav_forward">
+          <%= content_tag :a, :class => "next", :title => menu_item[:title] do %>
+            <%= image_tag "home/sub-nav-foward-button.png" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
