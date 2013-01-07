@@ -1,5 +1,8 @@
+@import "compass";
+
 #home-index {
   height: 100%;
+  overflow: hidden;
 
   div.background_container {
     top: 0;
@@ -51,19 +54,8 @@
     display: none;
   }
 
-  div.iframe_container {
-    width: 960px;
-    height: 500px;
-    top: 50%;
-    left: 50%;
-    margin: -250px 0 0 -480px;
-    position: absolute;
-    display: none;
-  }
-
   iframe#login_with_nuvo {
     width: 100%;
-    height: 500px;
     border: none;
   }
 
@@ -161,5 +153,13 @@
         }
       }
     }
+  }
+}
+
+#slider.active {
+  position: absolute;
+
+  .slide {
+    float: left;
   }
 }

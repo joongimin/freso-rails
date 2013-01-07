@@ -1,5 +1,22 @@
 class HomeController < ApplicationController
   def index
+    if current_user
+      if current_user.brands.count == 0
+        respond_to do |format|
+          format.js { render :guide }
+          format.html { render :guide }
+        end
+      else
+        respond_to do |format|
+          format.js { render :logged_in }
+          format.html { render :logged_in }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render :index }
+      end
+    end
   end
 
   def no_locale_matched

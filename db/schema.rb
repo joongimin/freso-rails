@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104085302) do
+ActiveRecord::Schema.define(:version => 20130107150754) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,30 @@ ActiveRecord::Schema.define(:version => 20130104085302) do
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
+  create_table "brand_translations", :force => true do |t|
+    t.integer  "brand_id"
+    t.string   "locale"
+    t.string   "name",       :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "brand_translations", ["brand_id"], :name => "index_brand_translations_on_brand_id"
+  add_index "brand_translations", ["locale"], :name => "index_brand_translations_on_locale"
+
+  create_table "brands", :force => true do |t|
+    t.integer  "uid"
+    t.integer  "hub_type"
+    t.integer  "layout_id"
+    t.integer  "user_id"
+    t.string   "uri"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "brands", ["layout_id"], :name => "index_brands_on_layout_id"
+  add_index "brands", ["user_id"], :name => "index_brands_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -52,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130104085302) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "locale"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

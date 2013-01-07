@@ -1,3 +1,5 @@
+//= require ../external_lib/jquery/jquery.ba-postmessage
+
 draw_pane = ($canvas, args = {}) ->
   tilt = 400
   canvas = $canvas[0]
@@ -66,6 +68,11 @@ $ ->
   # sequence = $("#sequence").sequence(sequence_options).data("sequence");
 
   $("a#link_login_with_nuvo").click ->
+    $this = $(this)
+    AjaxUtil::push($this.data("title"), $this.data("url"))
+    login_with_nuvo($this)
+
+  login_with_nuvo = ($link) ->
     speed = 1000
     easing = "easeInCubic"
 
@@ -75,11 +82,6 @@ $ ->
       $("div.parallax").each ->
         if $(this).attr("id") != "home"
           $(this).hide()
-
-    $iframe_container = $("div.iframe_container")
-    $login_with_nuvo = $iframe_container.find("iframe#login_with_nuvo")
-    if !$login_with_nuvo.attr("src")
-      $login_with_nuvo.attr("src", $login_with_nuvo.data("url"))
 
     $logo_container = $("div.logo_container")
     offset = $logo_container.offset()
@@ -94,7 +96,8 @@ $ ->
       .css("left", offset.left + "px")
       .css("margin", "0")
       .animate {top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
-        $iframe_container.show()
+        $login_with_nuvo = $("<iframe id='login_with_nuvo' height='100%'></iframe>").attr("src", $("div#home_data").data("login-url"))
+        $login_with_nuvo.prependTo($("#home"))
         $logo_container.animate({top: 15, left: 0}, speed, easing)
 
         $left = $background_container.find("div.split canvas.left")
@@ -110,6 +113,11 @@ $ ->
     $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
 
   $("a#link_back").click ->
+    $this = $(this)
+    AjaxUtil::push $this.data("title"), $this.data("url")
+    close_login_with_nuvo()
+
+  close_login_with_nuvo = ->
     speed = 1000
     easing = "easeInCubic"
 
@@ -122,7 +130,7 @@ $ ->
 
     $left.animate {left: 0}, speed, easing, ->
       $logo_container.find(".login").show().animate({opacity: 1})
-      $("div.iframe_container").hide()
+      $("iframe#login_with_nuvo").remove()
       $background_container.find("div.solid").show().animate({opacity: 1}, 80, "linear")
       $background_container.find("div.split").animate({opacity: 0}, 80, "linear", -> $(this).hide())
       $("ul#nav").show().animate({opacity: 1}, 400, "linear")
@@ -138,3 +146,18 @@ $ ->
     target_offset = $logo_container.offset()
     $logo_container.attr("style", org_style)
     $logo_container.animate({top: target_offset.top, left: target_offset.left}, speed, easing, -> $logo_container.removeAttr("style"))
+
+  if window.location.href.indexOf("login") != -1
+    login_with_nuvo()
+
+  $(window).on "ajax_util:state_changed", (e, path) ->
+    if path == ""
+      close_login_with_nuvo()
+    else if path == "/login"
+      login_with_nuvo()
+
+  $.receiveMessage (e) ->
+    if e.data == "relogin"
+      $("iframe#relogin").attr("src", $("div#home_data").data("login-url"))
+    else if e.data == "success"
+      $.getScript DataUtil::get("root-url")

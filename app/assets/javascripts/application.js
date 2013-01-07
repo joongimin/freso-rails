@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require ./external_lib/jquery/jquery.history
+//= require_tree ./lib

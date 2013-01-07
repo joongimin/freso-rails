@@ -13,7 +13,7 @@ Sequence.js and its dependencies are (c) Ian Lunn Design 2012 unless otherwise s
 Sequence also relies on the following open source scripts:
 
 - 	jQuery imagesLoaded 2.1.0 (http://github.com/desandro/imagesloaded)
-	Paul Irish et al 
+	Paul Irish et al
 	Available under a MIT License: http://www.opensource.org/licenses/mit-license.php
 
 - 	jQuery TouchWipe 1.1.1 (http://www.netcu.de/jquery-touchwipe-iphone-ipad-library)
@@ -30,7 +30,7 @@ Sequence also relies on the following open source scripts:
 		var self = this;
 		self.container = $(element),
 		self.sequence = self.container.children("ul");
-		
+
 		try { //is Modernizr.prefixed installed?
 			Modernizr.prefixed;
 			if(Modernizr.prefixed === undefined){
@@ -40,7 +40,7 @@ Sequence also relies on the following open source scripts:
 		catch(err) { //if not...get the custom build necessary for Sequence
 			get.modernizr();
 		}
-		
+
 		var prefixes = { //convert JS transition names to CSS names
 		'WebkitTransition' : '-webkit-',
 		'MozTransition'    : '-moz-',
@@ -55,7 +55,7 @@ Sequence also relies on the following open source scripts:
 		'msTransition'     : 'MSTransitionEnd MSAnimationEnd',
 		'transition'       : 'transitionend animationend'
 		};
-		
+
 		self.prefix = prefixes[Modernizr.prefixed('transition')], //work out the CSS prefix for the browser being used (-webkit- for example)
 		self.transitionEnd = transitions[Modernizr.prefixed('transition')], //work out the JS transitionEnd name for the browser being used (webkitTransitionEnd webkitAnimationEnd for example)
 		self.transitionProperties = {},
@@ -77,11 +77,11 @@ Sequence also relies on the following open source scripts:
 		self.delayUnpause,
 		self.init = {
 			/*functionality to initiate the preloader, next/previous buttons and so on
-			
+
 			devOption: true = the developer wants to use the default selector. false = don't use a uiElement. string = the developer defined selector to use for the UI element
 			defaultOption: the default selector to use for the UI element, when the developer specifies false for devOption
 			*/
-			uiElements: function(devOption, defaultOption) { 
+			uiElements: function(devOption, defaultOption) {
 				switch(devOption) {
 					case false: //don't set up a uiElement
 						return undefined;
@@ -101,40 +101,40 @@ Sequence also relies on the following open source scripts:
 		//Callbacks
 		self.paused = function() {},						//executes when Sequence is paused
 		self.unpaused = function() {},						//executes when Sequence is unpaused
-		
+
 		self.beforeNextFrameAnimatesIn = function() {},		//executes before the next frame animates in
 		self.afterNextFrameAnimatesIn = function() {},		//executes after the next frame animates in
 		self.beforeCurrentFrameAnimatesOut = function() {},	//executes before the current frame animates out
 		self.afterCurrentFrameAnimatesOut = function() {},	//executes after the current frame animates out
-		
+
 		self.beforeFirstFrameAnimatesIn = function() {},	//executes before the first frame animates in
 		self.afterFirstFrameAnimatesIn = function() {},		//executes after the first frame animates in
 		self.beforeLastFrameAnimatesIn = function() {},		//executes before the last frame animates in
 		self.afterLastFrameAnimatesIn = function() {},		//executes after the last frame animates in
 
 		self.afterLoaded = function() {};					//executes after Sequence is initiated
-		
+
 		//INIT
 		self.settings = $.extend({}, defaults, options); //combine default options with developer defined ones
 		self.settings.preloader = self.init.uiElements(self.settings.preloader, ".sequence-preloader"); //set up the preloader and save it
 		self.firstFrame = (self.settings.animateStartingFrameIn) ? true : false; //determine if the first frame should animate in
 		self.settings.unpauseDelay = (self.settings.unpauseDelay === null) ? self.settings.autoPlayDelay : self.settings.unpauseDelay; //if the unpauseDelay is not specified, make it the same as the autoPlayDelay speed
 		self.currentHashTag; //the current hash tag taken from the URL
-		self.getHashTagFrom = (self.settings.hashDataAttribute) ? "data-sequence-hashtag": "id"; //get the hashtag from the ID or data attribute?  
+		self.getHashTagFrom = (self.settings.hashDataAttribute) ? "data-sequence-hashtag": "id"; //get the hashtag from the ID or data attribute?
 		self.frameHashID = []; //array that matches frames with has IDs
 		self.direction = self.settings.autoPlayDirection;
-		
+
 		if(self.settings.hideFramesUntilPreloaded && self.settings.preloader) { //if using a preloader and hiding frames until preloading has completed...
 		    self.sequence.children("li").hide(); //hide Sequence's frames
 		}
-		
+
 		if(self.prefix === "-o-") { //if Opera prefixes are required...
 		    self.transitionsSupported = get.operaTest(); //run a test to see if Opera correctly supports transitions (Opera 11 has bugs relating to transitions)
 		}
-        
+
         self.modifyElements(self.sequence.children("li"), "0s"); //reset transition time to 0s
 		self.sequence.children("li").removeClass("animate-in"); //remove any instance of "animate-in", which should be used incase JS is disabled
-		
+
 		//functionality to run once Sequence has preloaded
 		function oncePreloaded() {
 		    self.afterLoaded(); //callback
@@ -174,10 +174,10 @@ Sequence also relies on the following open source scripts:
 			    		for(var i = length; i > 0; i--) { //for each frame to be preloaded...
 		            		imagesToPreload.push($("body").find('img[src="'+self.settings.preloadTheseImages[i-1]+'"]')[0]); //find any <img> with the given source and add it to the array of images to be preloaded
 			    		}
-			    	}			    
+			    	}
 		        return imagesToPreload;
 		    }
-	
+
             var frameImagesToPreload = saveImagesToArray(preloadTheseFramesLength); //get images from particular Sequence frames to be preloaded
            	var individualImagesToPreload = saveImagesToArray(preloadTheseImagesLength, true); //get images with specific source values to be preloaded
             var imagesToPreload = $(frameImagesToPreload.concat(individualImagesToPreload)); //combine frame images and individual images
@@ -230,11 +230,11 @@ Sequence also relies on the following open source scripts:
 				}
 			}
 
-			function imgLoaded( img, isBroken ) {	
+			function imgLoaded( img, isBroken ) {
 				if(img.src === BLANK || $.inArray(img, loaded) !== -1) { // don't proceed if BLANK image, or image is already loaded
 					return;
 				}
-				
+
 				loaded.push(img); // store element in loaded images array
 
 				if(isBroken) { // keep track of broken and properly loaded images
@@ -280,19 +280,19 @@ Sequence also relies on the following open source scripts:
 					}
 				});
 			}
-		};		
-		
+		};
+
 		function init() {
 			$(self.settings.preloader).remove(); //remove the preloader element
-			
+
 			self.nextButton = self.init.uiElements(self.settings.nextButton, ".next"); //set up the next button
 			self.prevButton = self.init.uiElements(self.settings.prevButton, ".prev"); //set up the previous button
 			self.pauseButton = self.init.uiElements(self.settings.pauseButton, ".pause"); //set up the pause button
-			
+
 			if((self.nextButton !== undefined && self.nextButton !== false) && self.settings.showNextButtonOnInit){self.nextButton.show();} //if using a next button, show it
-			if((self.prevButton !== undefined && self.prevButton !== false) && self.settings.showPrevButtonOnInit){self.prevButton.show();} //if using a previous button, show it			
+			if((self.prevButton !== undefined && self.prevButton !== false) && self.settings.showPrevButtonOnInit){self.prevButton.show();} //if using a previous button, show it
 			if((self.pauseButton !== undefined && self.pauseButton !== false)){self.pauseButton.show();} //if using a pause button, show it
-						
+
 			if(self.settings.pauseIcon !== false) {
 				self.pauseIcon = self.init.uiElements(self.settings.pauseIcon, ".pause-icon");
 				if(self.pauseIcon !== undefined) {
@@ -303,20 +303,20 @@ Sequence also relies on the following open source scripts:
 			}
 
 			self.nextFrameID = self.settings.startingFrameID;
-						
+
 			if(self.settings.hashTags) { //if using hashtags...
 			    self.sequence.children("li").each(function() { //for each frame...
 			        self.frameHashID.push($(this).attr(self.getHashTagFrom)); //add the hashtag to an array
 			    });
-			    			    
+
 			    self.currentHashTag = location.hash.replace("#", ""); //get the current hashtag
 			    if(self.currentHashTag === undefined || self.currentHashTag === "") { //if there is no hashtag...
 			        self.nextFrameID = self.settings.startingFrameID; //use the startingFrameID
-			    }else{			        
+			    }else{
 			        self.frameHashIndex = $.inArray(self.currentHashTag, self.frameHashID); //get the index of the frame that matches the hashtag
 			        if(self.frameHashIndex !== -1){  //if the hashtag matches a Sequence frame ID...
 			            self.nextFrameID = self.frameHashIndex + 1; //use the frame associated to the hashtag
-			        }else{			            
+			        }else{
 			            self.nextFrameID = self.settings.startingFrameID; //use the startingFrameID
 			        }
 			    }
@@ -324,7 +324,7 @@ Sequence also relies on the following open source scripts:
 
 			self.nextFrame = self.sequence.children("li:nth-child("+self.nextFrameID+")");
 			self.nextFrameChildren = self.nextFrame.children();
-			
+
 			self.sequence.css({"width": "100%", "height": "100%", "position": "relative"}); //set the sequence list to 100% width/height just incase it hasn't been specified in the CSS
 			self.sequence.children("li").css({"width": "100%", "height": "100%", "position": "absolute", "z-index": 1}); //do the same for the frames and make them absolute
 
@@ -341,11 +341,11 @@ Sequence also relies on the following open source scripts:
 					    self.currentHashTag = self.nextFrame.attr(self.getHashTagFrom);
 					    document.location.hash = "#"+self.currentHashTag;
 					}
-					
+
 					setTimeout(function() {
 						self.modifyElements(self.nextFrameChildren, "");
 					}, 100);
-					
+
 					self.resetAutoPlay(true, self.settings.autoPlayDelay);
 				}else if(self.settings.reverseAnimationsWhenNavigatingBackwards && self.settings.autoPlayDirection -1 && self.settings.animateStartingFrameIn) { //animate in backwards
 					self.modifyElements(self.nextFrameChildren, "0s");
@@ -362,7 +362,7 @@ Sequence also relies on the following open source scripts:
     			    self.currentHashTag = self.nextFrame.attr(self.getHashTagFrom);
     			    document.location.hash = "#"+self.currentHashTag;
     			}
-    			self.currentFrameID = self.nextFrameID;			    		
+    			self.currentFrameID = self.nextFrameID;
                 self.sequence.children("li").addClass("animate-in");
                 self.sequence.children(":not(li:nth-child("+self.nextFrameID+"))").css({"display": "none", "opacity": 0});
                 self.resetAutoPlay(true, self.settings.autoPlayDelay);
@@ -374,19 +374,19 @@ Sequence also relies on the following open source scripts:
 					self.next(); //go to the next frame
 				});
 			}
-									
+
 			if(self.prevButton !== undefined) { //if a previous button is defined...
 				self.prevButton.click(function() { //when the previous button is clicked...
 					self.prev(); //go to the previous frame
 				});
 			}
-						
+
 			if(self.pauseButton !== undefined) { //if a pause button is defined...
 				self.pauseButton.click(function() { //when the pause button is clicked...
 					self.pause(true); //pause Sequence and set hardPause to true
 				});
 			}
-			
+
 			if(self.settings.keyNavigation) {
 				var defaultKeys = {
 					'left'	: 37,
@@ -408,14 +408,14 @@ Sequence also relies on the following open source scripts:
 							}
 						}
 					}
-				
-				$(document).keydown(function(e) { //when a key is pressed...					
+
+				$(document).keydown(function(e) { //when a key is pressed...
 					var char = String.fromCharCode(e.keyCode);
 					if((char > 0 && char <= self.numberOfFrames) && (self.settings.numericKeysGoToFrames)) {
 						self.nextFrameID = char;
 						self.goTo(self.nextFrameID); //go to specified frame
 					}
-					
+
 					keyEvents(e.keyCode, self.settings.keyEvents); //run default keyevents
 					keyEvents(e.keyCode, self.settings.customKeyEvents); //run custom keyevents
 				});
@@ -437,11 +437,11 @@ Sequence also relies on the following open source scripts:
 				    }
 				});
 			}
-			
+
 			if(self.settings.hashTags) { //if hashchange is enabled in the settings...
     			$(window).hashchange(function() { //when the hashtag changes...
     			    newTag = location.hash.replace("#", ""); //grab the new hashtag
-    			    
+
     			    if(self.currentHashTag !== newTag) { //if the last hashtag is not the same as the current one...
     			        self.currentHashTag = newTag; //save the new tag
     			        self.frameHashIndex = $.inArray(self.currentHashTag, self.frameHashID); //get the index of the frame that matches the hashtag
@@ -463,7 +463,7 @@ Sequence also relies on the following open source scripts:
 					self.sequence.on("touchmove", onTouchMove);
 					startX = null;
 					isMoving = false;
-				}	
+				}
 
 				function onTouchMove(e) {
 					if(self.settings.swipePreventsDefault) {
@@ -506,7 +506,7 @@ Sequence also relies on the following open source scripts:
 			//END EVENTS
 		}
 	} //END CONSTRUCTOR
-	
+
 	Sequence.prototype = {
 		//trigger keyEvents, customKeyEvents and swipeEvents
 		initCustomKeyEvent: function(event) {
@@ -523,10 +523,10 @@ Sequence also relies on the following open source scripts:
 					break;
 			}
 		},
-		
+
 		/*
 		modify the transition-duration and transition-delay properties of an element
-		
+
 		elementToReset = the element that is to have it's properties modified
 		cssValue = the value to be given to the transition-duration and transition-delay properties
 		*/
@@ -539,10 +539,10 @@ Sequence also relies on the following open source scripts:
 				})
 			);
 		},
-		
+
 		/*
 		adds the browser vendors prefix onto multiple CSS properties
-		
+
 		prefix = the prefix for the browser Sequence is being viewed in (-webkit- for example)
 		properties = the properties to be prefixed (transition-duration for example)
 		*/
@@ -553,7 +553,7 @@ Sequence also relies on the following open source scripts:
 			}
 			return css; //return the prefixed CSS
 		},
-		
+
 		setTransitionProperties: function(frameChildren) {
 			var self = this;
 			frameChildren.each(function() {
@@ -568,7 +568,7 @@ Sequence also relies on the following open source scripts:
 
 		/*
 		start autoPlay -- causing Sequence to automatically change frame every x amount of milliseconds
-		
+
 		delay: a time in ms before starting the autoPlay feature (if unspecified, the default will be used)
 		*/
 		startAutoPlay: function(delay) {
@@ -581,7 +581,7 @@ Sequence also relies on the following open source scripts:
 				self.settings.autoPlayDirection === 1 ? self.next(): self.prev(); //go to either the next or previous frame
 			}, delay); //after a specified delay
 		},
-		
+
 		//stop causing Sequence to automatically change frame every x amount of seconds
 		stopAutoPlay: function() {
 			var self = this;
@@ -637,9 +637,9 @@ Sequence also relies on the following open source scripts:
 
 		/*
 		Start the autoPlay feature, as well as deal with any changes to pauseButtons, pauseIcons and public variables etc
-		
+
 		callback: if false, the unpause callback will not be initiated (this is because unpause is used internally during the stop and start of each frame)
-		*/ 
+		*/
 		unpause: function(callback) {
 			var self = this;
 			if(self.pauseButton !== undefined) { //if a pause button is defined...
@@ -661,28 +661,28 @@ Sequence also relies on the following open source scripts:
 				self.delayUnpause = true; //Sequence is animating so delay the unpause event until the animation completes
 			}
 		},
-		
+
 		//Go to the frame ahead of the current one
 		next: function() {
 			var self = this;
 			self.nextFrameID = (self.currentFrameID !== self.numberOfFrames) ? self.currentFrameID + 1 : 1; //work out the next frame
 			self.goTo(self.nextFrameID, 1); //go to the next frame
 		},
-		
+
 		//Go to the frame prior to the current one
 		prev: function() {
 			var self = this;
 			self.nextFrameID = (self.currentFrameID === 1) ? self.numberOfFrames : self.currentFrameID - 1; //work out the prev frame
 			self.goTo(self.nextFrameID, -1); //go to the prev frame
 		},
-		
+
 		/*
 		Go to a specific frame
-		
+
 		id: number of the frame to go to
 		direction: direction to get to that frame (1 = forward, -1 = reverse)
 		*/
-		goTo: function(id, direction) {	
+		goTo: function(id, direction) {
 			var self = this;
 			var id = parseFloat(id); //convert the id to a number just in case
 
@@ -708,7 +708,7 @@ Sequence also relies on the following open source scripts:
 			if(!self.active || self.settings.navigationSkip) { //if there are no animations running or navigationSkip is enabled...
 				self.active = true; //Sequence is now animating
 				self.resetAutoPlay(); //stop any autoPlay timer that may be running
-			
+
 				if(id === self.numberOfFrames) { //if navigating to the last frame...
 					self.beforeLastFrameAnimatesIn(); //callback
 				}else if(id === 1) { //if navigating to the first frame...
@@ -720,13 +720,13 @@ Sequence also relies on the following open source scripts:
 				}else{
 					self.direction = direction; //go to the developer defined frame
 				}
-				
+
 				self.currentFrame = self.sequence.children(".animate-in"); //find which frame is active -- the frame currently being viewed (and about to be animated out)
 				self.nextFrame = self.sequence.children("li:nth-child("+id+")"); //grab the next frame
 				self.frameChildren = self.currentFrame.children();	//save the child elements of the current frame
 				self.nextFrameChildren = self.nextFrame.children(); //save the child elements of the next frame
-				
-				if(self.transitionsSupported) { //if the browser supports CSS3 transitions...							
+
+				if(self.transitionsSupported) { //if the browser supports CSS3 transitions...
 					if(self.currentFrame.length !== undefined) { //if there is a current frame (one that is in it's animate-in position)...
 						self.beforeCurrentFrameAnimatesOut(); //callback
 						if(self.settings.moveActiveFrameToTop) { //if the active frame should move to the top...
@@ -735,7 +735,7 @@ Sequence also relies on the following open source scripts:
 						self.modifyElements(self.nextFrameChildren, "0s"); //give the next frame elements a transition-duration and transition-delay of 0s so they don't transition to their reset position
 						if(!self.settings.reverseAnimationsWhenNavigatingBackwards || self.direction === 1) { //if user hit next button...
 							self.nextFrame.removeClass("animate-out"); //reset the next frame back to its starting position
-							self.modifyElements(self.frameChildren, "");  //remove any inline styles from the elements to be animated so styles via the "animate-out" class can take full effect		
+							self.modifyElements(self.frameChildren, "");  //remove any inline styles from the elements to be animated so styles via the "animate-out" class can take full effect
 						}else if(self.settings.reverseAnimationsWhenNavigatingBackwards && self.direction === -1) { //if the user hit prev button
 							self.nextFrame.addClass("animate-out"); //reset the next frame back to its animate-out position
 							self.setTransitionProperties(self.frameChildren);
@@ -751,7 +751,7 @@ Sequence also relies on the following open source scripts:
 					if(self.settings.fadeFrameWhenSkipped) { //if a frame may have faded out when it was previously skipped...
 						self.nextFrame.css("opacity", 1); //show it again
 					}
-					
+
 					self.beforeNextFrameAnimatesIn(); //callback
 					if(self.settings.moveActiveFrameToTop) { //if an active frame should be moved to the top...
 					    self.nextFrame.css({"z-index": self.numberOfFrames}); //move to the top of the z-index
@@ -778,7 +778,7 @@ Sequence also relies on the following open source scripts:
 					}
 
 					//final class changes to make animations happen
-					if(!self.settings.reverseAnimationsWhenNavigatingBackwards || self.direction === 1) { //if user hit next button...			
+					if(!self.settings.reverseAnimationsWhenNavigatingBackwards || self.direction === 1) { //if user hit next button...
 						setTimeout(function() { //50ms timeout to give the browser a chance to modify the DOM sequentially
 							self.currentFrame.toggleClass("animate-out animate-in");
 							self.nextFrame.addClass("animate-in"); //add the "animate-in" class
@@ -791,12 +791,12 @@ Sequence also relies on the following open source scripts:
 					}
 				}else{ //if the browser doesn't support CSS3 transitions...
 					function animationComplete() {
-			            self.setHashTag();	                
+			            self.setHashTag();
 			            self.active = false;
 			            self.resetAutoPlay(true, self.settings.autoPlayDelay);
 				    }
 
-				    self.beforeCurrentFrameAnimatesOut(); //callback	
+				    self.beforeCurrentFrameAnimatesOut(); //callback
 
 				    switch(self.settings.fallback.theme) {
 				    	case "fade": //if using the fade fallback theme...
@@ -809,7 +809,7 @@ Sequence also relies on the following open source scripts:
 				            	}); //make the next frame the current one and show it
 				            	animationComplete();
 				            });
-				            
+
 				            self.sequence.children("li").css({"position": "relative"}); //this allows for fadein/out in IE
 				        break;
 
@@ -841,14 +841,14 @@ Sequence also relies on the following open source scripts:
 				                	animationComplete();
 				                	self.afterNextFrameAnimatesIn(); //callback
 				            	});
-				            }, 50);		            
+				            }, 50);
 				        break;
 				    }
 				}
-				self.currentFrameID = id; //make the currentFrameID the same as the one that is to animate in				
+				self.currentFrameID = id; //make the currentFrameID the same as the one that is to animate in
 			}
 		},
-		
+
 		/*
 			prevents the next frame from animating until the current frame has finished animating
 
@@ -867,8 +867,8 @@ Sequence also relies on the following open source scripts:
 				var onceComplete = function() {
 					self.afterNextFrameAnimatesIn(); //callback
 					self.setHashTag(); //set the hashtag to represent the newly active frame
-					
-					if(self.currentFrameID === self.numberOfFrames) { 
+
+					if(self.currentFrameID === self.numberOfFrames) {
 						self.afterLastFrameAnimatesIn(); //callback
 					}else if(self.currentFrameID === 1) {
 						self.afterFirstFrameAnimatesIn(); //callback
@@ -890,7 +890,7 @@ Sequence also relies on the following open source scripts:
 			frameChildren.data('animationEnded', false); // set the data attribute of each animated element to indicate that the animation has not yet ended
 			frame.bind(self.transitionEnd, function(e) { //when an element finishes animating...
 				$(e.target).data('animationEnded', true); // set the data attrbiute to indicate that the element has finished it's animation
-			
+
 				// now check if all elements have finished animating
 				var allAnimationsEnded = true;
 				frameChildren.each(function() { //for each element being animated within a frame...
@@ -899,7 +899,7 @@ Sequence also relies on the following open source scripts:
 						return false; //break out of the animationEnded check early
 					}
 				});
-			
+
 				if(allAnimationsEnded) { //if all animations have ended...
 					frame.unbind(self.transitionEnd); //stop waiting for animations to end
 					onceComplete();
@@ -918,7 +918,7 @@ Sequence also relies on the following open source scripts:
 			    }else{
 			        self.nextFrameID = self.settings.startingFrameID;
 			        self.firstFrame = false;
-			    }					    
+			    }
 			}
 		}
 	}; //END PROTOTYPE
@@ -927,10 +927,10 @@ Sequence also relies on the following open source scripts:
 		var self = this;
 		return self.each(function() {
 			var sequence = new Sequence($(this), options, defaults, get);
-			$(this).data("sequence", sequence); 
+			$(this).data("sequence", sequence);
 		});
 	};
-	
+
 	//some external functions
 	var get = {
 		/* Modernizr 2.6.1 (Custom Build) | MIT & BSD
@@ -939,10 +939,10 @@ Sequence also relies on the following open source scripts:
 		modernizr: function() {
 			;window.Modernizr=function(a,b,c){function x(a){i.cssText=a}function y(a,b){return x(prefixes.join(a+";")+(b||""))}function z(a,b){return typeof a===b}function A(a,b){return!!~(""+a).indexOf(b)}function B(a,b){for(var d in a){var e=a[d];if(!A(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function C(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:z(f,"function")?f.bind(d||b):f}return!1}function D(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return z(b,"string")||z(b,"undefined")?B(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),C(e,b,c))}var d="2.6.1",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={svg:"http://www.w3.org/2000/svg"},p={},q={},r={},s=[],t=s.slice,u,v={}.hasOwnProperty,w;!z(v,"undefined")&&!z(v.call,"undefined")?w=function(a,b){return v.call(a,b)}:w=function(a,b){return b in a&&z(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=self;if(typeof c!="function")throw new TypeError;var d=t.call(arguments,1),e=function(){if(self instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(t.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(t.call(arguments)))};return e}),p.svg=function(){return!!b.createElementNS&&!!b.createElementNS(o.svg,"svg").createSVGRect};for(var E in p)w(p,E)&&(u=E.toLowerCase(),e[u]=p[E](),s.push((e[u]?"":"no-")+u));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)w(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},x(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return B([a])},e.testAllProps=D,e.prefixed=function(a,b,c){return b?D(a,b,c):D(a,"pfx")},e}(self,self.document);
 		},
-		
+
 		defaultPreloader: function(prependTo, transitions, prefix) {
 			var icon = '<div class="sequence-preloader"><svg class="preloading" xmlns="http://www.w3.org/2000/svg"><circle class="circle" cx="6" cy="6" r="6" /><circle class="circle" cx="22" cy="6" r="6" /><circle class="circle" cx="38" cy="6" r="6" /></svg></div>';
-			
+
 			$("head").append("<style>.sequence-preloader{height: 100%;position: absolute;width: 100%;z-index: 999999;}@"+prefix+"keyframes preload{0%{opacity: 1;}50%{opacity: 0;}100%{opacity: 1;}}.sequence-preloader .preloading .circle{fill: #ff9442;display: inline-block;height: 12px;position: relative;top: -50%;width: 12px;"+prefix+"animation: preload 1s infinite; animation: preload 1s infinite;}.preloading{display:block;height: 12px;margin: 0 auto;top: 50%;margin-top:-6px;position: relative;width: 48px;}.sequence-preloader .preloading .circle:nth-child(2){"+prefix+"animation-delay: .15s; animation-delay: .15s;}.sequence-preloader .preloading .circle:nth-child(3){"+prefix+"animation-delay: .3s; animation-delay: .3s;}.preloading-complete{opacity: 0;visibility: hidden;"+prefix+"transition-duration: 1s; transition-duration: 1s;}div.inline{background-color: #ff9442; margin-right: 4px; float: left;}</style>");
 			prependTo.prepend(icon);
 			if(!Modernizr.svg && !transitions) { //if SVG isn't supported, remain calm and add this fallback instead...
@@ -950,13 +950,13 @@ Sequence also relies on the following open source scripts:
 			    setInterval(function(){
 			        $(".sequence-preloader .circle").fadeToggle(500);
 			    }, 500);
-			}else if(!transitions){ //if transitions aren't supported, toggle the opacity instead  
+			}else if(!transitions){ //if transitions aren't supported, toggle the opacity instead
 			    setInterval(function(){
 			        $(".sequence-preloader").fadeToggle(500);
 			    }, 500);
 			}
 		},
-		
+
 		//a quick test to work out if Opera supports transitions properly (to work around the fact that Opera 11 supports transitions but doesn't return a transition value properly)
 		operaTest: function() {
 		    $("body").append('<span id="sequence-opera-test"></span>');
@@ -972,7 +972,7 @@ Sequence also relies on the following open source scripts:
 		    $operaTest.remove();
 		}
 	};
-	
+
 	var defaults = {
 		//General Settings
 		startingFrameID: 1, //The frame (the list item `<li>`) that should first be displayed when Sequence loads
@@ -998,13 +998,13 @@ Sequence also relies on the following open source scripts:
 		showNextButtonOnInit: true,
 		prevButton: false, //if dev settings are true, the prevButton will be ".prev"
 		showPrevButtonOnInit: true,
-		
+
 		//Pause Settings
 		pauseButton: false, //if dev settings are true, the pauseButton will be ".pause"
 		unpauseDelay: null, //the time to wait before navigating to the next frame when Sequence is unpaused. Note that if an unpauseDelay is not specified, the default is the same as the autoPlayDelay setting
 		pauseOnHover: true,
 		pauseIcon: false, //this is an indicator to show Sequence is paused
-		
+
 		//Preloader Settings
 		preloader: false,
 		preloadTheseFrames: [1], //all images in these frames will load before Sequence initiates
@@ -1019,7 +1019,7 @@ Sequence also relies on the following open source scripts:
 		prependPreloadingComplete: true,
 		hidePreloaderUsingCSS: true,
 		hidePreloaderDelay: 0,
-		
+
 		//Keyboard settings
 		keyNavigation: true, //false prevents the following keyboard settings
 		numericKeysGoToFrames: true,
@@ -1035,7 +1035,7 @@ Sequence also relies on the following open source scripts:
 			87: "next"	//w
 			*/
 		},
-		
+
 		//Touch Swipe Settings
 		swipeNavigation: true,
 		swipeThreshold: 20,
@@ -1046,17 +1046,17 @@ Sequence also relies on the following open source scripts:
 			up: false,
 			down: false
 		},
-		
+
 		//hashTags Settings
 		//when using hashTags, please include a reference to Ben Alman's jQuery HashChange plugin above your reference to Sequence.js
-		
+
 		//info: http://benalman.com/projects/jquery-hashchange-plugin/
 		//plugin: https://raw.github.com/cowboy/jquery-hashchange/v1.3/jquery.ba-hashchange.min.js
 		//GitHub: https://github.com/cowboy/jquery-hashchange
 		hashTags: false, //when a frame is navigated to, change the hashtag to the frames ID
-		hashDataAttribute: false, //false = the hashTag is taken from a frames ID attribute | true = the hashTag is taken from the data attribute "data-sequence-hash"	
-		hashChangesOnFirstFrame: false,	
-        		
+		hashDataAttribute: false, //false = the hashTag is taken from a frames ID attribute | true = the hashTag is taken from the data attribute "data-sequence-hash"
+		hashChangesOnFirstFrame: false,
+
 		//Fallback Theme Settings (For browsers that don't support CSS3 transitions)
 		fallback: {
 			theme: "slide",

@@ -1,11 +1,19 @@
 Freso::Application.routes.draw do
+  resources :brands
+
   match '/auth/:provider/callback' => 'authentications#create'
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users, controllers: {registrations: "registrations"}
+    devise_for :users, controllers: {
+      registrations: "registrations",
+      sessions: "sessions"
+    }
     resources :authentications
     resources :translations, :except => :show
     root :to => "home#index"
+    controller :home do
+      get "login" => :index
+    end
 
     controller :nuvo do
       get "nuvo/login" => :login

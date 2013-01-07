@@ -1,0 +1,20 @@
+<%= form_for @brand do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :uid %><br />
+    <%= f.number_field :uid %>
+  </p>
+  <p>
+    <%= f.label :hub_type %><br />
+    <%= f.number_field :hub_type %>
+  </p>
+  <p>
+    <%= f.label :layout_id %><br />
+    <%= f.number_field :layout_id %>
+  </p>
+  <p>
+    <%= f.label :uri %><br />
+    <%= f.text_field :uri %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

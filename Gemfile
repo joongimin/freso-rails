@@ -63,3 +63,5 @@ gem 'omniauth-nuvo', :git => "git@github.com:joongimin/omniauth-nuvo.git"
 gem 'omniauth-twitter'
 
 gem "mocha", :group => :test
+gem "compass-rails"
+gem 'globalize3'
