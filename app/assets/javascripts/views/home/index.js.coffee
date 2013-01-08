@@ -1,4 +1,4 @@
-//= require ../external_lib/jquery/jquery.ba-postmessage
+//= require ../../external_lib/jquery/jquery.ba-postmessage
 
 draw_pane = ($canvas, args = {}) ->
   tilt = 400
@@ -51,7 +51,7 @@ on_resize = ->
   $("div#home").height(screen_height)
 
 $ ->
-  $('#nav').localScroll(800);
+  $('#nav').localScroll(800)
   screen_height = $(window).height()
   $("div.parallax").each ->
     $this = $(this)
@@ -73,44 +73,10 @@ $ ->
     login_with_nuvo($this)
 
   login_with_nuvo = ($link) ->
-    speed = 1000
-    easing = "easeInCubic"
-
-    # Scroll to top
-    $("html, body").animate {scrollTop: 0}, "fast", "linear", ->
-      # Hide all parallax scrolls
-      $("div.parallax").each ->
-        if $(this).attr("id") != "home"
-          $(this).hide()
-
-    $logo_container = $("div.logo_container")
-    offset = $logo_container.offset()
-    $background_container = $("div.background_container")
-    $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
-    $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
-
-    $("ul#nav").animate({opacity: 0}, 400, "linear", -> $(this).hide())
-
-    $logo_container
-      .css("top", offset.top + "px")
-      .css("left", offset.left + "px")
-      .css("margin", "0")
-      .animate {top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
-        $login_with_nuvo = $("<iframe id='login_with_nuvo' height='100%'></iframe>").attr("src", $("div#home_data").data("login-url"))
-        $login_with_nuvo.prependTo($("#home"))
-        $logo_container.animate({top: 15, left: 0}, speed, easing)
-
-        $left = $background_container.find("div.split canvas.left")
-        $right = $background_container.find("div.split canvas.right")
-
-        draw_pane($left, {left: true})
-        draw_pane($right, {left: false})
-
-        visible_width = 250
-        $left.animate({left: visible_width - $left.width()}, speed, easing, -> $("div.back_container").show().animate({opacity: 1}))
-        $right.animate({right: visible_width - $right.width()}, speed, easing)
-
-    $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
+    if $("iframe#login_with_nuvo").length == 0
+      $login_with_nuvo = $("<iframe id='login_with_nuvo' height='100%'></iframe>").attr("src", $("div#home_data").data("login-url"))
+      $login_with_nuvo.prependTo($("#home"))
+      $login_with_nuvo.hide()
 
   $("a#link_back").click ->
     $this = $(this)
@@ -157,7 +123,45 @@ $ ->
       login_with_nuvo()
 
   $.receiveMessage (e) ->
-    if e.data == "relogin"
+    if e.data == "login_required"
+      speed = 1000
+      easing = "easeInCubic"
+
+      # Scroll to top
+      $("html, body").animate {scrollTop: 0}, "fast", "linear", ->
+        # Hide all parallax scrolls
+        $("div.parallax").each ->
+          if $(this).attr("id") != "home"
+            $(this).hide()
+
+      $logo_container = $("div.logo_container")
+      offset = $logo_container.offset()
+      $background_container = $("div.background_container")
+      $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
+      $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
+
+      $("ul#nav").animate({opacity: 0}, 400, "linear", -> $(this).hide())
+
+      $logo_container
+        .css("top", offset.top + "px")
+        .css("left", offset.left + "px")
+        .css("margin", "0")
+        .animate {top: offset.top - 10, left: offset.left + 10}, 80, "linear", ->
+          $("iframe#login_with_nuvo").show()
+          $logo_container.animate({top: 15, left: 0}, speed, easing)
+
+          $left = $background_container.find("div.split canvas.left")
+          $right = $background_container.find("div.split canvas.right")
+
+          draw_pane($left, {left: true})
+          draw_pane($right, {left: false})
+
+          visible_width = 250
+          $left.animate({left: visible_width - $left.width()}, speed, easing, -> $("div.back_container").show().animate({opacity: 1}))
+          $right.animate({right: visible_width - $right.width()}, speed, easing)
+
+      $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
+    else if e.data == "relogin"
       $("iframe#relogin").attr("src", $("div#home_data").data("login-url"))
     else if e.data == "success"
       $.getScript DataUtil::get("root-url")

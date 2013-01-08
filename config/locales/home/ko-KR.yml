@@ -3,3 +3,5 @@ ko-KR:
     index:
       title: "Freso"
       login_with_nuvo: "누보로 로그인"
+    guide:
+      title: "쇼핑몰 만들기 가이드"

@@ -21,3 +21,4 @@ class @AjaxUtil
 
 $ ->
   new AjaxUtil
+  $.ajaxSetup({ cache: true })
