@@ -1,3 +1,12 @@
+<% sub_menu = [
+    {:id => "business_model"},
+    {:id => "seconde"},
+    {:id => "third"},
+    {:id => "fourth"},
+    {:id => "fifth"},
+    {:id => "sixth"},
+  ]
+%>
 <div class="story_container" id="sequence2">
   <ul>
     <li class="frame_container">
@@ -41,29 +50,19 @@
 <div class="horizontal_scroll_container">
   <ul>
     <li class="sub_nav_back">
-      <%= content_tag :a, :class => "next", :title => menu_item[:title], :id => menu_item[:title] do %>
-        <%= image_tag "home/sub-nav-back-button.png" %>
-      <% end %>
+      <%= content_tag :a, nil, :class => "icons-sub-nav-back-button", :title => menu_item[:title], :data => {:id => menu_item[:id]} %>
     </li>
-    <li class="sub_nav">
-      <%= image_tag "home/sub-nav-button.png" %>
-    </li>
-    <li class="sub_nav">
-      <%= image_tag "home/sub-nav-button.png" %>
-    </li>
-    <li class="sub_nav">
-      <%= image_tag "home/sub-nav-button.png" %>
-    </li>
-    <li class="sub_nav">
-      <%= image_tag "home/sub-nav-button.png" %>
-    </li>
-    <li class="sub_nav">
-      <%= image_tag "home/sub-nav-button.png" %>
-    </li>
+    <% (0...sub_menu.count).each do |i| %>
+      <li class="sub_nav">
+        <% if i == 0 %>
+          <%= content_tag :a, nil, :class => "icons-sub-nav-button current_page", :data => {:index => i, :id => menu_item[:id]} %>
+        <% else %>
+          <%= content_tag :a, nil, :class => "icons-sub-nav-button", :data => {:index => i, :id => menu_item[:id]} %>
+        <% end %>
+      </li>
+    <% end %>
     <li class="sub_nav_forward">
-      <%= content_tag :a, :class => "prev", :title => menu_item[:title], :id => menu_item[:title] do %>
-        <%= image_tag "home/sub-nav-foward-button.png" %>
-      <% end %>
+      <%= content_tag :a, nil, :class => "icons-sub-nav-foward-button", :title => menu_item[:title], :data => {:id => menu_item[:id]} %>
     </li>
   </ul>
 </div>

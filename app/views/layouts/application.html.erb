@@ -8,12 +8,14 @@
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
   </head>
-  <body>
-    <div id="top_container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= yield %>
+  <body class="stop-scrolling">
+    <div class="root">
+      <div id="top_container">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

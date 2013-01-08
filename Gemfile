@@ -16,6 +16,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'compass-rails'
 end
 
 gem 'jquery-rails'
@@ -56,7 +57,7 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'dynamic_form'
 gem 'omniauth'
-gem 'omniauth-nuvo', :git => "git@github.com:joongimin/omniauth-nuvo.git"
+gem 'omniauth-nuvo', :git => 'git@github.com:joongimin/omniauth-nuvo.git'
 gem 'omniauth-twitter'
 
-gem "mocha", :group => :test
+gem 'mocha', :group => :test

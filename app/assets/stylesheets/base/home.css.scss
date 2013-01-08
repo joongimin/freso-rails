@@ -1,3 +1,8 @@
+@import "compass";
+$icons-sprite-dimensions: true;
+@import "home/icons/*.png";
+@include all-icons-sprites;
+
 #home-index {
   height: 100%;
 
@@ -103,14 +108,16 @@
   #home {
     position: relative;
     min-height: 700px;
+    z-index: 0;
   }
 
   #intro {
     background-color: #2c2c2c;
     height: 900px;
+    overflow: hidden;
 
     .bg {
-      background: url(home/firstBG.png) 83% 40% no-repeat fixed;
+      background: url(home/firstBG.png) 80% 40% no-repeat fixed;
       height: 900px;
       margin: 0 auto;
       padding: 0;
@@ -173,9 +180,9 @@
     .horizontal_scroll_container {
       display: block;
       height: 50px;
-      left: 37.1%;
-      top: 39%;
-      position: absolute;
+      left: 40%;
+      bottom: 10%;
+      position: relative;
       z-index: 100;
     }
   }
@@ -183,6 +190,7 @@
   #strength {
     background: url(home/whyshould_bg.png) 50% 0 no-repeat fixed;
     height: 900px;
+    z-index: 20;
 
     .bg {
       background: url(home/trainers.png) 50% 0 no-repeat fixed;
@@ -210,9 +218,9 @@
     .horizontal_scroll_container {
       display: block;
       height: 50px;
-      left: 37.1%;
-      top: 58.7%;
-      position: absolute;
+      left: 36%;
+      bottom: 10%;
+      position: relative;
       z-index: 100;
     }
 
@@ -405,7 +413,7 @@
 
   .info1 {
     left: -900px;
-    top: 10px;
+    top: 100px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -422,9 +430,12 @@
     transition-duration: 1s;
   }
 
+  .info1 .bg, .info2 .bg {
+  }
+
   .info1, .info2, .info3 {
-    left: -2000px;
-    top: 100px;
+    left: 2000px;
+    top: 0px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -433,16 +444,16 @@
   }
 
   .info2 {
-    top: 100px;
+    top: 0px;
   }
 
   .info3 {
-    top: 100px;
+    top: 0px;
   }
 
   .animate-in .info1, .animate-in .info2, .animate-in .info3 {
     left: 0px;
-    top: 50px;
+    top: 0px;
     -webkit-transition-duration: 2s;
     -moz-transition-duration: 2s;
     -o-transition-duration: 2s;
@@ -451,14 +462,34 @@
   }
 
   .animate-out .info1, .animate-out .info2, .animate-out .info3 {
-    top: 200px;
-    left: 2000px;
+    top: 0px;
+    left: -2000px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;
     -o-transition-duration: 1.5s;
     -ms-transition-duration: 1.5s;
     transition-duration: 1.5s;
   }
+
+/*  .animate-in .info1 .bg, .animate-in, .info3 .bg {
+    top: 1200px;
+    left: 1800px;
+    -webkit-transition-duration: 1.5s;
+    -moz-transition-duration: 1.5s;
+    -o-transition-duration: 1.5s;
+    -ms-transition-duration: 1.5s;
+    transition-duration: 1.5s;
+  }
+
+  .animate-out .info1 .bg, .animate-out, .info3 .bg {
+    top: 1200px;
+    left: 500px;
+    -webkit-transition-duration: 1.5s;
+    -moz-transition-duration: 1.5s;
+    -o-transition-duration: 1.5s;
+    -ms-transition-duration: 1.5s;
+    transition-duration: 1.5s;
+  }*/
 
   #sequence2 {
     margin: 0 auto;
@@ -478,8 +509,8 @@
   }
 
   .strength_info1 {
-    left: -900px;
-    top: 10px;
+    left: 900px;
+    top: 200px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -488,7 +519,7 @@
   }
 
   .animate-out .strength_info1 {
-    left: 1050px;
+    left: -2000px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -497,7 +528,7 @@
   }
 
   .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
-    left: -2000px;
+    left: 2000px;
     top: 200px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
@@ -507,11 +538,11 @@
   }
 
   .strength_info2 {
-    top: 100px;
+    top: 200px;
   }
 
   .strength_info3 {
-    top: 100px;
+    top: 200px;
   }
 
   .animate-in .strength_info1, .animate-in .strength_info2, .animate-in .strength_info3, .animate-in .strength_info4, .animate-in .strength_info5, .animate-in .strength_info6 {
@@ -526,11 +557,29 @@
 
   .animate-out .strength_info1, .animate-out .strength_info2, .animate-out .strength_info3, .animate-out .strength_info4, .animate-out .strength_info5, .animate-out .strength_info6 {
     top: 200px;
-    left: 2000px;
+    left: -2000px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;
     -o-transition-duration: 1.5s;
     -ms-transition-duration: 1.5s;
     transition-duration: 1.5s;
   }
+}
+
+.icons-sub-nav-foward-button, .icons-sub-nav-button, .icons-sub-nav-back-button {
+  opacity: 0.4;
+  display: block;
+}
+
+.icons-sub-nav-foward-button:hover, .icons-sub-nav-button:hover, .icons-sub-nav-back-button:hover {
+  opacity: 1;
+}
+
+a.current_page {
+  opacity: 1;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }

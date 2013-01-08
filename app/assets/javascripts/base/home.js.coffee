@@ -65,6 +65,17 @@ $ ->
   # }
   # sequence = $("#sequence").sequence(sequence_options).data("sequence");
 
+  options = {
+    autoPlay: false,
+    nextButton: true,
+    prevButton: true,
+    navigationSkip: true,
+    fadeFrameWhenSkipped: false,
+    cycle: false
+  }
+  $("#sequence").sequence(options)
+  $("#sequence2").sequence(options)
+
   $("a#link_login_with_nuvo").click ->
     speed = 1000
     easing = "easeInCubic"
@@ -139,18 +150,65 @@ $ ->
     $logo_container.attr("style", org_style)
     $logo_container.animate({top: target_offset.top, left: target_offset.left}, speed, easing, -> $logo_container.removeAttr("style"))
 
-  delta_down_threashold = -4;
-  delta_up_threashold = 4;
-  delta_acumulate = 0;
-  $('#home-index-false').mousewheel (event, delta, deltaX, deltaY) ->
-    delta_acumulate += deltaY
-    if delta_acumulate < delta_down_threashold
-      delta_acumulate = 0;
-      console.log("scroll down!!!");
-      window.location.href = '#intro';
-    else if delta_acumulate > delta_up_threashold
-      delta_acumulate = 0;
-      console.log("scroll up!!!");
-      window.location.href = '#home';
-    else
-      console.log(event, delta_acumulate, delta, deltaX, deltaY);
+  menu = ['#home', '#intro', '#strength', '#business_model', '#donation']
+  current_menu = 0
+  mousewheel_enable = true
+  $('#home-index').mousewheel (event, delta, deltaX, deltaY) ->
+    if deltaY != 0 && mousewheel_enable
+      mousewheel_enable = false
+      $(document).unbind('scroll')
+      $('body').addClass('stop-scrolling')
+      #$('body').find(".root").addClass('stop-scrolling')
+      if deltaY < 0 && current_menu < 4
+        current_menu++
+        $.scrollTo( menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+            mousewheel_enable = true
+            $(document).bind('scroll')
+            #$('body').removeClass('stop-scrolling')
+            #$('body').find(".root").removeClass('stop-scrolling')
+          }
+        )
+      else if deltaY > 0 && current_menu > 0
+        current_menu--
+        $.scrollTo( menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+            mousewheel_enable = true
+            $(document).bind('scroll')
+            #$('body').removeClass('stop-scrolling')
+            #$('body').find(".root").removeClass('stop-scrolling')
+          }
+        )
+      else
+        mousewheel_enable = true
+
+  $("a.icons-sub-nav-button").click ->
+    if $(this).data("id") == "intro"
+      sequence = $("#sequence").data("sequence")
+    else if $(this).data("id") == "strength"
+      sequence = $("#sequence2").data("sequence")
+    $(this).closest("ul").find(".current_page").removeClass("current_page")
+    sequence.goTo($(this).data("index") + 1)
+    $(this).addClass("current_page")
+
+  $("a.icons-sub-nav-foward-button").click ->
+    if $(this).data("id") == "intro"
+      sequence = $("#sequence").data("sequence")
+    else if $(this).data("id") == "strength"
+      sequence = $("#sequence2").data("sequence")
+    if sequence.currentFrameID < sequence.numberOfFrames
+      $(this).closest("ul").find(".current_page").removeClass("current_page")
+      $(this).closest("ul").find(".icons-sub-nav-button").each (i) ->
+        if i == sequence.currentFrameID
+          $(this).addClass("current_page")
+      sequence.goTo(sequence.currentFrameID + 1)
+
+  $("a.icons-sub-nav-back-button").click ->
+    if $(this).data("id") == "intro"
+      sequence = $("#sequence").data("sequence")
+    else if $(this).data("id") == "strength"
+      sequence = $("#sequence2").data("sequence")
+    if sequence.currentFrameID != 1
+      $(this).closest("ul").find(".current_page").removeClass("current_page")
+      $(this).closest("ul").find(".icons-sub-nav-button").each (i) ->
+        if i == sequence.currentFrameID - 2
+          $(this).addClass("current_page")
+      sequence.goTo(sequence.currentFrameID - 1)
