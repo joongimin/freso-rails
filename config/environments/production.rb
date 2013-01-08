@@ -70,3 +70,6 @@ Freso::Application.configure do
     :sender_address => %{"Exception Notifier" <noreply@xnuvo.com>},
     :exception_recipients => %w{developers@xnuvo.com}
 end
+
+# For testing purpose against https://d1.xnuvo.com - TODO: Remove this!
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
