@@ -1,7 +1,8 @@
+<% title_prefix = "#{t("freso")} - " %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freso</title>
+    <title><%= title_prefix %><%= content_for?(:title) ? yield(:title) : t("default_page_title") %></title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <!--[if IE]><%= javascript_include_tag "external_lib/excanvas" %><![endif]-->
@@ -9,12 +10,17 @@
     <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
   </head>
   <body class="stop-scrolling">
+    <%= content_tag :div, nil, :id => "data", :data => {:"root-url" => root_url, :"title-prefix" => title_prefix} %>
     <div class="root">
       <div id="top_container">
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <% end %>
-        <%= yield %>
+        <ul id="slider">
+          <li class="current">
+            <%= yield %>
+          </li>
+        </div>
       </div>
     </div>
   </body>

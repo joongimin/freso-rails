@@ -30,7 +30,7 @@ module Freso
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.available_locales = [:"ko-KR", :"en-US"]
     config.i18n.default_locale = :"en-US"
@@ -62,9 +62,25 @@ module Freso
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += ["external_lib/excanvas.js", "external_lib/jquery.sequence.js", "external_lib/jquery.localScroll.js", "external_lib/jquery.scrollTo.js", "external_lib/jquery.parallax-1.1.3.js", "external_lib/jquery.mousewheel.js"]
+    config.assets.precompile += [
+      "external_lib/excanvas.js",
+      "external_lib/jquery.sequence.js",
+      "external_lib/jquery.localScroll.js",
+      "external_lib/jquery.scrollTo.js",
+      "external_lib/jquery.parallax-1.1.3.js",
+      "external_lib/jquery.mousewheel.js",
+      "views/**/*.js",
+      "views/**/*.css",
+    ]
 
     config.action_mailer.delivery_method = :amazon_ses
+
+    fallbacks = {}
+    locales = config.i18n.available_locales
+    locales.each do |locale|
+      fallbacks[locale] = locales
+    end
+    Globalize.fallbacks = fallbacks
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end

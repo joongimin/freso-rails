@@ -1,0 +1,7 @@
+en-US:
+  home:
+    index:
+      title: "Freso"
+      login_with_nuvo: "Login with Nuvo"
+    guide:
+      title: "Guide"

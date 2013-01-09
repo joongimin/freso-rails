@@ -37,3 +37,6 @@ Freso::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "dl.fre.so:3000" }
 end
+
+# For testing purpose against https://d1.xnuvo.com
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

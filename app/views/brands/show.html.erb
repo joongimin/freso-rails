@@ -1,0 +1,24 @@
+<% title "Brand" %>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @brand.uid %>
+</p>
+<p>
+  <strong>Hub Type:</strong>
+  <%= @brand.hub_type %>
+</p>
+<p>
+  <strong>Layout:</strong>
+  <%= @brand.layout_id %>
+</p>
+<p>
+  <strong>Uri:</strong>
+  <%= @brand.uri %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_brand_path(@brand) %> |
+  <%= link_to "Destroy", @brand, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", brands_path %>
+</p>

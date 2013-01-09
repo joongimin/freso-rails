@@ -1,0 +1,8 @@
+<html>
+  <head>
+    <%= javascript_include_tag "views/authentication/create" %>
+  </head>
+  <body>
+    <%= content_tag :div, nil, :id => "data", :data => {:referer => login_url} %>
+  </body>
+</html>
