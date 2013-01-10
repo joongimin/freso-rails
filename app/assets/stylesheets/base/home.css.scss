@@ -105,13 +105,15 @@ $icons-sprite-dimensions: true;
     position: relative;
     background-color: #2c2c2c;
     min-height: 700px;
+    overflow: hidden;
 
-    .bg {
-      background: url(home/firstBG.png) 80% 40% no-repeat fixed;
+    .intro_bg {
+      background: url(home/firstBG.png);
+      background-position: 80% 7%;
+      background-repeat: no-repeat;
       height: 100%;
-      margin: 0 auto;
       padding: 0;
-      position: absolute;
+      position: relative;
       width: 100%;
     }
 
@@ -119,12 +121,22 @@ $icons-sprite-dimensions: true;
       position: absolute;
       margin-top: 10%;
       margin-left: 9%;
+      z-index: 15;
     }
 
     .title_backward {
       position: absolute;
       margin-top: 31%;
       margin-left: 3%;
+      z-index: 15;
+    }
+
+    .first_title {
+      font-family: NanumGothicExtrabold;
+      font-size: 43px;
+      position: absolute;
+      top: 45%;
+      left: 6%;
     }
 
     .first_description {
@@ -147,6 +159,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 25px;
       position: absolute;
+      max-width: 800px;
       top: 65%;
       left: 6%;
     }
@@ -163,6 +176,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 25px;
       position: absolute;
+      max-width: 800px;
       top: 65%;
       left: 6%;
     }
@@ -183,13 +197,35 @@ $icons-sprite-dimensions: true;
     z-index: 20;
 
     .bg {
-      background: url(home/trainers.png) 50% 0 no-repeat fixed;
-      min-height: 700px;
-      margin: 0 auto;
-      padding: 0;
       position: absolute;
-      width: 900px;
-      z-index: 200;
+      right: 50%;
+      width: 40px;
+      border-top: 700px solid transparent;
+      border-right: 260px solid #303838;
+    }
+
+    .left_end_bg {
+      position: absolute;
+      left: 49.95%;
+      width: 40px;
+      border-bottom: 700px solid transparent;
+      border-left: 260px solid #303838;
+    }
+
+    .left_bg {
+      background-color: #303838;
+      position: absolute;
+      left: -30%;
+      width: 80%;
+      height: 100%;
+    }
+
+    .right_bg {
+      background-color: #303838;
+      position: absolute;
+      right: -30%;
+      width: 80%;
+      height: 100%;
     }
 
     .whyshould_description {
@@ -362,6 +398,7 @@ $icons-sprite-dimensions: true;
     width: 64px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.15);
+    z-index: 200;
 
     li {
       text-align: center;
@@ -385,10 +422,10 @@ $icons-sprite-dimensions: true;
   }
 
   #sequence {
-    margin: 0 auto;
     height: 100%;
     position: relative;
     max-width: 1400px;
+    width: 100%;
   }
 
   #sequence li > * {
@@ -397,7 +434,7 @@ $icons-sprite-dimensions: true;
 
   .info1, .info2, .info3 {
     color: white;
-    height: 600px;
+    height: 700px;
     width: 100%;
   }
 
@@ -420,7 +457,14 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .info1 .bg, .info2 .bg {
+  .intro_bg {
+    top: 1000px;
+    left: 2000px;
+    -webkit-transition-duration: 1.5s;
+    -moz-transition-duration: 1.5s;
+    -o-transition-duration: 1.5s;
+    -ms-transition-duration: 1.5s;
+    transition-duration: 1.5s;
   }
 
   .info1, .info2, .info3 {
@@ -461,9 +505,9 @@ $icons-sprite-dimensions: true;
     transition-duration: 1.5s;
   }
 
-/*  .animate-in .info1 .bg, .animate-in, .info3 .bg {
-    top: 1200px;
-    left: 1800px;
+  .animate-in .intro_bg {
+    top: 10px;
+    left: 100px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;
     -o-transition-duration: 1.5s;
@@ -471,21 +515,20 @@ $icons-sprite-dimensions: true;
     transition-duration: 1.5s;
   }
 
-  .animate-out .info1 .bg, .animate-out, .info3 .bg {
+  .animate-out .intro_bg {
     top: 1200px;
     left: 500px;
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    -ms-transition-duration: 1.5s;
-    transition-duration: 1.5s;
-  }*/
+    -webkit-transition-duration: 2s;
+    -moz-transition-duration: 2;
+    -o-transition-duration: 2s;
+    -ms-transition-duration: 2s;
+    transition-duration: 2s;
+  }
 
   #sequence2 {
-    margin: 0 auto;
     height: 100%;
     position: relative;
-    max-width: 1400px;
+    width: 100%;
   }
 
   #sequence2 li > * {
@@ -494,13 +537,13 @@ $icons-sprite-dimensions: true;
 
   .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
     color: white;
-    height: 600px;
+    height: 700px;
     width: 100%;
   }
 
   .strength_info1 {
     left: 900px;
-    top: 200px;
+    top: 0px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -519,7 +562,7 @@ $icons-sprite-dimensions: true;
 
   .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
     left: 2000px;
-    top: 200px;
+    top: 0px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -528,16 +571,16 @@ $icons-sprite-dimensions: true;
   }
 
   .strength_info2 {
-    top: 200px;
+    top: 0px;
   }
 
   .strength_info3 {
-    top: 200px;
+    top: 0px;
   }
 
   .animate-in .strength_info1, .animate-in .strength_info2, .animate-in .strength_info3, .animate-in .strength_info4, .animate-in .strength_info5, .animate-in .strength_info6 {
     left: 0px;
-    top: 200px;
+    top: 0px;
     -webkit-transition-duration: 2s;
     -moz-transition-duration: 2s;
     -o-transition-duration: 2s;
@@ -546,7 +589,7 @@ $icons-sprite-dimensions: true;
   }
 
   .animate-out .strength_info1, .animate-out .strength_info2, .animate-out .strength_info3, .animate-out .strength_info4, .animate-out .strength_info5, .animate-out .strength_info6 {
-    top: 200px;
+    top: 0px;
     left: -2000px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;

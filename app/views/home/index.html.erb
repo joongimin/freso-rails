@@ -43,7 +43,7 @@
         <% end %>
         <% if menu_item.include?(:title) %>
           <div class="tooltip">
-            <%= image_tag "home/side-menu-indicator.png" %>
+            <%= image_tag "home/side-menu-indicator.png", :class => menu_item[:id] %>
             <div class="description"><%= menu_item[:title] %></div>
           </div>
         <% end %>

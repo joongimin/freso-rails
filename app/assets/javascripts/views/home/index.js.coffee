@@ -124,7 +124,12 @@ $ ->
     $logo_container.attr("style", org_style)
     $logo_container.animate({top: target_offset.top, left: target_offset.left}, speed, easing, -> $logo_container.removeAttr("style"))
 
-  menu = ['#home', '#intro', '#strength', '#business_model', '#donation']
+  #$(".tooltip").attr("style", "display: block; position: absolute")
+
+  $('#home-index').scroll () ->
+    console.log("scroll event")
+
+  menu = ['home', 'intro', 'strength', 'business_model', 'donation']
   current_menu = 0
   mousewheel_enable = true
   $('#home-index').mousewheel (event, delta, deltaX, deltaY) ->
@@ -135,7 +140,9 @@ $ ->
       #$('body').find(".root").addClass('stop-scrolling')
       if deltaY < 0 && current_menu < 4
         current_menu++
-        $.scrollTo( menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+        $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+        $.scrollTo( "#"+menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+            $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
             mousewheel_enable = true
             $(document).bind('scroll')
             #$('body').removeClass('stop-scrolling')
@@ -144,7 +151,12 @@ $ ->
         )
       else if deltaY > 0 && current_menu > 0
         current_menu--
-        $.scrollTo( menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+        $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+        $.scrollTo( "#"+menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
+            if current_menu == 0
+              $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
+            else
+              $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
             mousewheel_enable = true
             $(document).bind('scroll')
             #$('body').removeClass('stop-scrolling')
