@@ -1,10 +1,4 @@
 <% title(t(".login_with_nuvo")) if request.path.include?("login") %>
-<%= javascript_include_tag "views/home/index" %>
-<%= javascript_include_tag "external_lib/jquery.sequence" %>
-<%= javascript_include_tag "external_lib/jquery.localScroll" %>
-<%= javascript_include_tag "external_lib/jquery.scrollTo" %>
-<%= javascript_include_tag "external_lib/jquery.parallax-1.1.3" %>
-<%= javascript_include_tag "external_lib/jquery.mousewheel" %>
 <% menu = [
     {:id => "home"},
     {:id => "intro", :title => "What's Freso?", :description => "Freso is a tool to create your own online store."},
