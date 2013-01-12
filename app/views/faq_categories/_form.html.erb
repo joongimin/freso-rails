@@ -1,0 +1,8 @@
+<%= form_for @faq_categories do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.number_field :position %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

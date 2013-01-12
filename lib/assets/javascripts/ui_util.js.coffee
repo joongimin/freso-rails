@@ -39,3 +39,32 @@ class @UIUtil
           $slider.css("margin-left", "").css("width", "").css("height", "")
           $slider.removeClass("sliding").trigger("nv:slide:end")
       }
+
+  show: ($target, args = {}) ->
+    if args.transition == "vertical"
+      $target.show()
+      if args.height
+        natural_height = args.height
+      else
+        $target.css("height", "auto")
+        natural_height = $target.height()
+
+      $target.css("height", 0)
+      $target.animate {height: natural_height}, args.transition_speed || 400, ->
+        if args.height
+          $target.height(args.height)
+        else
+          $target.css("height", "auto")
+    else
+      $target.show()
+
+  hide: ($target, args = {}) ->
+    if args.transition == "vertical"
+      $target.animate {height: 0}, args.transition_speed || 400, ->
+        $target.hide()
+        if args.callback
+          args.callback()
+    else
+      $target.hide()
+
+this.util.ui_util = new UIUtil

@@ -1,4 +1,3 @@
 <% render(:template => "home/index", :formats => [:html], :layout => "layouts/application_logout") %>
-<% logger.debug content_for(:body) %>
-UIUtil.prototype.slide_content($("ul#body_slider"), "<%=j content_for :body %>", {direction: "left"});
+freso.ui_util.slide_content($("ul#body_slider"), "<%=j content_for :body %>", {direction: "left"});
 <%= render("shared/history", :path => root_url, :controller_path => "home", :action_name => "index") %>

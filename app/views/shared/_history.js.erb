@@ -2,5 +2,5 @@
 <% controller_path = controller.controller_path unless local_assigns.include?(:controller_path) %>
 <% action_name = controller.action_name unless local_assigns.include?(:action_name) %>
 
-AjaxUtil.prototype.push("<%=j yield(:title) %>", "<%=j path %>");
-AjaxUtil.prototype.action("<%= controller_path %>", "<%= action_name %>");
+freso.ajax_util.push("<%=j yield(:title) %>", "<%=j path %>");
+freso.ajax_util.action("<%= controller_path %>", "<%= action_name %>");

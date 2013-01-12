@@ -1,6 +1,4 @@
 Freso::Application.routes.draw do
-  resources :brands
-
   match '/auth/:provider/callback' => 'authentications#create'
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
@@ -8,6 +6,7 @@ Freso::Application.routes.draw do
       registrations: "users/registrations",
       sessions: "users/sessions"
     }
+    resources :users
     resources :authentications
     resources :translations, :except => :show
     root :to => "home#index"
@@ -19,6 +18,9 @@ Freso::Application.routes.draw do
       get "nuvo/login" => :login
       get "nuvo/callback" => :callback
     end
+
+    resources :faq_categories
+    resources :brands
 
     match "*a", :to => "home#no_route_matched"
   end

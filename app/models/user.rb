@@ -16,12 +16,12 @@ class User < ActiveRecord::Base
   has_many :brands
 
   def apply_omniauth(omniauth)
-    logger.debug "omniauth #{omniauth.to_yaml}"
     I18n.available_locales.each do |locale|
       write_attribute(:first_name, omniauth[:info][:locale][locale][:first_name], :locale => locale)
       write_attribute(:last_name, omniauth[:info][:locale][locale][:last_name], :locale => locale)
     end
     self.email = omniauth["info"]["email"] if email.blank?
+    self.image_url = omniauth["info"]["image"]
     authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
   end
 

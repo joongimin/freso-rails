@@ -1,5 +1,5 @@
 <% render(:template => "home/guide", :formats => [:html], :layout => "layouts/application_login") %>
-UIUtil.prototype.slide_content($("ul#body_slider"), "<%=j content_for :body %>");
+freso.ui_util.slide_content($("ul#body_slider"), "<%=j content_for :body %>");
 $("div.parallax").each(function() {
   if ($(this).attr("id") != "home") {
     $(this).hide();

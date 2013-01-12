@@ -267,4 +267,4 @@ class HomeController
       @current_menu = 0
       @display_tooltip()
 
-this.Application.home = new HomeController
+this.freso.home = new HomeController
