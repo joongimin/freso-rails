@@ -421,24 +421,24 @@ $icons-sprite-dimensions: true;
     }
   }
 
-  #sequence {
+  #intro_sequence {
     height: 100%;
     position: relative;
     max-width: 1400px;
     width: 100%;
   }
 
-  #sequence li > * {
+  #intro_sequence li > * {
     position: absolute;
   }
 
-  .info1, .info2, .info3 {
+  .intro_first, .intro_second, .intro_third {
     color: white;
     height: 700px;
     width: 100%;
   }
 
-  .info1 {
+  .intro_first {
     left: -900px;
     top: 100px;
     -webkit-transition-duration: 1s;
@@ -448,7 +448,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .animate-out .info1 {
+  .animate-out .intro_first {
     left: 1050px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
@@ -467,7 +467,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 1.5s;
   }
 
-  .info1, .info2, .info3 {
+  .intro_first, .intro_second, .intro_third {
     left: 2000px;
     top: 0;
     -webkit-transition-duration: 1s;
@@ -477,15 +477,15 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .info2 {
+  .intro_second {
     top: 0;
   }
 
-  .info3 {
+  .intro_third {
     top: 0;
   }
 
-  .animate-in .info1, .animate-in .info2, .animate-in .info3 {
+  .animate-in .intro_first, .animate-in .intro_second, .animate-in .intro_third {
     left: 0;
     top: 0;
     -webkit-transition-duration: 2s;
@@ -495,7 +495,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 2s;
   }
 
-  .animate-out .info1, .animate-out .info2, .animate-out .info3 {
+  .animate-out .intro_first, .animate-out .intro_second, .animate-out .intro_third {
     top: 0;
     left: -2000px;
     -webkit-transition-duration: 1.5s;
@@ -525,23 +525,23 @@ $icons-sprite-dimensions: true;
     transition-duration: 2s;
   }
 
-  #sequence2 {
+  #strength_sequence {
     height: 100%;
     position: relative;
     width: 100%;
   }
 
-  #sequence2 li > * {
+  #strength_sequence li > * {
     position: absolute;
   }
 
-  .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
+  .strength_first, .strength_second, .strength_third, .strength_fourth, .strength_fifth, .strength_sixth {
     color: white;
     height: 100%;
     width: 100%;
   }
 
-  .strength_info1 {
+  .strength_first {
     left: 900px;
     top: 0;
     -webkit-transition-duration: 1s;
@@ -551,7 +551,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .animate-out .strength_info1 {
+  .animate-out .strength_first {
     left: -2000px;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
@@ -560,7 +560,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
+  .strength_first, .strength_second, .strength_third, .strength_fourth, .strength_fifth, .strength_sixth {
     left: 2000px;
     top: 0;
     -webkit-transition-duration: 1s;
@@ -570,15 +570,15 @@ $icons-sprite-dimensions: true;
     transition-duration: 1s;
   }
 
-  .strength_info2 {
+  .strength_second {
     top: 0;
   }
 
-  .strength_info3 {
+  .strength_third {
     top: 0;
   }
 
-  .animate-in .strength_info1, .animate-in .strength_info2, .animate-in .strength_info3, .animate-in .strength_info4, .animate-in .strength_info5, .animate-in .strength_info6 {
+  .animate-in .strength_first, .animate-in .strength_second, .animate-in .strength_third, .animate-in .strength_fourth, .animate-in .strength_fifth, .animate-in .strength_sixth {
     left: 0;
     top: 0;
     -webkit-transition-duration: 2s;
@@ -588,7 +588,7 @@ $icons-sprite-dimensions: true;
     transition-duration: 2s;
   }
 
-  .animate-out .strength_info1, .animate-out .strength_info2, .animate-out .strength_info3, .animate-out .strength_info4, .animate-out .strength_info5, .animate-out .strength_info6 {
+  .animate-out .strength_first, .animate-out .strength_second, .animate-out .strength_third, .animate-out .strength_fourth, .animate-out .strength_fifth, .animate-out .strength_sixth {
     top: 0;
     left: -2000px;
     -webkit-transition-duration: 1.5s;

@@ -119,8 +119,8 @@ class HomeController
       fadeFrameWhenSkipped: false,
       cycle: false,
     }
-    $("#sequence").sequence(options)
-    $("#sequence2").sequence(options)
+    $("#intro_sequence").sequence(options)
+    $("#strength_sequence").sequence(options)
 
     $("a#link_login_with_nuvo").click ->
       $this = $(this)
@@ -158,18 +158,18 @@ class HomeController
 
     $("a.icons-sub-nav-button").click ->
       if $(this).data("id") == "intro"
-        sequence = $("#sequence").data("sequence")
+        sequence = $("#intro_sequence").data("sequence")
       else if $(this).data("id") == "strength"
-        sequence = $("#sequence2").data("sequence")
+        sequence = $("#strength_sequence").data("sequence")
       $(this).closest("ul").find(".current_page").removeClass("current_page")
       sequence.goTo($(this).data("index") + 1)
       $(this).addClass("current_page")
 
     $("a.icons-sub-nav-forward-button").click ->
       if $(this).data("id") == "intro"
-        sequence = $("#sequence").data("sequence")
+        sequence = $("#intro_sequence").data("sequence")
       else if $(this).data("id") == "strength"
-        sequence = $("#sequence2").data("sequence")
+        sequence = $("#strength_sequence").data("sequence")
       if sequence.currentFrameID < sequence.numberOfFrames
         $(this).closest("ul").find(".current_page").removeClass("current_page")
         $(this).closest("ul").find(".icons-sub-nav-button").each (i) ->
@@ -179,9 +179,9 @@ class HomeController
 
     $("a.icons-sub-nav-back-button").click ->
       if $(this).data("id") == "intro"
-        sequence = $("#sequence").data("sequence")
+        sequence = $("#intro_sequence").data("sequence")
       else if $(this).data("id") == "strength"
-        sequence = $("#sequence2").data("sequence")
+        sequence = $("#strength_sequence").data("sequence")
       if sequence.currentFrameID != 1
         $(this).closest("ul").find(".current_page").removeClass("current_page")
         $(this).closest("ul").find(".icons-sub-nav-button").each (i) ->

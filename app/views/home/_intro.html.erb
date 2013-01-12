@@ -1,26 +1,26 @@
 <% sub_menu = [
-    {:id => "intro_page"},
+    {:id => "first_page"},
     {:id => "second_page"},
     {:id => "third_page"},
   ]
 %>
-<div class="story_container" id="sequence">
+<div class="story_container" id="intro_sequence">
   <ul>
     <li class="frame_container">
-      <div class="info1">
+      <div class="intro_first">
         <div class="intro_bg"></div>
         <div class="first_title"><%= t("home.index.intro.first_title") %></div>
         <div class="first_description"><%= t("home.index.intro.first_description") %></div>
       </div>
     </li>
     <li class="frame_container">
-      <div class="info2">
+      <div class="intro_second">
         <div class="second_title"><%= t("home.index.intro.second_title") %></div>
         <div class="second_description"><%= t("home.index.intro.second_description") %></div>
       </div>
     </li>
     <li class="frame_container">
-      <div class="info3">
+      <div class="intro_third">
         <div class="intro_bg"></div>
         <div class="third_title"><%= t("home.index.intro.third_title") %></div>
         <div class="third_description"><%= t("home.index.intro.third_description") %></div>
