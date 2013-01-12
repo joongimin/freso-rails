@@ -39,7 +39,11 @@
     <% menu.each do |menu_item| %>
       <li class="tooltip_container">
         <%= content_tag :a, :href => "##{menu_item[:id]}", :title => menu_item[:title] do %>
-          <%= image_tag "home/side-menu-dot.png" %>
+          <% if menu_item[:id] == "home" %>
+            <%= image_tag "home/nuvoButton.png", :class => "home_button", :data => {:id => menu_item[:id]} %>
+          <% else %>
+            <%= image_tag "home/side-menu-dot.png", :class => "scroll_button", :data => {:id => menu_item[:id]} %>
+          <% end %>
         <% end %>
         <% if menu_item.include?(:title) %>
           <div class="tooltip">
