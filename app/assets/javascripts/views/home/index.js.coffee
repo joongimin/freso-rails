@@ -137,34 +137,40 @@ $ ->
       mousewheel_enable = false
       $(document).unbind('scroll')
       $('body').addClass('stop-scrolling')
-      #$('body').find(".root").addClass('stop-scrolling')
       if deltaY < 0 && current_menu < 4
         current_menu++
-        $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+        #$(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
         $.scrollTo( "#"+menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
-            $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
+            # $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
             mousewheel_enable = true
             $(document).bind('scroll')
-            #$('body').removeClass('stop-scrolling')
-            #$('body').find(".root").removeClass('stop-scrolling')
           }
         )
       else if deltaY > 0 && current_menu > 0
         current_menu--
-        $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+        #$(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
         $.scrollTo( "#"+menu[current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
-            if current_menu == 0
-              $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
-            else
-              $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
+            # if current_menu == 0
+            #   $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
+            # else
+            #   $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
             mousewheel_enable = true
             $(document).bind('scroll')
-            #$('body').removeClass('stop-scrolling')
-            #$('body').find(".root").removeClass('stop-scrolling')
           }
         )
       else
         mousewheel_enable = true
+      display_tooltip()
+
+  display_tooltip = ->
+    $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+
+    if current_menu == 0
+      $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 0")
+      $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
+    else
+      $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 1")
+      $(".tooltip_container").closest("ul").find('.'+menu[current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
 
   $("a.icons-sub-nav-button").click ->
     if $(this).data("id") == "intro"
@@ -251,3 +257,35 @@ $ ->
       $("iframe#relogin").attr("src", $("div#home_data").data("login-url"))
     else if e.data == "success"
       $.getScript DataUtil::get("root-url")
+
+  $(window).resize ->
+    frame_height = $(window).height()
+    if frame_height < 700
+      frame_height = 700
+    $("div.parallax").height(frame_height)
+    $.scrollTo( "#"+menu[current_menu], 0, {easing:'easeInOutExpo'})
+    $(".right_end_bg").attr("style", "border-top-width: " + frame_height + "px")
+    $(".left_end_bg").attr("style", "border-bottom-width: " + frame_height + "px")
+
+  $(document).ready ->
+    window_height = $(window).height()
+    $("div.parallax").height(window_height)
+    $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 0")
+    $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
+    $(".right_end_bg").attr("style", "border-top-width: " + $(window).height() + "px")
+    $(".left_end_bg").attr("style", "border-bottom-width: " + $(window).height() + "px")
+
+  $(".scroll_button").click ->
+    if $(this).data("id") == "intro"
+      current_menu = 1
+    else if $(this).data("id") == "strength"
+      current_menu = 2
+    else if $(this).data("id") == "business_model"
+      current_menu = 3
+    else if $(this).data("id") == "donation"
+      current_menu = 4
+    display_tooltip()
+
+  $(".home_button").click ->
+    current_menu = 0
+    display_tooltip()

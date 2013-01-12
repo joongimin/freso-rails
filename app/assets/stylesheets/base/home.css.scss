@@ -193,10 +193,10 @@ $icons-sprite-dimensions: true;
 
   #strength {
     background: url(home/whyshould_bg.png) 50% 0 no-repeat fixed;
-    height: 700px;
+    height: 100%;
     z-index: 20;
 
-    .bg {
+    .right_end_bg {
       position: absolute;
       right: 50%;
       width: 40px;
@@ -208,7 +208,9 @@ $icons-sprite-dimensions: true;
       position: absolute;
       left: 49.95%;
       width: 40px;
-      border-bottom: 700px solid transparent;
+      border-bottom-width: 700px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
       border-left: 260px solid #303838;
     }
 
@@ -274,13 +276,12 @@ $icons-sprite-dimensions: true;
     background: url(home/business_model_bg2.png);
     background-position: 83% 50%;
     background-color: #f03882;
-    background-attachment: fixed;
     background-repeat: no-repeat;
     height: 900px;
 
     .bg1 {
       background: url(home/business_model_bg1.png) 83% 50% no-repeat fixed;
-      height: 900px;
+      height: 100%;
       margin: 0 auto;
       padding: 0;
       position: absolute;
@@ -308,7 +309,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 43px;
       position: absolute;
-      top: 64%;
+      top: 40%;
       left: 7%;
     }
 
@@ -317,7 +318,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 25px;
       position: absolute;
-      top: 67%;
+      top: 55%;
       left: 8%;
       max-width: 800px;
     }
@@ -335,7 +336,6 @@ $icons-sprite-dimensions: true;
     background: url(home/donation_bg2.png);
     background-position: 78% 90%;
     background-color: #38362c;
-    background-attachment: fixed;
     background-repeat: no-repeat;
     height: 900px;
 
@@ -368,7 +368,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 43px;
       position: absolute;
-      top: 85%;
+      top: 45%;
       left: 10%;
     }
 
@@ -377,7 +377,7 @@ $icons-sprite-dimensions: true;
       font-family: NanumGothicExtrabold;
       font-size: 25px;
       position: absolute;
-      top: 88%;
+      top: 60%;
       left: 8%;
       max-width: 1000px;
     }
@@ -537,7 +537,7 @@ $icons-sprite-dimensions: true;
 
   .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
     color: white;
-    height: 700px;
+    height: 100%;
     width: 100%;
   }
 
@@ -614,5 +614,10 @@ a.current_page {
 
 .stop-scrolling {
   height: 100%;
+  overflow: hidden;
+}
+
+.parallax {
+  position: relative;
   overflow: hidden;
 }
