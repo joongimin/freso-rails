@@ -1,0 +1,9 @@
+<% content_for :head do %>
+<% end %>
+<% content_for :body do %>
+  <div id="topbar">
+    <%= current_user.name %>
+  </div>
+  <%= yield %>
+<% end %>
+<%= render "layouts/application" %>

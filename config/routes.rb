@@ -5,8 +5,8 @@ Freso::Application.routes.draw do
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, controllers: {
-      registrations: "registrations",
-      sessions: "sessions"
+      registrations: "users/registrations",
+      sessions: "users/sessions"
     }
     resources :authentications
     resources :translations, :except => :show

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107150754) do
+ActiveRecord::Schema.define(:version => 20130111043508) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -62,6 +62,18 @@ ActiveRecord::Schema.define(:version => 20130107150754) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "user_translations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "locale"
+    t.string   "first_name", :limit => 20
+    t.string   "last_name",  :limit => 20
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "user_translations", ["locale"], :name => "index_user_translations_on_locale"
+  add_index "user_translations", ["user_id"], :name => "index_user_translations_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

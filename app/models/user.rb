@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include UsersHelper
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -9,10 +10,17 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  has_many :authentications
+  translates :first_name, :last_name
+
+  has_many :authentications, :dependent => :destroy
   has_many :brands
 
   def apply_omniauth(omniauth)
+    logger.debug "omniauth #{omniauth.to_yaml}"
+    I18n.available_locales.each do |locale|
+      write_attribute(:first_name, omniauth[:info][:locale][locale][:first_name], :locale => locale)
+      write_attribute(:last_name, omniauth[:info][:locale][locale][:last_name], :locale => locale)
+    end
     self.email = omniauth["info"]["email"] if email.blank?
     authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
   end
@@ -38,5 +46,9 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def name
+    full_name(first_name, last_name)
   end
 end

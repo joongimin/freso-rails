@@ -1,5 +1,9 @@
 class @AjaxUtil
   constructor: ->
+    $.ajaxSetup({ cache: true })
+    $body = $("body")
+    AjaxUtil::action($body.data("controller").replace(/\//g, "_"), $body.data("action"))
+
     History = window.History;
     if !History.enabled
       return false;
@@ -19,6 +23,17 @@ class @AjaxUtil
       AjaxUtil::current_state = State.data.state
       $(window).trigger("ajax_util:state_changed", State.url.replace(AjaxUtil::root_url, ""))
 
+  action: (controller, action) ->
+    active_controller = Application[controller]
+    if active_controller
+      if $.isFunction(active_controller.init)
+        active_controller.init()
+
+      if $.isFunction(active_controller[action])
+        active_controller[action]()
+
+
+this.Application ?= {}
+
 $ ->
   new AjaxUtil
-  $.ajaxSetup({ cache: true })

@@ -469,7 +469,7 @@ $icons-sprite-dimensions: true;
 
   .info1, .info2, .info3 {
     left: 2000px;
-    top: 0px;
+    top: 0;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -478,16 +478,16 @@ $icons-sprite-dimensions: true;
   }
 
   .info2 {
-    top: 0px;
+    top: 0;
   }
 
   .info3 {
-    top: 0px;
+    top: 0;
   }
 
   .animate-in .info1, .animate-in .info2, .animate-in .info3 {
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     -webkit-transition-duration: 2s;
     -moz-transition-duration: 2s;
     -o-transition-duration: 2s;
@@ -496,7 +496,7 @@ $icons-sprite-dimensions: true;
   }
 
   .animate-out .info1, .animate-out .info2, .animate-out .info3 {
-    top: 0px;
+    top: 0;
     left: -2000px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;
@@ -543,7 +543,7 @@ $icons-sprite-dimensions: true;
 
   .strength_info1 {
     left: 900px;
-    top: 0px;
+    top: 0;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -562,7 +562,7 @@ $icons-sprite-dimensions: true;
 
   .strength_info1, .strength_info2, .strength_info3, .strength_info4, .strength_info5, .strength_info6 {
     left: 2000px;
-    top: 0px;
+    top: 0;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -571,16 +571,16 @@ $icons-sprite-dimensions: true;
   }
 
   .strength_info2 {
-    top: 0px;
+    top: 0;
   }
 
   .strength_info3 {
-    top: 0px;
+    top: 0;
   }
 
   .animate-in .strength_info1, .animate-in .strength_info2, .animate-in .strength_info3, .animate-in .strength_info4, .animate-in .strength_info5, .animate-in .strength_info6 {
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     -webkit-transition-duration: 2s;
     -moz-transition-duration: 2s;
     -o-transition-duration: 2s;
@@ -589,7 +589,7 @@ $icons-sprite-dimensions: true;
   }
 
   .animate-out .strength_info1, .animate-out .strength_info2, .animate-out .strength_info3, .animate-out .strength_info4, .animate-out .strength_info5, .animate-out .strength_info6 {
-    top: 0px;
+    top: 0;
     left: -2000px;
     -webkit-transition-duration: 1.5s;
     -moz-transition-duration: 1.5s;
@@ -599,12 +599,12 @@ $icons-sprite-dimensions: true;
   }
 }
 
-.icons-sub-nav-foward-button, .icons-sub-nav-button, .icons-sub-nav-back-button {
+.icons-sub-nav-forward-button, .icons-sub-nav-button, .icons-sub-nav-back-button {
   opacity: 0.4;
   display: block;
 }
 
-.icons-sub-nav-foward-button:hover, .icons-sub-nav-button:hover, .icons-sub-nav-back-button:hover {
+.icons-sub-nav-forward-button:hover, .icons-sub-nav-button:hover, .icons-sub-nav-back-button:hover {
   opacity: 1;
 }
 

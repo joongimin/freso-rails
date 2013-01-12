@@ -1,8 +1,7 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <%= javascript_include_tag "views/authentication/create" %>
+    <%= javascript_include_tag "application" %>
   </head>
-  <body>
-    <%= content_tag :div, nil, :id => "data", :data => {:referer => login_url} %>
-  </body>
+  <%= content_tag :body, nil, :data => {:controller => controller.controller_path, :action => controller.action_name, :referer => login_url} %>
 </html>
