@@ -3,5 +3,31 @@ ko-KR:
     index:
       title: "Freso"
       login_with_nuvo: "누보로 로그인"
+      intro:
+        first_title: "프레소가 뭔가요?"
+        first_description: "Freso는 개인 쇼핑몰을 만드는 가장 쉬운 도구입니다."
+        second_title: "Freso 는 ‘Freedom of shopping’ 을 의미합니다."
+        second_description: "온라인 쇼핑몰을 만들어 보셨다면 아실꺼에요. 너무나도 복잡한 단계와 절대 익숙해 질 수 없을 것 같은 어려운 시스템들. 내 마음대로 메뉴도 바꾸지 못해 전문가에게 부탁해야 하고 돈은 왜 그렇게 낼 곳이 많은지… Freso는 이 모든 과정으로부터 당신을 자유롭게 합니다."
+        third_title: "Freso를 이용하여 당신의 쇼핑몰을 만들어보세요."
+        third_description: "가장 최신의 기술들, 가장 복잡한 기술들이 Freso를 만들기 위해 사용되었습니다. 그 결과 가장 쉬운 쇼핑몰 제작 도구가 만들어졌습니다. 현존하는 가장 쉬운 제작 도구인 Freso를 이용하여 당신이 꿈꾸던 쇼핑몰을 만들어보세요. 5분 만에 당신의 쇼핑몰이 탄생합니다."
+      strength:
+        first_title: "왜 Freso 인가?"
+        first_description: "Freso를 이용하여 5가지 어려움으로부터 자유로워지세요."
+        second_title: "Built-in everything, 복잡한 과정"
+        second_description: "Freso에는 모든 것들이 ‘이미’ 설치되어 있습니다. 결제 모듈부터 고객 관리까지 당신이 쇼핑몰을 운영하는 데에 필요한 모든 것들은 이미 갖추어져 있습니다. 당신에게 필요한 것은 오직 ‘판매하고자 하는 마음’ 입니다."
+        third_title: "Hub System : 값비싼 홍보"
+        third_description: "당신이 Freso를 이용하여 등록하는 모든 제품들은 당신의 쇼핑몰에 올라가는 것과 동시에 Freso Hub에 등록되어 자동적으로 홍보가 시작됩니다. 더 이상 비싼 광고비를 낭비하지 마세요. 당신의 제품에 집중하세요."
+        fourth_title: "Really Free, 쇼핑몰 제작비"
+        fourth_description: "Freso는 정말로 무료입니다. Freso의 모든 기능을 무료로 이용하세요."
+        fifth_title: "Design Shop, 획일화된 디자인"
+        fifth_description: "완벽하게 당신의 쇼핑몰에 맞춰진 디자인을 Freso의 디자인 샵에서 만나보세요. 당신의 쇼핑몰을 더욱 완벽하게 만들어 보세요."
+        sixth_title: "Powerful Analytics Tools, 어려운 경제학"
+        sixth_description: "Freso의 강력한 분석 도구는 가장 정밀한 기술을 이용하여 당신의 쇼핑몰을 분석합니다. 유입량 분석에서부터 가격 설정까지 모든 번거로운 절차를 이제 Freso를 통해 해결하세요."
+      business_model:
+        first_title: "Freso는 어떻게 돈을 버나요?"
+        first_description: "Freso를 통해 만들어진 모든 쇼핑몰의 우하단 공간은 광고를 위해 쓰여지게 됩니다. 걱정하지 마세요. 우리는 이 공간을 가능한 한 최대로 깔끔하게 사용할테니까요. 그래도 이 광고 공간을 당신의 쇼핑몰에서 지우고 싶다면, 그렇게 하세요. Freso의 프리미엄 멤버쉽 가입을 통해 100% 당신만의 쇼핑몰을 만들 수 있습니다."
+      donation:
+        first_title: "Freso는 언제부터 사용할 수 있나요?"
+        first_description: "가장 쉬운 쇼핑몰 제작 도구인 Freso는 현재 서울 청담동 사무실에서 개발 중에 있습니다. 2013년 초에 서비스를 런칭할 Freso를 가장 먼저 이용하기 위해서는 아래 빈 칸에 이메일 주소를 적어주세요. Freso가 완성되는 즉시 연락드리겠습니다. 감사합니다."
     guide:
       title: "쇼핑몰 만들기 가이드"
