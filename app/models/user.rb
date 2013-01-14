@@ -1,19 +1,22 @@
 class User < ActiveRecord::Base
   include UsersHelper
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  has_many :authentications, :dependent => :destroy
+  has_many :brands
+
+  validates_uniqueness_of :email
+  validates :email, :email_format => true
+
+  translates :first_name, :last_name
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
-
-  translates :first_name, :last_name
-
-  has_many :authentications, :dependent => :destroy
-  has_many :brands
 
   def apply_omniauth(omniauth)
     I18n.available_locales.each do |locale|
