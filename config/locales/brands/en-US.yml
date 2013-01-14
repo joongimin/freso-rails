@@ -1,0 +1,8 @@
+en-US:
+  brands:
+    name: "Name"
+    uri: "URL"
+    category: "Category"
+    name_field_description: "준기몰, Ristoran8, HotSeeks 같이 멋진 이름을 적어주세요"
+    uri_field_description: "언제든지 원하는 주소로 변경할 수 있어요"
+    hub_type_field_description: "무엇을 판매하시나요?\n가장 비슷한 항목을 선택해주세요"

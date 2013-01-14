@@ -95,69 +95,68 @@
       font-family: NanumGothic;
       @include clearfix;
 
-      .white_box {
+      input {
+        border: 1px solid #dcdcdc;
+      }
+
+      .field {
         height: 83px;
-        border-top: 1px solid #d7d7d7;
         border-bottom: 1px solid #d7d7d7;
-      }
+        @extend .clearfix;
 
-      .field_title {
-        color: #535353;
-        width: 169px;
-        float: left;
-        text-align: right;
-        padding-right: 12px;
-        background: #f7f7f7;
-        height: 50px;
-        padding-top: 33px;
-        font-size: 18px;
-      }
+        &.first {
+          border-top: 1px solid #d7d7d7;
+        }
 
-      #brand_name {
-        margin-left: 15px;
-        margin-top: 20px;
-        height: 40px;
-        width: 414px;
-        float: left;
-        font-size: 18px;
+        .field_title {
+          color: #535353;
+          width: 169px;
+          float: left;
+          text-align: right;
+          padding-right: 12px;
+          background: #f7f7f7;
+          height: 50px;
+          padding-top: 33px;
+          font-size: 18px;
+        }
+
+        .field_input {
+          float: left;
+          width: 416px;
+          padding: 20px 16px;
+
+          input[type='text'] {
+            padding: 10px;
+            font-size: 18px;
+            width: 394px;
+
+            &#brand_uri {
+              width: 280px;
+            }
+          }
+        }
+
+        .field_with_errors {
+          float: left;
+        }
+
+        .field_description {
+          padding: 0 15px;
+          color: #b9b9b9;
+          font-size: 11px;
+          float: left;
+          width: 181px;
+          height: 83px;
+
+          @include vertical_middle(83px);
+        }
       }
 
       .basic_url {
         font-size: 18px;
-        margin-left: 15px;
-        float: left;
-        margin-top: 33px;
         margin-right: 4px;
-      }
-
-      #brand_uri {
-        margin-top: 20px;
-        height: 40px;
-        width: 300px;
+        line-height: 42px;
         float: left;
-        font-size: 18px;
-      }
-
-      #brand_hub_type {
-        margin-left: 15px;
-        margin-top: 20px;
-        height: 40px;
-        width: 414px;
-        float: left;
-        font-size: 18px;
-      }
-
-      .field_description {
-        margin-left: 30px;
-        color: #b9b9b9;
-        font-size: 11px;
-        float: left;
-        width: 190px;
-        margin-top: 30px;
-      }
-
-      #url_field_description {
-        margin-top: 36px;
       }
     }
 

@@ -44,4 +44,7 @@ class BrandsController < ApplicationController
     @brand.destroy
     redirect_to brands_url, :notice => "Successfully destroyed brand."
   end
+
+  def customize
+  end
 end
