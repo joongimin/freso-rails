@@ -1,7 +1,29 @@
 <div class="section_title"><%= image_tag "home/make-shop-step-01-title-image.png" %></div>
 <div class="step_content_container" id="select_layout">
-  <div class="form_container">
-    
+  <div class="form_container" id="select_layout">
+    <div class="item_container">
+      <div class="arrow back_arrow"><%= image_tag "brands/left_arrow.png", :id => "left_arrow" %></div>
+      <div class="items">
+        <ul class="item_list">
+        <% (0...8).each do |i| %>
+          <% if i == 2 %>
+            <a id="template_select">
+              <li class="template_frame selected"><div class="arrow-up"></div></li>
+            </a>
+          <% else %>
+            <a id="template_select">
+              <li class="template_frame"></li>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="arrow next_arrow"><%= image_tag "brands/right_arrow.png", :id => "right_arrow" %></div>
+    </div>
+    <div class="bottom_area">
+      <a class="button show_all" id="show_all_button"><%= t("home.guide.show_all") %></a>
+      <a class="button go_design_store" id="go_design_store_button"><%= t("home.guide.go_design_store") %></a>
+      <div class="page_indicator">1/3</div>
+    </div>
   </div>
 </div>
 <div class="button_area">

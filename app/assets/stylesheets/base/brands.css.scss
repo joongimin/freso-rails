@@ -1,13 +1,14 @@
 .guide_container {
   position: relative;
   background: rgb(228, 229, 230);
-  height: 1000px;
+  height: 1200px;
 
   .guide {
     min-width: 980px;
     left: 50%;
     position: absolute;
     margin-left: -490px;
+    @include clearfix;
 
     .title {
       margin: 45px 0 0 340px;
@@ -92,6 +93,7 @@
       height: 252px;
       margin: 47px 0 0 69px;
       font-family: NanumGothic;
+      @include clearfix;
 
       input {
         border: 1px solid #dcdcdc;
@@ -191,6 +193,100 @@
 
     #select_layout {
       height: 625px;
+    }
+  }
+
+  .form_container#select_layout {
+    margin: 0;
+    display: inline-table;
+  }
+
+  .item_container {
+    height: 536px;
+    margin-top: 30px;
+    width: 100%;
+    @include clearfix;
+
+    .arrow {
+      padding-top: 246px;
+    }
+
+    .back_arrow {
+      width: 62px;
+      height: 100%;
+      float: left;
+    }
+
+    #right_arrow {
+      margin-left: 10px;
+    }
+
+    #left_arrow {
+      margin-left: 18px;
+    }
+    .template_frame {
+      width: 200px;
+      height: 250px;
+      margin-left: 7px;
+      margin-right: 7px;
+      margin-top: 15px;
+      background: white;
+      float: left;
+      border: 1px solid #d7d7d7;
+    }
+
+    .selected {
+      border: 3px solid #d2da62;
+      margin: 13px 5px -2px 5px;
+    }
+
+    .arrow-up {
+      width: 0px;
+      height: 0px;
+      border-left: 40px solid transparent;
+      border-right: 0px solid transparent;
+      border-top: 40px solid #d2da62;
+      float: right;
+    }
+  }
+
+  .bottom_area {
+    width: 980px;
+    margin-top: 11px;
+    height: 50px;
+    @include clearfix;
+
+    .show_all {
+      height: 25px;
+      float: left;
+      width: 72px;
+      text-align: center;
+      margin-left: 68px;
+      color: #939133;
+      padding-top: 10px;
+    }
+
+    .go_design_store {
+      height: 25px;
+      float: left;
+      width: 123px;
+      text-align: center;
+      margin-left: 25px;
+      color: #e74224;
+      padding-top: 10px;
+    }
+
+    .page_indicator {
+      height: 27px;
+      float: right;
+      width: 52px;
+      color: white;
+      background: #d2da62;
+      text-align: center;
+      padding-top: 8px;
+      font-size: 16px;
+      margin-right: 62px;
+      border-radius: 3px;
     }
   }
 }
