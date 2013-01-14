@@ -145,12 +145,14 @@ class HomeController
           $.scrollTo "#"+@menu[@current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
               mousewheel_enable = true
               $(document).bind('scroll')
+              $('body').removeClass('stop-scrolling')
             }
         else if deltaY > 0 && @current_menu > 0
           @current_menu--
           $.scrollTo "#"+@menu[@current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
               mousewheel_enable = true
               $(document).bind('scroll')
+              $('body').removeClass('stop-scrolling')
             }
         else
           mousewheel_enable = true
