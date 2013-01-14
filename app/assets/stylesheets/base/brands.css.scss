@@ -233,6 +233,16 @@
       background: white;
       float: left;
       border: 1px solid #d7d7d7;
+
+      .check_icon {
+        display: none;
+      }
+
+      &:hover {
+        div.check_icon {
+          display: block;
+        }
+      }
     }
 
     .selected {
@@ -247,6 +257,54 @@
       border-right: 0px solid transparent;
       border-top: 40px solid #d2da62;
       float: right;
+    }
+
+    div.check_icon {
+      position: relative;
+      vertical-align: top;
+      margin-left: 159px;
+    }
+
+    div.check_icon::after, div.check_icon::before {
+      background: #fed;
+      border: 2px solid #d2da62;
+      content: '';
+      position: absolute;
+    }
+
+    div.icon {
+      position: relative;
+      vertical-align: top;
+      float: right;
+    }
+
+    div.tick::before {
+      left: 20px;
+      top: 11px;
+      width: 2px;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    div.icon::after, div.icon::before {
+      border: 2px solid white;
+      content: '';
+      position: absolute;
+    }
+
+    div.tick::after {
+      height: 14px;
+      left: 29px;
+      top: 2px;
+      width: 0;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
     }
   }
 
