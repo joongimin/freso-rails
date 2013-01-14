@@ -1,0 +1,29 @@
+<div class="section_title"><%= image_tag "home/make-shop-step-01-title-image.png" %></div>
+<%= form_for(@brand, :remote => true, :html => {:id => "create_brand"}) do |f| %>
+  <div class="step_content_container">
+    <div class="form_container">
+      <ul class="grey_box">
+        <li class="white_box">
+          <%= f.label :name, t("brand.name"), :class => "field_title" %>
+          <%= f.text_field "name" %>
+          <span class="field_description"><%= t("brand.name_filed_description") %></span>
+        </li>
+        <li class="white_box">
+          <%= f.label :uri, t("brand.url"), :class => "field_title" %>
+          <span class="basic_url">http://fre.so/</span>
+          <%= f.text_field :uri %>
+          <span class="field_description", id="url_field_description"><%= t("brand.url_filed_description") %></span>
+        </li>
+        <li class="white_box">
+          <%= f.label :category, t("brand.category"), :class => "field_title" %>
+          <%= f.text_field :hub_type %>
+          <span class="field_description"><%= t("brand.category_filed_description") %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="button_area">
+    <a class="button cancel" id="cancel_button"><%= t("home.guide.cancel") %></a>
+    <%= f.submit :class => "button confirm create_button", :id => "create_shop_button", :value => t("home.guide.create_shop") %>
+  </div>
+<% end %>

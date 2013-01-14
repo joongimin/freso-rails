@@ -31,3 +31,16 @@ en-US:
         first_description: "Now constructing..."
     guide:
       title: "Guide"
+      step:
+        first:
+          title: "Basic Info"
+        second:
+          title: "Select Layout"
+        third:
+          title: "Detail Design"
+        fourth:
+          title: "Regist/Start"
+      cancel: "Cancel"
+      back: "Back"
+      next: "Next"
+      create_shop: "Create Shop"
