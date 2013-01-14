@@ -118,8 +118,8 @@ ko-KR:
       odd: 에 홀수를 입력해 주세요
       record_invalid: 데이터 검증에 실패하였습니다. %{errors}
       taken: 이미 존재합니다.
-      too_long: 은(는) %{count}자를 넘을 수 없습니다
-      too_short: 은(는) 적어도 %{count}자를 넘어야 합니다
+      too_long: "%{count}자를 넘을 수 없습니다"
+      too_short: "적어도 %{count}자를 넘어야 합니다"
       wrong_length: 은(는) %{count}자여야 합니다
       email_format: "잘못된 이메일 형식입니다."
       uri_format: "주소는 알파벳과 숫자만 가질 수 있습니다"
