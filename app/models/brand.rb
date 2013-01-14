@@ -5,6 +5,6 @@ class Brand < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :presence => true
-  validates :uri, :presence => true, :uniqueness => true
+  validates :uri, :presence => true, :uniqueness => true, :uri_format => true
   validates :hub_type, :presence => true
 end
