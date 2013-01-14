@@ -1,0 +1,197 @@
+.guide_container {
+  position: relative;
+  background: rgb(228, 229, 230);
+  height: 1000px;
+
+  .guide {
+    min-width: 980px;
+    left: 50%;
+    position: absolute;
+    margin-left: -490px;
+
+    .title {
+      margin: 45px 0 0 340px;
+    }
+
+    .step_button_container {
+      margin: 30px 0 0 130px;
+      height: 42px;
+    }
+
+    .step_buttons {
+      width: 610px;
+      height: 100%;
+      margin-left: 109px;
+    }
+
+    .step_bar {
+      background: rgb(216, 216, 216);
+      width: 110px;
+      height: 5px;
+      float: left;
+      margin-top: 18px;
+    }
+
+    .progressed_bar {
+      background: #b2d35c;
+    }
+
+    li.progressed_text {
+      color: #9abd5d;
+    }
+
+    .step_button {
+      display: inline-block;
+      float: left;
+    }
+
+    .step_title_container {
+      margin: 13px 0 0 220px;
+      height: 52px;
+      font-family: NanumGothic;자
+
+      .first {
+        margin-left: 160px;
+      }
+
+      .second {
+        margin-left: 77px;
+      }
+
+      .third {
+        margin-left: 80px;
+      }
+
+      .fourth {
+        margin-left: 70px;
+      }
+    }
+
+    .step_title {
+      display: inline-block;
+      float: left;
+      color: rgb(148, 148, 148);
+      font-size: 13px;
+      text-shadow: 1px 1px white
+    }
+
+    .section_line {
+      margin-bottom: 35px;
+    }
+
+    .step_content_container {
+      background: rgb(239, 239, 239);
+      width: 980px;
+      height: 350px;
+      box-shadow: -1px -1px rgb(215, 215, 216), 1px 1px rgb(245, 245, 245)
+    }
+
+    .form_container {
+      position: absolute;
+      width: 840px;
+      height: 252px;
+      margin: 47px 0 0 69px;
+      font-family: NanumGothic;
+
+      input {
+        border: 1px solid #dcdcdc;
+      }
+
+      .field {
+        height: 83px;
+        border-bottom: 1px solid #d7d7d7;
+        @extend .clearfix;
+
+        &.first {
+          border-top: 1px solid #d7d7d7;
+        }
+
+        .field_title {
+          color: #535353;
+          width: 169px;
+          float: left;
+          text-align: right;
+          padding-right: 12px;
+          background: #f7f7f7;
+          height: 50px;
+          padding-top: 33px;
+          font-size: 18px;
+        }
+
+        .field_input {
+          float: left;
+          width: 416px;
+          padding: 20px 16px;
+
+          input[type='text'] {
+            padding: 10px;
+            font-size: 18px;
+            width: 394px;
+
+            &#brand_uri {
+              width: 265px;
+            }
+          }
+        }
+
+        .field_with_errors {
+          float: left;
+        }
+
+        .field_description {
+          padding: 0 15px;
+          color: #b9b9b9;
+          font-size: 11px;
+          float: left;
+          width: 181px;
+          height: 83px;
+
+          @include vertical_middle(83px);
+        }
+      }
+
+      .basic_url {
+        font-size: 18px;
+        margin-left: 15px;
+        margin-right: 4px;
+        line-height: 42px;
+        float: left;
+      }
+    }
+
+    .button_area {
+      float: right;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .cancel {
+      font-family: NanumGothic;
+      color: #e32260;
+      width: 72px;
+      height: 25px;
+      float: left;
+    }
+
+    .confirm {
+      font-family: NanumGothic;
+      color: #6d926c;
+      width: 124px;
+      height: 25px;
+      float: left;
+      margin-left: 22px;
+    }
+
+    .create_button {
+      padding-bottom: 25px;
+    }
+
+    .section_title {
+      margin-bottom: 15px;
+    }
+
+    #select_layout {
+      height: 625px;
+    }
+  }
+}

@@ -1,9 +1,10 @@
 class Brand < ActiveRecord::Base
-  attr_accessible :uid, :hub_type, :layout_id, :uri
+  attr_accessible :uid, :hub_type, :layout_id, :uri, :name
+  translates :name
 
   belongs_to :user
 
-  validates_uniqueness_of :uri
-
-  translates :name
+  validates :name, :presence => true
+  validates :uri, :presence => true, :uniqueness => true
+  validates :hub_type, :presence => true
 end

@@ -7,11 +7,6 @@ html, body {
   font-family: Play, sans-serif;
 }
 
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote {
   margin: 0;
   padding: 0;
@@ -126,4 +121,17 @@ div.flash_warning {
 
 div.admin-tool {
   padding: 10px;
+}
+
+.button {
+  border-radius: 4px;
+  background: #f5f5f5;
+  font-size: 13px;
+  border: 1px solid #d7d7d7;
+  padding-top: 10px;
+}
+
+.button:hover {
+  background: white;
+  text-decoration: none;
 }

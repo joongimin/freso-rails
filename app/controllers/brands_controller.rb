@@ -9,12 +9,18 @@ class BrandsController < ApplicationController
 
   def new
     @brand = Brand.new
+    respond_to do |format|
+      format.html { render :create_step }
+    end
   end
 
   def create
     @brand = Brand.new(params[:brand])
     if @brand.save
-      redirect_to @brand, :notice => "Successfully created brand."
+      respond_to do |format|
+        format.js { render :step_slide }
+        #format.json { render :json => :select_layout }
+      end
     else
       render :action => 'new'
     end

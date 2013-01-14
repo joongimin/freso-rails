@@ -39,4 +39,4 @@ Freso::Application.configure do
 end
 
 # For testing purpose against https://d1.xnuvo.com
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

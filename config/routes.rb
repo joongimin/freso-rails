@@ -12,6 +12,7 @@ Freso::Application.routes.draw do
     root :to => "home#index"
     controller :home do
       get "login" => :index
+      get "step_slide" => :step_slide
     end
 
     controller :nuvo do

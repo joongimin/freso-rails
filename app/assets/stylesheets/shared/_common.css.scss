@@ -1,4 +1,15 @@
 @import "compass";
+
+@mixin vertical_middle($height) {
+  height: $height;
+  display: table;
+
+  * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 $screen_width: 980px;
 
 .clearfix {
@@ -54,9 +65,25 @@ $screen_width: 980px;
       float: left;
     }
 
-    .height_support, .name {
+    .name {
       display: inline-block;
       vertical-align: middle;
+    }
+  }
+}
+
+.height_support, .vertical_middle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div.field_with_errors {
+  div.message_anchor {
+    position: relative;
+    label.message {
+      position: absolute;
+      color: #d00;
+      font-size: 11px;
     }
   }
 }
