@@ -2,7 +2,10 @@ class HomeController < ApplicationController
   def index
     if current_user
       if current_user.brands.count == 0
-        redirect_to new_brand_path
+        respond_to do |format|
+          format.html { redirect_to new_brand_path }
+          format.js
+        end
       else
         respond_to do |format|
           format.js { render :logged_in }
