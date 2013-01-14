@@ -5,7 +5,6 @@
     <title><%= title_prefix %><%= content_for?(:title) ? yield(:title) : t("default_page_title") %></title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    <!--[if IE]><%= javascript_include_tag "application-ie", :media => "all" %><![endif]-->
     <%= yield :head %>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
