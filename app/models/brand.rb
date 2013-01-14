@@ -4,7 +4,7 @@ class Brand < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :name, :presence => true
-  validates :uri, :presence => true, :uniqueness => true, :uri_format => true
+  validates :name, :presence => true, :length => { :minimum => 2 }
+  validates :uri, :presence => true, :uniqueness => true, :uri_format => true, :length => { :minimum => 3, :maximum => 20 }
   validates :hub_type, :presence => true
 end

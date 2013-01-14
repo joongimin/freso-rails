@@ -10,7 +10,7 @@ class BrandsController < ApplicationController
   def new
     @brand = Brand.new
     respond_to do |format|
-      format.html { render :create_step }
+      format.html
     end
   end
 
@@ -18,7 +18,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(params[:brand])
     if @brand.save
       respond_to do |format|
-        format.js { render :step_slide }
+        format.js
         #format.json { render :json => :select_layout }
       end
     else
@@ -43,6 +43,9 @@ class BrandsController < ApplicationController
     @brand = Brand.find(params[:id])
     @brand.destroy
     redirect_to brands_url, :notice => "Successfully destroyed brand."
+  end
+
+  def select_layout
   end
 
   def customize
