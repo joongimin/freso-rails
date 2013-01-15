@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include UsersHelper
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :remember_me
   translates :first_name, :last_name
 
   has_many :authentications, :dependent => :destroy
@@ -10,10 +10,8 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true, :uniqueness => true, :email_format => true
-  validates :password, :presence => true
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
   def apply_omniauth(omniauth)
     I18n.available_locales.each do |locale|
