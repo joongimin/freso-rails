@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :brands
 
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
   validates :email, :presence => true, :uniqueness => true, :email_format => true
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
