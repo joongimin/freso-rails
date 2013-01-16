@@ -29,20 +29,3 @@ en-US:
       donation:
         first_title: "When can I start using Freso?"
         first_description: "Now constructing..."
-    guide:
-      title: "Guide"
-      step:
-        first:
-          title: "Basic Info"
-        second:
-          title: "Select Layout"
-        third:
-          title: "Cutomize"
-        fourth:
-          title: "Add Product & Start Selling"
-      cancel: "Cancel"
-      back: "Back"
-      next: "Next"
-      create_shop: "Create Shop"
-      show_all: "Show All"
-      go_design_store: "Go Design Store"

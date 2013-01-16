@@ -1,4 +1,6 @@
-<div class="section_title"><%= image_tag "home/make-shop-step-01-title-image.png" %></div>
+<% current_step = 1 %>
+<% max_steps = 4 %>
+<div class="brands-make-shop-step-1-title"></div>
 <%= form_for(@brand, :validate => true, :remote => true, :html => {:id => "create_brand"}) do |f| %>
   <div class="step_content_container">
     <div class="form_container">
@@ -12,11 +14,10 @@
             <div><%= t("brands.name_field_description") %></div>
           </div>
         </li>
-        <li class="field">
+        <li class="field field_brand_uri">
           <%= f.label :uri, t("brands.uri"), :class => "field_title" %>
           <div class="field_input">
-            <span class="basic_url">http://fre.so/</span>
-            <%= f.text_field :uri %>
+            <span class="basic_url">http://</span><%= f.text_field :uri %><span class="basic_url">.fre.so</span>
           </div>
           <div class="field_description">
             <div><%= t("brands.uri_field_description") %></div>
@@ -35,7 +36,7 @@
     </div>
   </div>
   <div class="button_area">
-    <a class="button cancel" id="cancel_button"><%= t("home.guide.cancel") %></a>
-    <%= f.submit :class => "button confirm create_button", :id => "create_shop_button", :value => t("home.guide.create_shop") %>
+    <a class="button cancel" id="cancel_button"><%= t("brands.guide.cancel") %></a>
+    <%= f.submit :class => "button confirm create_button", :id => "create_shop_button", :value => t("brands.guide.create_shop") %>
   </div>
 <% end %>
