@@ -1,0 +1,32 @@
+<%= nested_form_for(@layout_template) do |f| %>
+  <% if @layout_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@layout_template.errors.count, "error") %> prohibited this layout_template from being saved:</h2>
+
+      <ul>
+      <% @layout_template.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :image %>
+  </div>
+  <div class="field">
+    <%= f.label :layout_option_template %><br />
+    <%= f.text_field :layout_option_template %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

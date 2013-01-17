@@ -83,7 +83,6 @@ $brands-sprite-dimensions: true;
     }
 
     .form_container {
-      position: absolute;
       width: 840px;
       margin: 47px 0 0 69px;
       @extend .clearfix;
@@ -176,8 +175,8 @@ $brands-sprite-dimensions: true;
       margin-left: 22px;
     }
 
-    .section_title {
-      margin-bottom: 15px;
+    .create_button {
+      padding-bottom: 25px;
     }
 
     #select_layout {
@@ -188,11 +187,11 @@ $brands-sprite-dimensions: true;
   .form_container#select_layout {
     margin: 0;
     display: inline-table;
+    padding-top: 30px;
   }
 
   .item_container {
     height: 536px;
-    margin-top: 30px;
     width: 100%;
     @include clearfix;
 
@@ -203,7 +202,12 @@ $brands-sprite-dimensions: true;
     .back_arrow {
       width: 62px;
       height: 100%;
-      float: left;
+      position: absolute;
+    }
+
+    .next_arrow {
+      position: absolute;
+      right: 18px;
     }
 
     #right_arrow {
@@ -211,8 +215,14 @@ $brands-sprite-dimensions: true;
     }
 
     #left_arrow {
-      margin-left: 18px;
+      margin-left: 5px;
     }
+
+    .items {
+      padding-left: 58px;
+      padding-right: 58px;
+    }
+
     .template_frame {
       width: 200px;
       height: 250px;
@@ -222,6 +232,62 @@ $brands-sprite-dimensions: true;
       background: white;
       float: left;
       border: 1px solid #d7d7d7;
+      overflow: hidden;
+      position: relative;
+
+      .check_icon {
+        display: none;
+      }
+
+      &:hover {
+        div.check_icon {
+          display: block;
+        }
+      }
+
+      .preview_container {
+        padding: 30px 10px 0 10px;
+        width: 180px;
+        height: 180px;
+      }
+
+      .info_container {
+        padding: 12px 0 0 10px;
+        color: black;
+        font-size: 12px;
+        color: #adadad;
+        position: absolute;
+        top: 210px;
+        width: 180px;
+        height: 212px;
+        background-color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+
+        .name {
+          font-size: 15px;
+          font-weight: bold;
+          color: black;
+        }
+
+        .show_sample {
+          position: absolute;
+          color: #6f9232;
+          padding-top: 18px;
+          padding-left: 4px;
+        }
+
+        .description {
+          padding-top: 18px;
+          color: #adadad;
+        }
+
+        .made_by {
+          position: absolute;
+          padding-top: 65px;
+          bottom: 0;
+          left: 18px;
+        }
+      }
     }
 
     .selected {
@@ -236,6 +302,67 @@ $brands-sprite-dimensions: true;
       border-right: 0px solid transparent;
       border-top: 40px solid #d2da62;
       float: right;
+      z-index: 5;
+      position: absolute;
+      right: 0;
+    }
+
+    div.check_icon {
+      position: relative;
+      vertical-align: top;
+      margin-left: 159px;
+      z-index: 3;
+    }
+
+    div.check_icon::after, div.check_icon::before {
+      background: #fed;
+      border: 2px solid #d2da62;
+      content: '';
+      position: absolute;
+    }
+
+    div.icon {
+      position: relative;
+      vertical-align: top;
+      float: right;
+      z-index: 5;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 0;
+    }
+
+    div.tick::before {
+      left: 20px;
+      top: 11px;
+      width: 2px;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    div.icon::after, div.icon::before {
+      border: 2px solid white;
+      content: '';
+      position: absolute;
+    }
+
+    div.tick::after {
+      height: 14px;
+      left: 29px;
+      top: 2px;
+      width: 0;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .disabled {
+      display: none;
     }
   }
 
@@ -250,7 +377,7 @@ $brands-sprite-dimensions: true;
       float: left;
       width: 72px;
       text-align: center;
-      margin-left: 68px;
+      margin-left: 65px;
       color: #939133;
       padding-top: 10px;
     }
@@ -274,7 +401,7 @@ $brands-sprite-dimensions: true;
       text-align: center;
       padding-top: 8px;
       font-size: 16px;
-      margin-right: 62px;
+      margin-right: 65px;
       border-radius: 3px;
     }
   }

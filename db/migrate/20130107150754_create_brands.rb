@@ -1,5 +1,5 @@
 class CreateBrands < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :brands do |t|
       t.integer :uid
       t.integer :hub_type
@@ -15,7 +15,7 @@ class CreateBrands < ActiveRecord::Migration
     })
   end
 
-  def self.down
+  def down
     drop_table :brands
   end
 end

@@ -1,12 +1,12 @@
 class CreateFaqCategories < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :faq_categories do |t|
       t.integer :position
       t.timestamps
     end
   end
 
-  def self.down
+  def down
     drop_table :faq_categories
   end
 end

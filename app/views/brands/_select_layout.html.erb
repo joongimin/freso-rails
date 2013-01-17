@@ -1,32 +1,51 @@
-<div class="section_title"><%= image_tag "home/make-shop-step-01-title-image.png" %></div>
+<%
+layout_templates = LayoutTemplate.with_translations(I18n.locale).offset(0).limit(8) if layout_templates.nil?
+total_count = LayoutTemplate.all.count if total_count.nil?
+@total_page = total_count/8 + 1
+current_page = 1 if current_page.nil?
+%>
+<div class="brands-make-shop-step-1-title"></div>
 <div class="step_content_container" id="select_layout">
   <div class="form_container" id="select_layout">
     <div class="item_container">
-      <div class="arrow back_arrow"><%= image_tag "brands/left_arrow.png", :id => "left_arrow" %></div>
+      <%= link_to image_tag("brands/left_arrow.png", :id => "left_arrow"), layout_templates_list_layout_templates_path(:page_number => current_page - 1, :total_count => total_count), :remote => true, :class => "arrow back_arrow" if current_page != 1 %>
       <div class="items">
         <ul class="item_list">
-        <% (0...8).each do |i| %>
-          <% if i == 2 %>
-            <a id="template_select">
-              <li class="template_frame selected"><div class="arrow-up"></div></li>
-            </a>
-          <% else %>
-            <a id="template_select">
-              <li class="template_frame"></li>
-            </a>
-          <% end %>
+        <% layout_templates.each do |layout_template| %>
+          <div id="template_select">
+            <li class="template_frame">
+              <div class="tick check_icon"></div>
+              <div class="arrow-up selected_frame disabled"></div>
+              <div class="tick icon selected_frame disabled"></div>
+              <div class="preview_container">
+                <%= image_tag(layout_template.image.image_url) if layout_template.image.image? %></br>
+              </div>
+              <div class="info_container">
+                <div class="name"><%= layout_template.name%></div>
+                <div class="description"><%= layout_template.description%></div>
+                <a class="show_sample"><%= t("brands.show_sample") %></a>
+                <div class="made_by"><%= t("brands.made_by", :author => layout_template.user.name) %></div>
+              </div>
+            </li>
+          </div>
         <% end %>
       </div>
-      <div class="arrow next_arrow"><%= image_tag "brands/right_arrow.png", :id => "right_arrow" %></div>
+      <%= link_to image_tag("brands/right_arrow.png", :id => "right_arrow"), layout_templates_list_layout_templates_path(:page_number => current_page + 1, :total_count => total_count), :remote => true, :class => "arrow next_arrow" if current_page != @total_page %>
     </div>
     <div class="bottom_area">
-      <a class="button show_all" id="show_all_button"><%= t("brands.guide.show_all") %></a>
-      <a class="button go_design_store" id="go_design_store_button"><%= t("brands.guide.go_design_store") %></a>
-      <div class="page_indicator">1/3</div>
+      <%= content_tag :a, nil, :class => "button show_all", :id => "show_all_button", :data => {:"message" => t("brands.show_all.now_under_construction")} do %>
+        <%= t("home.guide.show_all") %>
+      <% end %>
+      <%= content_tag :a, nil, :class => "button go_design_store", :id => "go_design_store_button", :data => {:"message" => t("brands.now_under_construction")} do %>
+        <%= t("home.guide.go_design_store") %>
+      <% end %>
+      <div class="page_indicator"><%= "#{current_page}/#{@total_page}" %></div>
     </div>
   </div>
 </div>
 <div class="button_area">
-  <a class="button cancel" id="cancel_button"><%= t("brands.guide.cancel") %></a>
-  <a class="button confirm" id="create_shop_button"><%= t("brands.guide.create_shop") %></a>
+  <%= content_tag :a, nil, :class => "button cancel", :id => "cancel_button", :data => {:"message" => t("brands.cancel.now_under_construction")} do %>
+    <%= t("home.guide.cancel") %>
+  <% end %>
+  <a class="button confirm" id="create_shop_button"><%= t("home.guide.create_shop") %></a>
 </div>

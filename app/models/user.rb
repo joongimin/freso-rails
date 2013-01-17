@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   translates :first_name, :last_name
 
   has_many :brands
+  has_many :layout_templates
 
   validates :email, :presence => true, :uniqueness => true, :email_format => true
 

@@ -62,6 +62,11 @@ gem 'omniauth-twitter'
 gem 'mocha', :group => :test
 gem 'compass-rails'
 gem 'globalize3'
+
+# Image resizing
+gem "rmagick"
+gem "nested_form"
+
 gem 'client_side_validations', :git => 'git@github.com:joongimin/client_side_validations.git'
 
 # Internationalize Javascript

@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<b>Layout Author:</b>
+	<%= @layout_template.user.name %></br>
+	<b>Layout name:</b>
+  <%= @layout_template.name %></br>
+  <b>Layout description:</b>
+  <%= @layout_template.description %></br>
+  <b>Layout preview:</b>
+  <%= image_tag(@layout_template.image.image_url) if !@layout_template.image.nil? %></br>
+  <b>Layout option template:</b>
+  <%= @layout_template.layout_option_template %>
+</p>
+
+
+<%= link_to 'Edit', edit_layout_template_path(@layout_template) %> |
+<%= link_to 'Back', layout_templates_path %>

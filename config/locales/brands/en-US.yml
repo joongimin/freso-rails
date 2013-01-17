@@ -6,6 +6,13 @@ en-US:
     name_field_description: "준기몰, Ristoran8, HotSeeks 같이 멋진 이름을 적어주세요"
     uri_field_description: "언제든지 원하는 주소로 변경할 수 있어요"
     hub_type_field_description: "무엇을 판매하시나요?\n가장 비슷한 항목을 선택해주세요"
+    now_under_construction: "Now Under Construction"
+    cancel:
+      now_under_construction: "Where I should go?"
+    show_all:
+      now_under_construction: "How do I show all?"
+    show_sample: "Show sample page"
+    made_by: "Made by %{author}"
     guide:
       steps:
         "1":
