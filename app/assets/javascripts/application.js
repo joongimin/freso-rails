@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require i18n
+//= require i18n/translations
 //= require main
 //= require rails.validations
 //= require_tree ../../../vendor/assets/javascripts/.

@@ -1,0 +1,4 @@
+ko-KR:
+  javascripts:
+    form:
+      reset_confirmation: "입력하신 모든 값이 초기값으로 변경됩니다. 계속하시겠습니까?"

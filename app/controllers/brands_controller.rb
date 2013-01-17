@@ -8,7 +8,7 @@ class BrandsController < ApplicationController
   end
 
   def new
-    @brand = Brand.new
+    @brand = Brand.first
     respond_to do |format|
       format.html
     end

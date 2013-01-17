@@ -1,0 +1,2 @@
+var I18n = I18n || {};
+I18n.translations = {"en-US":{"javascripts":{"form":{"reset_confirmation":"Inputs will be reset to default. Are you sure you wish to continue?"}}},"ko-KR":{"javascripts":{"form":{"reset_confirmation":"\uc785\ub825\ud55c \uac12\ub4e4\uc774 \ucd08\uae30\uac12\uc73c\ub85c \ubcc0\uacbd\ub429\ub2c8\ub2e4. \uacc4\uc18d\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?"}}}};
