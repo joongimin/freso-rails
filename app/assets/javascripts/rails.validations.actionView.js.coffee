@@ -1,3 +1,4 @@
+window.ClientSideValidations.formBuilders['AppFormBuilder'] = 
 window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = {
   add: (element, settings, message) ->
     form = $(element[0].form)

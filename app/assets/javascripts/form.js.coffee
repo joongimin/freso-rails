@@ -4,3 +4,6 @@ $ ->
       $form = $(this).closest("form")
       $form[0].reset()
       $form.resetClientSideValidations()
+
+  $(document).delegate "form .button.submit", "click", ->
+    $(this).closest("form").submit()
