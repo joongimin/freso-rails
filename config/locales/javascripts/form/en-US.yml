@@ -1,0 +1,4 @@
+en-US:
+  javascripts:
+    form:
+      reset_confirmation: "Inputs will be reset to default. Are you sure you wish to continue?"
