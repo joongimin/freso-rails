@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<b>Layout name:</b>
+  <%= @layout_template.name %></br>
+  <b>Layout description:</b>
+  <%= @layout_template.description %></br>
+  <b>Layout preview:</b>
+  <%= image_tag(@layout_template.preview_image_url) if @layout_template.preview_image? %></br>
+  <b>Layout option template:</b>
+  <%= @layout_template.layout_option_template %>
+</p>
+
+
+<%= link_to 'Edit', edit_layout_template_path(@layout_template) %> |
+<%= link_to 'Back', layout_templates_path %>

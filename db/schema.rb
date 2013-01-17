@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112164820) do
+ActiveRecord::Schema.define(:version => 20130115080817) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(:version => 20130112164820) do
     t.integer  "layout_id"
     t.integer  "user_id"
     t.string   "uri"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "current_layout_id"
   end
 
+  add_index "brands", ["current_layout_id"], :name => "index_brands_on_current_layout_id"
   add_index "brands", ["layout_id"], :name => "index_brands_on_layout_id"
   add_index "brands", ["user_id"], :name => "index_brands_on_user_id"
 
@@ -68,6 +70,39 @@ ActiveRecord::Schema.define(:version => 20130112164820) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "layout_template_translations", :force => true do |t|
+    t.integer  "layout_template_id"
+    t.string   "locale"
+    t.string   "name",               :limit => 200
+    t.string   "description",        :limit => 200
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "layout_template_translations", ["layout_template_id"], :name => "index_layout_template_translations_on_layout_template_id"
+  add_index "layout_template_translations", ["locale"], :name => "index_layout_template_translations_on_locale"
+
+  create_table "layout_templates", :force => true do |t|
+    t.string   "layout_option_template"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "preview_image"
+    t.integer  "user_id"
+  end
+
+  add_index "layout_templates", ["user_id"], :name => "index_layout_templates_on_user_id"
+
+  create_table "layouts", :force => true do |t|
+    t.string   "layout_option"
+    t.integer  "brand_id"
+    t.integer  "layout_template_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "layouts", ["brand_id"], :name => "index_layouts_on_brand_id"
+  add_index "layouts", ["layout_template_id"], :name => "index_layouts_on_layout_template_id"
 
   create_table "user_translations", :force => true do |t|
     t.integer  "user_id"
