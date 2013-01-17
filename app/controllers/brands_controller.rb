@@ -15,7 +15,7 @@ class BrandsController < ApplicationController
   end
 
   def create
-    @brand = Brand.new(params[:brand])
+    @brand = Brand.new(params[:brand].merge(:user_id => current_user.id))
     if @brand.save
       respond_to do |format|
         format.js
