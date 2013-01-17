@@ -9,6 +9,7 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
       element.before(inputErrorField)
       inputErrorField.find('span#input_tag').replaceWith(element)
       inputErrorField.find('label.message').attr('for', element.attr('id'))
+      form.effect("shake", {distance: 7})
 
     return form.find("label.message[for='" + (element.attr('id')) + "']").text(message)
 
