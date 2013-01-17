@@ -203,6 +203,7 @@ GEM
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
     ref (1.0.2)
+    rmagick (2.13.1)
     ruby-hmac (0.4.0)
     sass (3.2.5)
     sass-rails (3.2.5)
@@ -284,6 +285,7 @@ DEPENDENCIES
   rails (= 3.2.9)
   redis
   redis-namespace
+  rmagick
   sass-rails (~> 3.2.3)
   settingslogic
   therubyracer

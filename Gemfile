@@ -64,3 +64,6 @@ gem 'mocha', :group => :test
 gem 'compass-rails'
 gem 'globalize3'
 gem 'client_side_validations'
+
+# Image resizing
+gem "rmagick"
