@@ -1,9 +1,5 @@
 @import "compass";
 
-@mixin font_title {
-  font-family: NanumGothic, "Nanum Gothic", "Times New Roman";
-}
-
 @mixin vertical_middle($height) {
   height: $height;
   display: table;

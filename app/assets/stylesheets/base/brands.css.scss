@@ -85,10 +85,8 @@ $brands-sprite-dimensions: true;
     .form_container {
       position: absolute;
       width: 840px;
-      height: 252px;
       margin: 47px 0 0 69px;
-      font-family: NanumGothic;
-      @include clearfix;
+      @extend .clearfix;
 
       input {
         border: 1px solid #dcdcdc;
@@ -130,6 +128,10 @@ $brands-sprite-dimensions: true;
               width: 278px;
             }
           }
+
+          div.styled_select {
+            height: 41px;
+          }
         }
 
         .field_with_errors {
@@ -162,14 +164,12 @@ $brands-sprite-dimensions: true;
     }
 
     .cancel, .reset {
-      font-family: NanumGothic;
       color: #e32260;
       width: 72px;
       float: left;
     }
 
     .confirm {
-      font-family: NanumGothic;
       color: #6d926c;
       width: 124px;
       float: left;
