@@ -1,4 +1,4 @@
-<%= form_for(@layout_template) do |f| %>
+<%= nested_form_for(@layout_template) do |f| %>
   <% if @layout_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@layout_template.errors.count, "error") %> prohibited this layout_template from being saved:</h2>
@@ -20,9 +20,7 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :preview_image %>
-    <%= f.file_field :preview_image %>
-    <%= image_tag(f.object.preview_image) if f.object.preview_image? %>
+    <%= f.fields_for :image %>
   </div>
   <div class="field">
     <%= f.label :layout_option_template %><br />

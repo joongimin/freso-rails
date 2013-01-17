@@ -4,7 +4,7 @@ total_count = LayoutTemplate.all.count if total_count.nil?
 @total_page = total_count/8 + 1
 current_page = 1 if current_page.nil?
 %>
-<div class="section_title"><%= image_tag "home/make-shop-step-01-title-image.png" %></div>
+<div class="brands-make-shop-step-1-title"></div>
 <div class="step_content_container" id="select_layout">
   <div class="form_container" id="select_layout">
     <div class="item_container">
@@ -18,7 +18,7 @@ current_page = 1 if current_page.nil?
               <div class="arrow-up selected_frame disabled"></div>
               <div class="tick icon selected_frame disabled"></div>
               <div class="preview_container">
-                <%= image_tag(layout_template.preview_image_url) if layout_template.preview_image? %></br>
+                <%= image_tag(layout_template.image.image_url) if layout_template.image.image? %></br>
               </div>
               <div class="info_container">
                 <div class="name"><%= layout_template.name%></div>

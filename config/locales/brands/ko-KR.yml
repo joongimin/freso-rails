@@ -13,3 +13,19 @@ ko-KR:
       now_under_construction: "어떻게 다 보여줄까요?"
     show_sample: "샘플 페이지 보기"
     made_by: "%{author} 제작"
+    guide:
+      steps:
+        "1":
+          title: "기본정보 입력"
+        "2":
+          title: "레이아웃 선택"
+        "3":
+          title: "세부 디자인"
+        "4":
+          title: "상품등록/판매시작"
+      cancel: "취소"
+      back: "뒤로"
+      next: "다음"
+      create_shop: "상점 만들기"
+      show_all: "전체보기"
+      go_design_store: "디자인 센터 가기"

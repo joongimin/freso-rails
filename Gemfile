@@ -67,3 +67,4 @@ gem 'client_side_validations'
 
 # Image resizing
 gem "rmagick"
+gem "nested_form"

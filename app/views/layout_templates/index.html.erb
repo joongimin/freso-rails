@@ -13,7 +13,7 @@
   <tr>
     <td><%= layout_template.name %></td>
     <td><%= layout_template.description %></td>
-    <td><%= image_tag(layout_template.preview_image_url) if layout_template.preview_image? %></td>
+    <td><%= image_tag(layout_template.image.image_url) if layout_template.image.image? %></td>
     <td><%= layout_template.layout_option_template %></td>
     <td><%= link_to 'Show', layout_template %></td>
     <td><%= link_to 'Edit', edit_layout_template_path(layout_template) %></td>

@@ -13,3 +13,19 @@ en-US:
       now_under_construction: "How do I show all?"
     show_sample: "Show sample page"
     made_by: "Made by %{author}"
+    guide:
+      steps:
+        "1":
+          title: "Basic Info"
+        "2":
+          title: "Select Layout"
+        "3":
+          title: "Customize"
+        "4":
+          title: "Add Product & Start Selling"
+      cancel: "Cancel"
+      back: "Back"
+      next: "Next"
+      create_shop: "Create Shop"
+      show_all: "Show All"
+      go_design_store: "Go Design Store"
