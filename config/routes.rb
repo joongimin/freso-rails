@@ -1,4 +1,6 @@
 Freso::Application.routes.draw do
+  
+
   match '/auth/:provider/callback' => 'authentications#create'
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
@@ -9,6 +11,14 @@ Freso::Application.routes.draw do
     resources :users
     resources :authentications
     resources :translations, :except => :show
+    resources :layouts
+
+    resources :layout_templates do
+      collection do
+        get "layout_templates_list"
+      end
+    end
+
     root :to => "home#index"
     controller :home do
       get "login" => :index

@@ -214,7 +214,12 @@
     .back_arrow {
       width: 62px;
       height: 100%;
-      float: left;
+      position: absolute;
+    }
+
+    .next_arrow {
+      position: absolute;
+      right: 18px;
     }
 
     #right_arrow {
@@ -224,6 +229,12 @@
     #left_arrow {
       margin-left: 18px;
     }
+
+    .items {
+      padding-left: 58px;
+      padding-right: 58px;
+    }
+
     .template_frame {
       width: 200px;
       height: 250px;
@@ -233,6 +244,8 @@
       background: white;
       float: left;
       border: 1px solid #d7d7d7;
+      overflow: hidden;
+      position: relative;
 
       .check_icon {
         display: none;
@@ -241,6 +254,57 @@
       &:hover {
         div.check_icon {
           display: block;
+        }
+
+        .info_containered {
+          position: absolute;
+          top: 25px;
+          width: 180px;
+          height: 180px;
+          background-color: rgba(255, 255, 255, 0.9);
+        }
+      }
+
+      .preview_container {
+        padding: 30px 10px 0 10px;
+        width: 180px;
+        height: 180px;
+      }
+
+      .info_container {
+        padding: 12px 0 0 10px;
+        color: black;
+        font-size: 12px;
+        color: #adadad;
+        position: absolute;
+        top: 210px;
+        width: 180px;
+        height: 212px;
+        background-color: rgba(255, 255, 255, 0.9);
+
+        .name {
+          font-size: 15px;
+          font-weight: bold;
+          color: black;
+        }
+
+        .show_sample {
+          position: absolute;
+          color: #6f9232;
+          padding-top: 18px;
+          padding-left: 4px;
+        }
+
+        .description {
+          padding-top: 18px;
+          color: #adadad;
+        }
+
+        .made_by {
+          position: absolute;
+          padding-top: 65px;
+          bottom: 0;
+          left: 18px;
         }
       }
     }
@@ -257,12 +321,16 @@
       border-right: 0px solid transparent;
       border-top: 40px solid #d2da62;
       float: right;
+      z-index: 5;
+      position: absolute;
+      right: 0;
     }
 
     div.check_icon {
       position: relative;
       vertical-align: top;
       margin-left: 159px;
+      z-index: 3;
     }
 
     div.check_icon::after, div.check_icon::before {
@@ -276,6 +344,11 @@
       position: relative;
       vertical-align: top;
       float: right;
+      z-index: 5;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 0;
     }
 
     div.tick::before {
@@ -306,6 +379,10 @@
       -o-transform: rotate(45deg);
       transform: rotate(45deg);
     }
+
+    .disabled {
+      display: none;
+    }
   }
 
   .bottom_area {
@@ -319,7 +396,7 @@
       float: left;
       width: 72px;
       text-align: center;
-      margin-left: 68px;
+      margin-left: 65px;
       color: #939133;
       padding-top: 10px;
     }
@@ -343,7 +420,7 @@
       text-align: center;
       padding-top: 8px;
       font-size: 16px;
-      margin-right: 62px;
+      margin-right: 65px;
       border-radius: 3px;
     }
   }
