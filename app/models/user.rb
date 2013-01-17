@@ -1,36 +1,30 @@
 class User < ActiveRecord::Base
   include UsersHelper
 
-  attr_accessible :email, :password, :remember_me
+  attr_accessible :email
   translates :first_name, :last_name
 
-  has_many :authentications, :dependent => :destroy
   has_many :brands
 
   validates :email, :presence => true, :uniqueness => true, :email_format => true
 
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
-
-  def apply_omniauth(omniauth)
-    I18n.available_locales.each do |locale|
-      write_attribute(:first_name, omniauth[:info][:locale][locale][:first_name], :locale => locale)
-      write_attribute(:last_name, omniauth[:info][:locale][locale][:last_name], :locale => locale)
+  def self.from_omniauth(auth)
+    where(:nuvo_uid => auth.uid).first_or_initialize.tap do |user|
+      user.nuvo_uid = auth.uid
+      user.email = auth.info["email"]
+      user.image_url = auth.info["image"]
+      I18n.available_locales.each do |locale|
+        user.write_attribute(:first_name, auth.info["locale"][locale][:first_name], :locale => locale)
+        user.write_attribute(:last_name, auth.info["locale"][locale][:last_name], :locale => locale)
+      end
+      user.nuvo_access_token = auth.credentials.token
+      user.nuvo_access_token_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
     end
-    self.email = omniauth["info"]["email"] if email.blank?
-    self.image_url = omniauth["info"]["image"]
-    authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
   end
 
   def password_required?
     (authentications.empty? || !password.blank?) && super
-  end
-
-  def self.from_omniauth(auth)
-    Authentication.where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.username = auth.info.nickname
-    end
   end
 
   def self.new_with_session(params, session)
@@ -46,5 +40,9 @@ class User < ActiveRecord::Base
 
   def name
     full_name(first_name, last_name)
+  end
+
+  def nuvo
+    @nuvo ||= Nuvo::API.new(nuvo_access_token)
   end
 end

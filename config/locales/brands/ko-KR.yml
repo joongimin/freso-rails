@@ -22,3 +22,4 @@ ko-KR:
       create_shop: "상점 만들기"
       show_all: "전체보기"
       go_design_store: "디자인 센터 가기"
+    select_hub: "-카테고리를 선택해주세요-"

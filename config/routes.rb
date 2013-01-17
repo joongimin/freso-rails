@@ -1,11 +1,9 @@
 Freso::Application.routes.draw do
-  match '/auth/:provider/callback' => 'authentications#create'
+  match 'auth/:provider/callback' => 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'logout', to: 'sessions#destroy', as: 'logout'
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users, controllers: {
-      registrations: "users/registrations",
-      sessions: "users/sessions"
-    }
     resources :users
     resources :authentications
     resources :translations, :except => :show
@@ -13,11 +11,6 @@ Freso::Application.routes.draw do
     controller :home do
       get "login" => :index
       get "step_slide" => :step_slide
-    end
-
-    controller :nuvo do
-      get "nuvo/login" => :login
-      get "nuvo/callback" => :callback
     end
 
     resources :faq_categories

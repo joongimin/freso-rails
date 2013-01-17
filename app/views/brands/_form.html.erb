@@ -26,7 +26,7 @@
         <li class="field">
           <%= f.label :hub_type, t("brands.category"), :class => "field_title" %>
           <div class="field_input">
-            <%= f.text_field :hub_type %>
+            <%= f.select :hub_type, @hubs.collect {|h| [h["name"], h["id"]]}, :prompt => t("brands.select_hub") %>
           </div>
           <div class="field_description">
             <div><%= t("brands.hub_type_field_description") %></div>

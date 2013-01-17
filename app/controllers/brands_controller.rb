@@ -9,6 +9,7 @@ class BrandsController < ApplicationController
 
   def new
     @brand = Brand.new
+    @hubs = current_user.nuvo.hubs
     respond_to do |format|
       format.html
     end
