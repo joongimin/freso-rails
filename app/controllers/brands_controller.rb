@@ -27,7 +27,6 @@ class BrandsController < ApplicationController
 
   def select_layout
     @brand = Brand.find(params[:id])
-    @layout = @brand.layouts.last
     if params.include?(:page_number)
       @total_count = params[:total_count].to_i
       @current_page = params[:page_number].to_i
@@ -71,6 +70,9 @@ class BrandsController < ApplicationController
     @brand = Brand.find(params[:id])
     @brand.destroy
     redirect_to brands_url, :notice => "Successfully destroyed brand."
+  end
+
+  def customize_tutorial
   end
 
   def customize

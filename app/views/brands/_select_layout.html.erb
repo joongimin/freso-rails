@@ -1,4 +1,5 @@
 <%
+@layout = @brand.layouts.last
 layout_templates = LayoutTemplate.with_translations(I18n.locale).offset(0).limit(8) if layout_templates.nil?
 total_count = LayoutTemplate.all.count if total_count.nil?
 @total_page = total_count/8 + 1

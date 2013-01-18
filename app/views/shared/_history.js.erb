@@ -1,20 +1,12 @@
 <%
 if local_assigns.include?(:path)
-  controller_and_action = path.split("/")
-  if !local_assigns.include?(:controller_path)
-    if controller_and_action.length == 2
-      controller_path = controller_and_action[0]
-    else
-      controller_path = controller.controller_path
-    end
-  end
-
-  if !local_assigns.include?(:action_name)
-    if controller_and_action.length == 2
-      action_name = controller_and_action[1]
-    else
-      action_name = controller.action_name
-    end
+  r = Rails.application.routes.recognize_path(path)
+  if %w(no_locale_matched, no_route_matched).include?(r[:action])
+    controller_path = controller.controller_path unless local_assigns.include?(:controller_path)
+    action_name = controller.action_name unless local_assigns.include?(:action_name)
+  else
+    controller_path = r[:controller]
+    action_name = r[:action]
   end
 else
   path = request.fullpath

@@ -2,23 +2,19 @@ class HomeController < ApplicationController
   def index
     if current_user
       if current_user.brands.count == 0
-        respond_to do |format|
-          format.html { redirect_to new_brand_path }
-          format.js { @next_path = "brands/new" }
-        end
+        @next_path = new_brand_path
       elsif current_user.brands.count == 1
-        brand = current_user.brands.first
-        if brand.current_layout.nil?
-          respond_to do |format|
-            format.html { redirect_to select_layout_brand_path(brand) }
-            format.js { @next_path = "brands/select_layout" }
-          end
+        @brand = current_user.brands.first
+        if @brand.current_layout.nil?
+          @next_path = select_layout_brand_path(@brand)
         else
-          respond_to do |format|
-            format.js { render :logged_in }
-            format.html { render :logged_in }
-          end
+          @next_path = customize_tutorial_brand_path(@brand)
         end
+      end
+
+      respond_to do |format|
+        format.html { redirect_to @next_path }
+        format.js
       end
     else
       respond_to do |format|
