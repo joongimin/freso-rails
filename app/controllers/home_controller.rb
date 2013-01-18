@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_filter :validate_access_token, :only => [:index]
+
   def index
     if current_user
       if current_user.brands.count == 0

@@ -9,7 +9,11 @@ module Nuvo
     end
 
     def hubs
-      @access_token.get("api/hubs.json").parsed
+      @hub ||= @access_token.get("api/hubs").parsed
+    end
+
+    def me
+      @access_token.get("api/users/me").parsed
     end
   end
 end

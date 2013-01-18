@@ -1,4 +1,6 @@
 class BrandsController < ApplicationController
+  before_filter :validate_access_token, :only => [:new, :edit]
+
   def index
     @brands = Brand.all
   end
