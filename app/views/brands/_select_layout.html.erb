@@ -10,7 +10,7 @@ current_page = 1 if current_page.nil?
   <div class="step_content_container" id="select_layout">
     <div class="form_container" id="select_layout">
       <div class="item_container">
-        <%= link_to image_tag("brands/left_arrow.png", :id => "left_arrow"), layout_templates_list_layout_templates_path(:page_number => current_page - 1, :total_count => total_count, :brand_id => @brand.id), :remote => true, :class => "arrow back_arrow" if current_page != 1 %>
+        <%= link_to image_tag("brands/left_arrow.png", :id => "left_arrow"), layout_templates_list_layout_templates_path(:page_number => current_page - 1, :total_count => total_count, :brand_id => @brand.id, :direction => "left"), :remote => true, :class => "arrow back_arrow" if current_page != 1 %>
         <div class="items">
           <ul class="item_list">
             <% layout_templates.each do |layout_template| %>

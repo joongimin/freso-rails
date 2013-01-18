@@ -187,6 +187,7 @@ body[data-controller=brands][data-action=select_layout],
     margin: 0;
     display: inline-table;
     padding-top: 30px;
+    position: relative;
   }
 
   .item_container {
@@ -206,7 +207,7 @@ body[data-controller=brands][data-action=select_layout],
 
     .next_arrow {
       position: absolute;
-      right: 18px;
+      right: 19px;
     }
 
     #right_arrow {
