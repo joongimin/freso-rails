@@ -69,8 +69,6 @@ module Freso
       "external_lib/jquery.scrollTo.js",
       "external_lib/jquery.parallax-1.1.3.js",
       "external_lib/jquery.mousewheel.js",
-      "views/**/*.js",
-      "views/**/*.css",
     ]
 
     config.action_mailer.delivery_method = :amazon_ses
