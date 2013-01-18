@@ -19,19 +19,14 @@ protected
   def validate_access_token
     if current_user
       begin
-        logger.debug "hahaha"
         current_user.nuvo.me
-        logger.debug "hahaha2"
       rescue
-        logger.debug "hahaha3"
         @auth_path = "/auth/nuvo?current_locale=#{I18n.locale}&rp=#{request.fullpath}"
         if request.xhr?
-          logger.debug "hahaha4"
           respond_to do |format|
             format.js { render "application/validate_access_token" }
           end
         else
-          logger.debug "hahaha5"
           redirect_to @auth_path
         end
       end

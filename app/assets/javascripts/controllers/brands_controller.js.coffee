@@ -29,6 +29,7 @@ class BrandsController
       $select.on "change", (e) ->
         # Trigger validation
         $select.trigger("focusout.ClientSideValidations")
+    $("form").enableClientSideValidations();
 
   new: ->
     @form()

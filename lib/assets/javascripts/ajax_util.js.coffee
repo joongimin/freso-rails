@@ -31,7 +31,7 @@ class @AjaxUtil
 
       if $.isFunction(active_controller[action])
         active_controller[action]()
-    $("body").data("controller", controller).data("action", action)
+    $("body").attr("data-controller", controller).attr("data-action", action)
 
 $ ->
   util.ajax_util = new AjaxUtil

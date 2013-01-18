@@ -1,0 +1,120 @@
+// _guide
+.brands._guide {
+  width: 980px;
+  padding: 45px 0;
+  margin: 0 auto;
+  text-align: center;
+  @include clearfix;
+
+  .brands-make-shop-title {
+    margin: 0 auto 45px auto;
+  }
+
+  ul.steps {
+    display: inline-block;
+    @include horizontal-list($padding: 0);
+    height: 80px;
+    padding: 0 100px;
+
+    li.step {
+      position: relative;
+      .step_title {
+        position: absolute;
+        color: rgb(148, 148, 148);
+        font-size: 13px;
+        text-shadow: 1px 1px white;
+        width: 160px;
+        left: 50%;
+        margin-left: -80px;
+        top: 52px;
+      }
+
+      &.current {
+        .step_title {
+          top: 63px;
+          color: #9abd5d;
+        }
+      }
+
+      @mixin number($step) {
+        &.step_#{$step} {
+          .number {
+            @extend .brands-make-shop-step-#{$step};
+          }
+
+          &.current {
+            .number {
+              @extend .brands-make-shop-step-current-#{$step};
+            }
+          }
+        }
+      }
+
+      @include number(1);
+      @include number(2);
+      @include number(3);
+      @include number(4);
+
+      .check {
+        display: none;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        @extend .brands-make-shop-step-done;
+      }
+
+      &.complete {
+        .check {
+          display: block;
+        }
+      }
+    }
+
+    .step_bar {
+      background: rgb(216, 216, 216);
+      width: 110px;
+      height: 5px;
+      margin-top: 18px;
+    }
+  }
+
+  .section_line {
+    width: 980px;
+    height: 1px;
+    background-color: #d8d8d8;
+    border-bottom: 1px solid #f4f4f4;
+    margin-top: 30px;
+  }
+
+  #step_slider {
+    margin-top: 33px;
+  }
+
+  .step_content {
+    margin-top: 16px;
+    background: rgb(239, 239, 239);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 215, 216) rgb(245, 245, 245) rgb(245, 245, 245) rgb(215, 215, 216);
+    @extend .clearfix;
+    padding: 47px 69px;
+  }
+
+  .button_area {
+    text-align: right;
+    margin-top: 12px;
+
+    ul {
+      display: inline-block;
+
+      li {
+        display: inline-block;
+        margin-left: 20px;
+
+        &.first {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
