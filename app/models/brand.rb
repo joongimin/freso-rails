@@ -1,5 +1,5 @@
 class Brand < ActiveRecord::Base
-  attr_accessible :uid, :hub_type, :layout_id, :uri, :name, :user_id
+  attr_accessible :uid, :hub, :layout_id, :uri, :name, :user_id
   translates :name
 
   belongs_to :user
@@ -8,5 +8,9 @@ class Brand < ActiveRecord::Base
 
   validates :name, :presence => true, :length => { :minimum => 2 }
   validates :uri, :presence => true, :uniqueness => true, :uri_format => true, :length => { :minimum => 3, :maximum => 20 }
-  validates :hub_type, :presence => true
+  validates :hub, :presence => {:message => Proc.new {I18n.t("brands.validation.hub")}}
+
+  def self.guide_steps
+    4
+  end
 end

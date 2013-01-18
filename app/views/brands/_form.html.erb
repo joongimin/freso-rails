@@ -1,5 +1,4 @@
 <% current_step = 1 %>
-<% max_steps = 4 %>
 <div class="brands-make-shop-step-1-title"></div>
 <%= form_for(@brand, :validate => true, :remote => true, :html => {:id => "create_brand"}) do |f| %>
   <div class="step_content_container">
@@ -24,19 +23,17 @@
           </div>
         </li>
         <li class="field">
-          <%= f.label :hub_type, t("brands.category"), :class => "field_title" %>
+          <%= f.label :hub, t("brands.category"), :class => "field_title" %>
           <div class="field_input">
-            <%= f.text_field :hub_type %>
+            <%= f.select :hub, @hubs.collect{|h| [h["name"], h["id"]]}, {:prompt => ""}, :data => {:placeholder => t("brands.select_hub")} %>
           </div>
-          <div class="field_description">
-            <div><%= t("brands.hub_type_field_description") %></div>
-          </div>
+          <div class="field_description"><%= t("brands.hub_field_description") %></div>
         </li>
       </ul>
     </div>
   </div>
   <div class="button_area">
     <a class="button reset"><%= t("reset") %></a>
-    <%= f.submit :class => "button confirm create_button", :id => "create_shop_button", :value => t("brands.guide.create_shop") %>
+    <a class="button confirm submit"><%= t("brands.guide.create_shop") %></a>
   </div>
 <% end %>

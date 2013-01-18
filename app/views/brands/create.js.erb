@@ -1,2 +1,2 @@
-$("#step_slider").html("<%=j render('select_layout', :layout => @layout, :brand => @brand) %>");
-<%= render("shared/history", :path => select_layout_brand_path(@brand), :controller_path => "brands", :action => "select_layout") %>
+freso.ui_util.slide_content($("ul#step_slider"), "<%=j render("brands/select_layout", :layout => @layout, :brand => @brand) %>");
+<%= render("shared/history", :path => "brands/select_layout") %>

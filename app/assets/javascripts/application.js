@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require select2
 //= require i18n
 //= require i18n/translations
 //= require main

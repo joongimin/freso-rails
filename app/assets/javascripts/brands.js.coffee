@@ -1,5 +1,5 @@
 class BrandsController
-  create: ->
+  select_layout: ->
     $(document).delegate "div#template_select", "click", ->
       $(".selected").removeClass("selected").find(".selected_frame").addClass("disabled")
       $(this).find("li").addClass("selected").find(".disabled").removeClass("disabled")
@@ -22,5 +22,14 @@ class BrandsController
 
     $(document).delegate "#select_layout_buttom", "click", ->
       alert("Go Next!")
+
+  new: ->
+    $("select").each ->
+      $select = $(this)
+      $select.select2
+        width: "element"
+      $select.on "change", (e) ->
+        # Trigger validation
+        $select.trigger("focusout.ClientSideValidations")
 
 this.freso.brands = new BrandsController

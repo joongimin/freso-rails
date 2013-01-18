@@ -46,7 +46,6 @@ gem 'carrierwave'
 gem 'fog'
 gem 'whenever'
 gem 'exception_notification', :require => 'exception_notifier'
-gem 'devise'
 gem 'geocoder'
 gem 'therubyracer'
 gem 'daemons'
@@ -68,7 +67,10 @@ gem 'globalize3'
 gem "rmagick"
 gem "nested_form"
 
-gem 'client_side_validations', :git => 'git@github.com:joongimin/client_side_validations.git'
+gem 'client_side_validations', :git => 'git@github.com:joongimin/client_side_validations.git', :branch => '3-2-stable'
 
 # Internationalize Javascript
 gem "i18n-js"
+
+# Stylish select dropdown box
+gem "select2-rails"

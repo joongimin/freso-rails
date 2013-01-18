@@ -1,4 +1,12 @@
 class LayoutTemplatesController < ApplicationController
+  before_filter :set_content_type
+
+private
+  def set_content_type
+    @content_type = :admin
+  end
+
+public
   # GET /layout_templates
   # GET /layout_templates.json
   LAYOUT_TEMPLATES_PER_PAGE_COUNT = 8

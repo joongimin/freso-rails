@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117093513) do
-
-  create_table "authentications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+ActiveRecord::Schema.define(:version => 20130118012049) do
 
   create_table "brand_translations", :force => true do |t|
     t.integer  "brand_id"
@@ -36,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130117093513) do
 
   create_table "brands", :force => true do |t|
     t.integer  "uid"
-    t.integer  "hub_type"
+    t.integer  "hub"
     t.integer  "layout_id"
     t.integer  "user_id"
     t.string   "uri"
@@ -125,18 +115,19 @@ ActiveRecord::Schema.define(:version => 20130117093513) do
   add_index "user_translations", ["user_id"], :name => "index_user_translations_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                            :default => "", :null => false
-    t.string   "encrypted_password",               :default => "", :null => false
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    :default => 0
+    t.string   "email",                                     :default => "", :null => false
+    t.integer  "sign_in_count",                             :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.string   "locale",              :limit => 5
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.string   "locale",                       :limit => 5
     t.string   "image_url"
+    t.string   "nuvo_uid"
+    t.string   "nuvo_access_token"
+    t.datetime "nuvo_access_token_expires_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -8,7 +8,6 @@ class BrandsController < ApplicationController
   end
 
   def new
-    @brand = Brand.new
     respond_to do |format|
       format.html
     end
