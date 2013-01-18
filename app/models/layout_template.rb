@@ -12,7 +12,7 @@ class LayoutTemplate < ActiveRecord::Base
 
   def before_create
   	#TODO: Remove this when design store is implemented
-  	#self.user = User.admin
+  	self.user = User.admin
   end
 
   def after_initialize

@@ -3,8 +3,6 @@
 @hubs = current_user.nuvo.hubs
 
 # Todo: get current step and max step for real
-current_step = 2
-max_steps = 4
 step = [
     {:render => "brands/form"},
     {:render => "brands/select_layout"},
@@ -13,27 +11,7 @@ step = [
   ]
 %>
 
-<div class="guide_container">
-  <div class="guide">
-    <div class="brands-make-shop-title"></div>
-    <ul class="steps">
-      <% (1..max_steps).each_with_index do |step, i| %>
-        <li class="step <%= "first" if i == 0 %> <%= "complete" if step < current_step %>">
-          <% if step < current_step %>
-            <div class="brands-make-shop-step-done"></div>
-          <% else %>
-            <div class="brands-make-shop-step-<%= step %>"></div>
-          <% end %>
-          <div class="step_title"><%= t("brands.guide.steps.#{step}.title") %></div>
-        </li>
-        <% if step != max_steps %>
-          <li class="step_bar <%= "complete" if step < current_step %>"></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <div class="section_line"></div>
-    <div class="step_content" id="step_slider">
-      <%= render "brands/form" %>
-    </div>
-  </div>
-</div>
+<% content_for :guide do %>
+  <%= render "brands/form" %>
+<% end %>
+<%= render "brands/guide", :current_step => 1 %>

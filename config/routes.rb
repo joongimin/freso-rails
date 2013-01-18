@@ -5,7 +5,11 @@ Freso::Application.routes.draw do
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
     resources :authentications
-    resources :brands
+    resources :brands do
+      member do
+        get "select_layout"
+      end
+    end
     resources :users
     resources :translations, :except => :show
     resources :layout_templates do

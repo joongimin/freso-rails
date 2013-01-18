@@ -1,5 +1,5 @@
 class BrandsController
-  test: ->
+  select_layout: ->
     $(document).delegate "div#template_select", "click", ->
       $(".selected").removeClass("selected").find(".selected_frame").addClass("disabled")
       $(this).find("li").addClass("selected").find(".disabled").removeClass("disabled")

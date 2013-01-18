@@ -4,12 +4,20 @@ class HomeController < ApplicationController
       if current_user.brands.count == 0
         respond_to do |format|
           format.html { redirect_to new_brand_path }
-          format.js
+          format.js { @next_path = "brands/new" }
         end
-      else
-        respond_to do |format|
-          format.js { render :logged_in }
-          format.html { render :logged_in }
+      elsif current_user.brands.count == 1
+        brand = current_user.brands.first
+        if brand.current_layout.nil?
+          respond_to do |format|
+            format.html { redirect_to select_layout_brand_path(brand) }
+            format.js { @next_path = "brands/select_layout" }
+          end
+        else
+          respond_to do |format|
+            format.js { render :logged_in }
+            format.html { render :logged_in }
+          end
         end
       end
     else

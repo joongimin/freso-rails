@@ -1,6 +1,27 @@
-<% path = request.fullpath unless local_assigns.include?(:path) %>
-<% controller_path = controller.controller_path unless local_assigns.include?(:controller_path) %>
-<% action_name = controller.action_name unless local_assigns.include?(:action_name) %>
+<%
+if local_assigns.include?(:path)
+  controller_and_action = path.split("/")
+  if !local_assigns.include?(:controller_path)
+    if controller_and_action.length == 2
+      controller_path = controller_and_action[0]
+    else
+      controller_path = controller.controller_path
+    end
+  end
+
+  if !local_assigns.include?(:action_name)
+    if controller_and_action.length == 2
+      action_name = controller_and_action[1]
+    else
+      action_name = controller.action_name
+    end
+  end
+else
+  path = request.fullpath
+  controller_path = controller.controller_path unless local_assigns.include?(:controller_path)
+  action_name = controller.action_name unless local_assigns.include?(:action_name)
+end
+%>
 
 freso.ajax_util.push("<%=j yield(:title) %>", "<%=j path %>");
 freso.ajax_util.action("<%= controller_path %>", "<%= action_name %>");

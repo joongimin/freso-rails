@@ -9,4 +9,8 @@ class Brand < ActiveRecord::Base
   validates :name, :presence => true, :length => { :minimum => 2 }
   validates :uri, :presence => true, :uniqueness => true, :uri_format => true, :length => { :minimum => 3, :maximum => 20 }
   validates :hub, :presence => {:message => Proc.new {I18n.t("brands.validation.hub")}}
+
+  def self.guide_steps
+    4
+  end
 end

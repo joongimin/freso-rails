@@ -1,5 +1,4 @@
-<% @brand = Brand.new %>
-<% render(:template => "brands/new", :formats => [:html], :layout => "layouts/application_login") %>
+<% render(:template => @next_path, :formats => [:html], :layout => "layouts/application_login") %>
 freso.ui_util.slide_content($("ul#body_slider"), "<%=j content_for :body %>");
 $("div.parallax").each(function() {
   if ($(this).attr("id") != "home") {
@@ -7,4 +6,4 @@ $("div.parallax").each(function() {
   }
 });
 $("#nav").fadeOut();
-<%= render("shared/history", :controller_path => "brand", :action_name => "new") %>
+<%= render("shared/history", :path => @next_path) %>

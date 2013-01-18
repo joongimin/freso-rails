@@ -46,4 +46,8 @@ class User < ActiveRecord::Base
   def nuvo
     @nuvo ||= Nuvo::API.new(nuvo_access_token)
   end
+
+  def self.admin
+    first
+  end
 end

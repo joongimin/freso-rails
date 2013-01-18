@@ -1,5 +1,7 @@
 <% content_for :body do %>
   <%= render "shared/topbar" %>
-  <%= yield %>
+  <%= content_tag :div, :id => "content", :class => @content_type do %>
+    <%= yield %>
+  <% end %>
 <% end %>
 <%= render "layouts/application" %>
