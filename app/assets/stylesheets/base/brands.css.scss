@@ -2,7 +2,6 @@ $brands-sprite-dimensions: true;
 @import "brands/*.png";
 @include all-brands-sprites;
 
-
 .guide_container {
   position: relative;
   background: rgb(228, 229, 230);
@@ -93,8 +92,14 @@ $brands-sprite-dimensions: true;
 
       .field {
         height: 83px;
+        display: table;
         border-bottom: 1px solid #d7d7d7;
         @extend .clearfix;
+
+        > * {
+          display: table-cell;
+          vertical-align: middle;
+        }
 
         &.first {
           border-top: 1px solid #d7d7d7;
@@ -103,20 +108,17 @@ $brands-sprite-dimensions: true;
         .field_title {
           color: #535353;
           width: 169px;
-          float: left;
           text-align: right;
           padding-right: 12px;
           background: #f7f7f7;
-          height: 50px;
-          padding-top: 33px;
           font-size: 18px;
         }
 
         .field_input {
-          float: left;
           width: 416px;
           padding: 20px 16px;
           @extend .clearfix;
+          text-align: left;
 
           input[type='text'] {
             padding: 10px;
@@ -128,24 +130,23 @@ $brands-sprite-dimensions: true;
             }
           }
 
-          div.styled_select {
-            height: 41px;
+          select {
+            width: 414px;
           }
         }
 
-        .field_with_errors {
-          display: inline-block;
+        &.field_brand_uri {
+          .field_with_errors {
+            display: inline-block;
+          }
         }
 
         .field_description {
           padding-left: 15px;
           color: #b9b9b9;
           font-size: 11px;
-          float: left;
           width: 196px;
           text-align: left;
-
-          @include vertical_middle(83px);
         }
       }
 

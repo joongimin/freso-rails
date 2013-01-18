@@ -1,22 +1,24 @@
-div.styled_select {
-  overflow: hidden;
-  background: #ddd;
-  border: 1px solid #ccc;
-  position: relative;
+div.styled {
+  &.select {
+    overflow: hidden;
+    background: #ddd;
+    border: 1px solid #ccc;
+    position: relative;
 
-  select {
-    background: transparent;
-    width: 110%;
-    padding: 5px;
-    font-size: 16px;
-    line-height: 1;
-    border: 0;
-    border-radius: 0;
-    height: 100%;
-    @include appearance(none);
+    select {
+      background: transparent;
+      width: 110%;
+      padding: 5px;
+      font-size: 16px;
+      line-height: 1;
+      border: 0;
+      border-radius: 0;
+      height: 100%;
+      @include appearance(none);
 
-    &:focus {
-      outline: none;
+      &:focus {
+        outline: none;
+      }
     }
   }
 }

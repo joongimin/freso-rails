@@ -1,3 +1,16 @@
+$.fn.pause_validation = ->
+  @is_valid_back = $.fn.isValid
+  $.fn.isValid = ->
+
+$.fn.resume_validation = ->
+  $.fn.isValid = @is_valid_back
+  @is_valid_back = null
+
+# Select2 Validation
+window.ClientSideValidations.selectors.validate_inputs =
+window.ClientSideValidations.selectors.inputs =
+  ":input:not(button):not([type='submit'])[name]:enabled, .select2-container:visible ~ :input:enabled[data-validate]"
+
 window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] =
   add: (element, settings, message) ->
     form = $(element[0].form)
