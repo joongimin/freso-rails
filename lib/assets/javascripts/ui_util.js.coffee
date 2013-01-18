@@ -57,4 +57,13 @@ class @UIUtil
     else
       $target.hide()
 
+  scroll_to: (target) ->
+    $html = $("html")
+    if target == "top"
+      scroll_top = 0
+    else
+      scroll_top = $(target).offset().top
+
+    $("html, body").animate {scrollTop: scroll_top}, "fast"
+
 this.util.ui_util = new UIUtil
