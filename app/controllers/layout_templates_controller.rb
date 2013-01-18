@@ -91,6 +91,8 @@ public
   end
 
   def layout_templates_list
+    @brand = Brand.find(params[:brand_id])
+    @layout = @brand.layouts.last
     @total_count = params[:total_count].to_i
     @current_page = params[:page_number].to_i
     @layout_templates = LayoutTemplate.with_translations(I18n.locale).

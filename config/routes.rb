@@ -1,4 +1,6 @@
 Freso::Application.routes.draw do
+
+
   match 'auth/:provider/callback' => 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'logout', to: 'sessions#destroy', as: 'logout'
@@ -23,6 +25,19 @@ Freso::Application.routes.draw do
     controller :home do
       get "login" => :index
       get "step_slide" => :step_slide
+    end
+
+    controller :nuvo do
+      get "nuvo/login" => :login
+      get "nuvo/callback" => :callback
+    end
+
+    resources :faq_categories
+    resources :brands do
+      member do
+        get "select_layout"
+        put "update_layout"
+      end
     end
 
     root :to => "home#index"

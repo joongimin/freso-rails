@@ -234,6 +234,11 @@ body[data-controller=brands][data-action=select_layout],
       overflow: hidden;
       position: relative;
 
+      input {
+        display: none;
+        position: absolute;
+      }
+
       .check_icon {
         display: none;
       }
@@ -372,7 +377,6 @@ body[data-controller=brands][data-action=select_layout],
     @include clearfix;
 
     .show_all {
-      height: 25px;
       float: left;
       width: 72px;
       text-align: center;
@@ -382,7 +386,6 @@ body[data-controller=brands][data-action=select_layout],
     }
 
     .go_design_store {
-      height: 25px;
       float: left;
       width: 123px;
       text-align: center;
