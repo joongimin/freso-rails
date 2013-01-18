@@ -36,4 +36,37 @@ class BrandsController
   edit: ->
     @form()
 
+  set_step: (step) ->
+    $("ul.steps li.step").each (i) ->
+      current_step = i + 1
+      $this = $(this)
+      if $this.hasClass("complete")
+        if current_step < step
+          # Do Nothing
+        else if current_step == step
+          $this.find(".check").fadeOut()
+          $this.find(".step_title").animate {top: 63}
+        else
+          $this.find(".check").fadeOut()
+      else if $this.hasClass("current")
+        if current_step < step
+          $this.find(".check").hide().fadeIn()
+          $this.find(".step_title").animate {top: 52}
+        else if current_step == step
+          # Do Nothing
+        else
+          $this.find(".step_title").animate {top: 52}
+      else
+        if current_step < step
+          $this.find(".check").hide().fadeIn()
+        else if current_step == step
+          $this.find(".step_title").animate {top: 63}
+    setTimeout (->
+      $("ul.steps li.step").removeClass("complete").removeClass("current").each (i) ->
+        if i + 1 < step
+          $(this).addClass("complete")
+        else if i + 1 == step
+          $(this).addClass("current")
+      ), 400
+
 this.freso.brands_controller = new BrandsController

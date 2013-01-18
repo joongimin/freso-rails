@@ -3,7 +3,6 @@ layout_templates = LayoutTemplate.with_translations(I18n.locale).offset(0).limit
 total_count = LayoutTemplate.all.count if total_count.nil?
 @total_page = total_count/8 + 1
 current_page = 1 if current_page.nil?
-current_step = 2
 %>
 
 <div class="brands-make-shop-step-1-title"></div>

@@ -2,16 +2,13 @@
   <div class="brands-make-shop-title"></div>
   <ul class="steps">
     <% (1..Brand.guide_steps).each_with_index do |step, i| %>
-      <li class="step <%= "first" if i == 0 %> <%= "complete" if step < current_step %>">
-        <% if step < current_step %>
-          <div class="brands-make-shop-step-done"></div>
-        <% else %>
-          <div class="brands-make-shop-step-<%= step %>"></div>
-        <% end %>
+      <li class="step <%= "first" if i == 0 %> <%= step < current_step ? "complete" : step == current_step ? "current" : "" %> step_<%= step %>">
+        <div class="number"></div>
+        <div class="check"></div>
         <div class="step_title"><%= t("brands.guide.steps.#{step}.title") %></div>
       </li>
       <% if step != Brand.guide_steps %>
-        <li class="step_bar <%= "complete" if step < current_step %>"></li>
+        <li class="step_bar"></li>
       <% end %>
     <% end %>
   </ul>
