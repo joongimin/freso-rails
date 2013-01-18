@@ -25,7 +25,7 @@
         <li class="field">
           <%= f.label :hub, t("brands.category"), :class => "field_title" %>
           <div class="field_input">
-            <%= f.select :hub, @hubs.collect{|h| [h["name"], h["id"]]}, {:prompt => ""}, :data => {:placeholder => t("brands.select_hub")} %>
+            <%= f.select :hub, current_user.nuvo.hubs.collect{|h| [h["name"], h["id"]]}, {:prompt => ""}, :data => {:placeholder => t("brands.select_hub")} %>
           </div>
           <div class="field_description"><%= t("brands.hub_field_description") %></div>
         </li>
@@ -34,6 +34,6 @@
   </div>
   <div class="button_area">
     <a class="button reset"><%= t("reset") %></a>
-    <a class="button confirm submit"><%= t("brands.guide.create_shop") %></a>
+    <a class="button confirm submit"><%= @brand.persisted? ? t("update") : t("brands.guide.create_shop") %></a>
   </div>
 <% end %>

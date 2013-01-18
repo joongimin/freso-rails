@@ -2,6 +2,8 @@ en-US:
   freso: "Freso"
   default_page_title: "The Most Advanced Online Store Builder"
   reset: "Reset"
+  back: "Back"
+  update: "Update"
   date:
     abbr_day_names:
     - Sun

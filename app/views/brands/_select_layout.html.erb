@@ -44,8 +44,6 @@ current_page = 1 if current_page.nil?
   </div>
 </div>
 <div class="button_area">
-  <%= content_tag :a, nil, :class => "button cancel", :id => "cancel_button", :data => {:"message" => t("brands.cancel.now_under_construction")} do %>
-    <%= t("home.guide.cancel") %>
-  <% end %>
+  <%= link_to t("back"), edit_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
   <a class="button confirm" id="create_shop_button"><%= t("home.guide.create_shop") %></a>
 </div>

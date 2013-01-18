@@ -2,16 +2,18 @@ $brands-sprite-dimensions: true;
 @import "brands/*.png";
 @include all-brands-sprites;
 
+body[data-controller=brands][data-action=new],
+body[data-controller=brands][data-action=select_layout],
+{
+  background: rgb(228, 229, 230);
+}
+
 .guide_container {
   position: relative;
-  background: rgb(228, 229, 230);
-  height: 1200px;
 
   .guide {
-    min-width: 980px;
-    left: 50%;
-    position: absolute;
-    margin-left: -490px;
+    width: 980px;
+    margin: 0 auto;
     text-align: center;
     @include clearfix;
 

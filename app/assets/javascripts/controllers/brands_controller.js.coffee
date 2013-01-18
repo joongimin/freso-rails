@@ -7,9 +7,6 @@ class BrandsController
     $(document).delegate ".go_design_store", "click", ->
       alert($(this).data("message"))
 
-    $(document).delegate ".cancel", "click", ->
-      alert($(this).data("message"))
-
     $(document).delegate ".show_all", "click", ->
       alert($(this).data("message"))
 
@@ -19,7 +16,7 @@ class BrandsController
   	$(document).delegate ".template_frame", "mouseleave", ->
     	$(this).find(".info_container").animate({top: '210px'}, 'slow')
 
-  new: ->
+  form: ->
     $("select").each ->
       $select = $(this)
       $select.select2
@@ -28,4 +25,10 @@ class BrandsController
         # Trigger validation
         $select.trigger("focusout.ClientSideValidations")
 
-this.freso.brands = new BrandsController
+  new: ->
+    @form()
+
+  edit: ->
+    @form()
+
+this.freso.brands_controller = new BrandsController

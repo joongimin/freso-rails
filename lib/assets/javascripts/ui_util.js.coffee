@@ -2,14 +2,13 @@ class @UIUtil
   slide_content: ($slider, html, args = {}) ->
     args["direction"] ||= "right"
 
-    screen_width = $(window).width()
-    screen_height = $(window).height()
+    slider_width = $slider.width()
 
     $slider.addClass("sliding")
-    $current_slide = $slider.children("li.current_slide").css("float", "left").css("width", screen_width).css("height", screen_height)
+    $current_slide = $slider.children("li.current_slide").css("float", "left").css("width", slider_width)
 
     $next_slide = $("<li class='next_slide'></li>")
-    $next_slide.css("float", "left").css("width", screen_width).css("height", screen_height).html(html)
+    $next_slide.css("float", "left").css("width", slider_width).html(html)
 
     if args["direction"] == "right"
       $slider.append($next_slide)
@@ -20,15 +19,14 @@ class @UIUtil
       target_margin_left = 0
 
     $slider
-      .css("width", screen_width * 2)
-      .css("height", screen_height)
+      .css("width", slider_width * 2)
       .animate {"margin-left": target_margin_left}, {
         easing: "easeInCubic",
         duration: 1000,
         complete: ->
           $current_slide.remove()
-          $next_slide.css("float", "").css("width", "").css("height", "").removeClass("next_slide").addClass("current_slide")
-          $slider.css("margin-left", "").css("width", "").css("height", "")
+          $next_slide.css("float", "").css("width", "").removeClass("next_slide").addClass("current_slide")
+          $slider.css("margin-left", "").css("width", "")
           $slider.removeClass("sliding").trigger("nv:slide:end")
       }
 

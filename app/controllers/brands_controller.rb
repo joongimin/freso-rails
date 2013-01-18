@@ -17,8 +17,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(params[:brand].merge(:user_id => current_user.id))
     if @brand.save
       respond_to do |format|
-        format.js
-        #format.json { render :json => :select_layout }
+        format.js { render :slide_to_select_layout }
       end
     else
       render :action => 'new'
@@ -32,7 +31,9 @@ class BrandsController < ApplicationController
   def update
     @brand = Brand.find(params[:id])
     if @brand.update_attributes(params[:brand])
-      redirect_to @brand, :notice  => "Successfully updated brand."
+      respond_to do |format|
+        format.js { render :slide_to_select_layout }
+      end
     else
       render :action => 'edit'
     end
@@ -45,6 +46,7 @@ class BrandsController < ApplicationController
   end
 
   def select_layout
+    @brand = Brand.find(params[:id])
   end
 
   def customize

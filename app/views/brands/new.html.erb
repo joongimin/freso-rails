@@ -1,16 +1,4 @@
-<%
-@brand = Brand.new
-@hubs = current_user.nuvo.hubs
-
-# Todo: get current step and max step for real
-step = [
-    {:render => "brands/form"},
-    {:render => "brands/select_layout"},
-    {:render => "brands/detail_design"},
-    {:render => "brands/start_selling"}
-  ]
-%>
-
+<% @brand = Brand.new %>
 <% content_for :guide do %>
   <%= render "brands/form" %>
 <% end %>

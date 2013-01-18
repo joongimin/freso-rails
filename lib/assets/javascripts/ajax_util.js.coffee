@@ -24,13 +24,14 @@ class @AjaxUtil
       $(window).trigger("ajax_util:state_changed", State.url.replace(AjaxUtil::root_url, ""))
 
   action: (controller, action) ->
-    active_controller = util[controller]
+    active_controller = util[controller + "_controller"]
     if active_controller
       if $.isFunction(active_controller.init)
         active_controller.init()
 
       if $.isFunction(active_controller[action])
         active_controller[action]()
+    $("body").data("controller", controller).data("action", action)
 
 $ ->
   util.ajax_util = new AjaxUtil

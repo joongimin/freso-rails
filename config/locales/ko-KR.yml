@@ -2,6 +2,8 @@ ko-KR:
   freso: "프레소"
   default_page_title: "낡은 쇼핑몰은 이제 됐소. 프레쏘"
   reset: "초기화"
+  back: "뒤로"
+  update: "저장"
   date:
     abbr_day_names:
     - 일
