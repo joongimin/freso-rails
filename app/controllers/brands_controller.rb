@@ -73,10 +73,6 @@ class BrandsController < ApplicationController
     redirect_to brands_url, :notice => "Successfully destroyed brand."
   end
 
-  def select_layout
-    @brand = Brand.find(params[:id])
-  end
-
   def customize
   end
 end
