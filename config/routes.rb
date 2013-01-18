@@ -1,5 +1,5 @@
 Freso::Application.routes.draw do
-  
+
 
   match '/auth/:provider/callback' => 'authentications#create'
 
@@ -31,7 +31,12 @@ Freso::Application.routes.draw do
     end
 
     resources :faq_categories
-    resources :brands
+    resources :brands do
+      member do
+        get "select_layout"
+        put "update_layout"
+      end
+    end
 
     match "*a", :to => "home#no_route_matched"
   end

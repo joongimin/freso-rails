@@ -1,1 +1,2 @@
-$("#step_slider").html("<%=j render('select_layout') %>");
+$("#step_slider").html("<%=j render('select_layout', :layout => @layout, :brand => @brand) %>");
+<%= render("shared/history", :path => select_layout_brand_path(@brand), :controller_path => "brands", :action => "select_layout") %>

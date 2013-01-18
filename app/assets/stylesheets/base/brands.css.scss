@@ -175,10 +175,6 @@ $brands-sprite-dimensions: true;
       margin-left: 22px;
     }
 
-    .create_button {
-      padding-bottom: 25px;
-    }
-
     #select_layout {
       height: 625px;
     }
@@ -234,6 +230,11 @@ $brands-sprite-dimensions: true;
       border: 1px solid #d7d7d7;
       overflow: hidden;
       position: relative;
+
+      input {
+        display: none;
+        position: absolute;
+      }
 
       .check_icon {
         display: none;
@@ -373,7 +374,6 @@ $brands-sprite-dimensions: true;
     @include clearfix;
 
     .show_all {
-      height: 25px;
       float: left;
       width: 72px;
       text-align: center;
@@ -383,7 +383,6 @@ $brands-sprite-dimensions: true;
     }
 
     .go_design_store {
-      height: 25px;
       float: left;
       width: 123px;
       text-align: center;

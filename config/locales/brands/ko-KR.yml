@@ -6,6 +6,9 @@ ko-KR:
     name_field_description: "준기몰, Ristoran8, HotSeeks 같이 멋진 이름을 적어주세요"
     uri_field_description: "언제든지 원하는 주소로 변경할 수 있어요"
     hub_type_field_description: "무엇을 판매하시나요?\n가장 비슷한 항목을 선택해주세요"
+    select_layout:
+      show_all: "전체보기"
+      go_design_store: "디자인 센터 가기"
     now_under_construction: "준비 중 입니다"
     cancel:
       now_under_construction: "취소하면 어디로 갈까요?"
@@ -27,5 +30,6 @@ ko-KR:
       back: "뒤로"
       next: "다음"
       create_shop: "상점 만들기"
+      select_layout: "레이아웃 선택"
       show_all: "전체보기"
-      go_design_store: "디자인 센터 가기"
+      go_design_store: "디자인 스토어"
