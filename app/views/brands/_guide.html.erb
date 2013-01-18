@@ -1,26 +1,24 @@
-<div class="guide_container">
-  <div class="guide">
-    <div class="brands-make-shop-title"></div>
-    <ul class="steps">
-      <% (1..Brand.guide_steps).each_with_index do |step, i| %>
-        <li class="step <%= "first" if i == 0 %> <%= "complete" if step < current_step %>">
-          <% if step < current_step %>
-            <div class="brands-make-shop-step-done"></div>
-          <% else %>
-            <div class="brands-make-shop-step-<%= step %>"></div>
-          <% end %>
-          <div class="step_title"><%= t("brands.guide.steps.#{step}.title") %></div>
-        </li>
-        <% if step != Brand.guide_steps %>
-          <li class="step_bar <%= "complete" if step < current_step %>"></li>
+<div class="guide">
+  <div class="brands-make-shop-title"></div>
+  <ul class="steps">
+    <% (1..Brand.guide_steps).each_with_index do |step, i| %>
+      <li class="step <%= "first" if i == 0 %> <%= "complete" if step < current_step %>">
+        <% if step < current_step %>
+          <div class="brands-make-shop-step-done"></div>
+        <% else %>
+          <div class="brands-make-shop-step-<%= step %>"></div>
         <% end %>
-      <% end %>
-    </ul>
-    <div class="section_line"></div>
-    <ul class="step_content" id="step_slider">
-      <li class="current_slide">
-        <%= yield :guide %>
+        <div class="step_title"><%= t("brands.guide.steps.#{step}.title") %></div>
       </li>
-    </ul>
-  </div>
+      <% if step != Brand.guide_steps %>
+        <li class="step_bar <%= "complete" if step < current_step %>"></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="section_line"></div>
+  <ul id="step_slider">
+    <li class="current_slide">
+      <%= yield :guide %>
+    </li>
+  </ul>
 </div>

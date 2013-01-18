@@ -1,9 +1,10 @@
 class BrandsController
   select_layout: ->
-    $(document).delegate "div#template_select", "click", ->
-      $(".selected").removeClass("selected").find(".selected_frame").addClass("disabled")
-      $(this).find("li").addClass("selected").find(".disabled").removeClass("disabled")
-      $(this).find("input").attr("checked", "checked")
+    $(document).delegate "li.layout_template", "click", ->
+      $this = $(this)
+      $this.closest("ul").find(".selected").removeClass("selected")
+      $this.addClass("selected").find(".disabled").removeClass("disabled")
+      $this.find("input").attr("checked", "checked")
 
     $(document).delegate ".go_design_store", "click", ->
       alert($(this).data("message"))
@@ -11,11 +12,11 @@ class BrandsController
     $(document).delegate ".show_all", "click", ->
       alert($(this).data("message"))
 
-    $(document).delegate ".template_frame", "mouseenter", ->
-    	$(this).find(".info_container").animate({top: '15px'}, 'fast')
+    $(document).delegate "li.layout_template", "mouseenter", ->
+    	$(this).find(".info_container").animate({top: 0}, 120)
 
-  	$(document).delegate ".template_frame", "mouseleave", ->
-    	$(this).find(".info_container").animate({top: '210px'}, 'fast')
+  	$(document).delegate "li.layout_template", "mouseleave", ->
+    	$(this).find(".info_container").animate({top: '210px'}, 120)
 
     $(document).delegate "#select_layout_buttom", "click", ->
       alert("Go Next!")
