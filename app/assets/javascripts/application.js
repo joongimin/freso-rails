@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require exception_notifier
 //= require jquery_ujs
 //= require jquery-ui
 //= require select2
