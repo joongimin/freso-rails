@@ -75,16 +75,14 @@ class BrandsController
       fadeFrameWhenSkipped: false,
       cycle: false,
     }
-    $("#tutorial_sequence").sequence(options)
-
-    $("a.prev").click ->
-      tutorial_sequence = $("#tutorial_sequence").data("sequence")
-      if tutorial_sequence.currentFrameID != 1
-        console.log(tutorial_sequence.currentFrameID)
+    tutorial_sequence = $("#tutorial_sequence").sequence(options)
 
     $("a.next").click ->
-      tutorial_sequence = $("#tutorial_sequence").data("sequence")
       if tutorial_sequence.currentFrameID < tutorial_sequence.numberOfFrames
-        $("#tutorial_sequence").data("sequence").goTo(2)
+        tutorial_sequence.goTo(tutorial_sequence.currentFrameID + 1)
+
+    $("a.prev").click ->
+      if tutorial_sequence.currentFrameID > 1
+        tutorial_sequence.goTo(tutorial_sequence.currentFrameID - 1)
 
 this.freso.brands_controller = new BrandsController

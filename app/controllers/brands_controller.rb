@@ -61,6 +61,7 @@ class BrandsController < ApplicationController
   end
 
   def customize_tutorial
+    @brand = Brand.find(params[:id])
   end
 
   def customize

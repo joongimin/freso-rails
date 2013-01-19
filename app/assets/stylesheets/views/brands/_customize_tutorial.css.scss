@@ -31,25 +31,6 @@
       width: 100%;
     }
 
-    .tutorial_1 {
-      left: -900px;
-      top: 100px;
-      -webkit-transition-duration: 1s;
-      -moz-transition-duration: 1s;
-      -o-transition-duration: 1s;
-      -ms-transition-duration: 1s;
-      transition-duration: 1s;
-    }
-
-    .animate-out .tutorial_1 {
-      left: 1050px;
-      -webkit-transition-duration: 1s;
-      -moz-transition-duration: 1s;
-      -o-transition-duration: 1s;
-      -ms-transition-duration: 1s;
-      transition-duration: 1s;
-    }
-
     .tutorial_1, .tutorial_2, .tutorial_3 {
       left: 1000px;
       top: 0;
