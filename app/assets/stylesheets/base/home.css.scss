@@ -436,40 +436,24 @@ $icons-sprite-dimensions: true;
   .intro_first {
     left: -900px;
     top: 100px;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .animate-out .intro_first {
     left: 1050px;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .intro_bg {
     top: 1000px;
     left: 2000px;
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    -ms-transition-duration: 1.5s;
-    transition-duration: 1.5s;
+    @include sequence_animate(1.5s);
   }
 
   .intro_first, .intro_second, .intro_third {
     left: 2000px;
     top: 0;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .intro_second {
@@ -483,41 +467,25 @@ $icons-sprite-dimensions: true;
   .animate-in .intro_first, .animate-in .intro_second, .animate-in .intro_third {
     left: 0;
     top: 0;
-    -webkit-transition-duration: 2s;
-    -moz-transition-duration: 2s;
-    -o-transition-duration: 2s;
-    -ms-transition-duration: 2s;
-    transition-duration: 2s;
+    @include sequence_animate(2s);
   }
 
   .animate-out .intro_first, .animate-out .intro_second, .animate-out .intro_third {
     top: 0;
     left: -2000px;
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    -ms-transition-duration: 1.5s;
-    transition-duration: 1.5s;
+    @include sequence_animate(1.5s);
   }
 
   .animate-in .intro_bg {
     top: 10px;
     left: 100px;
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    -ms-transition-duration: 1.5s;
-    transition-duration: 1.5s;
+    @include sequence_animate(1.5s);
   }
 
   .animate-out .intro_bg {
     top: 1200px;
     left: 500px;
-    -webkit-transition-duration: 2s;
-    -moz-transition-duration: 2;
-    -o-transition-duration: 2s;
-    -ms-transition-duration: 2s;
-    transition-duration: 2s;
+    @include sequence_animate(2s);
   }
 
   #strength_sequence {
@@ -534,30 +502,18 @@ $icons-sprite-dimensions: true;
   .strength_first {
     left: 900px;
     top: 0;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .animate-out .strength_first {
     left: -2000px;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .strength_first, .strength_second, .strength_third, .strength_fourth, .strength_fifth, .strength_sixth {
     left: 2000px;
     top: 0;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    transition-duration: 1s;
+    @include sequence_animate(1s);
   }
 
   .strength_second {
@@ -571,21 +527,13 @@ $icons-sprite-dimensions: true;
   .animate-in .strength_first, .animate-in .strength_second, .animate-in .strength_third, .animate-in .strength_fourth, .animate-in .strength_fifth, .animate-in .strength_sixth {
     left: 0;
     top: 0;
-    -webkit-transition-duration: 2s;
-    -moz-transition-duration: 2s;
-    -o-transition-duration: 2s;
-    -ms-transition-duration: 2s;
-    transition-duration: 2s;
+    @include sequence_animate(2s);
   }
 
   .animate-out .strength_first, .animate-out .strength_second, .animate-out .strength_third, .animate-out .strength_fourth, .animate-out .strength_fifth, .animate-out .strength_sixth {
     top: 0;
     left: -2000px;
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    -ms-transition-duration: 1.5s;
-    transition-duration: 1.5s;
+    @include sequence_animate(1.5s);
   }
 }
 
