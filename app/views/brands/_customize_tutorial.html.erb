@@ -3,11 +3,28 @@
   <%= content_tag :div, :class => "step_content" do %>
     <%= content_tag :a, nil, :class => "arrow prev" %>
     <%= content_tag :a, nil, :class => "arrow next" %>
-    <div class="tutorial_container">
-      
+    <div class="tutorial_container sequence" id="tutorial_sequence">
+      <ul>
+        <li class="tutorial" id="1">
+          <div class="tutorial_1">
+            <div>tutorial 1</div>
+          </div>
+        </li>
+        <li class="tutorial" id="2">
+          <div class="tutorial_2">
+            <div class="video_frame">
+              <iframe class="introVideo" src="http://player.vimeo.com/video/40981493?api=1&title=0&byline=0&portrait=0&autoplay=0" width="850" height="478" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+          </div>
+        </li>
+        <li class="tutorial" id="3">
+          <div class="tutorial_3">
+            <div>tutorial 3</div>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="pager_container">
-      
     </div>
   <% end %>
   <div class="button_area">

@@ -6,20 +6,17 @@ class BrandsController
       $this.addClass("selected").find(".disabled").removeClass("disabled")
       $this.find("input").attr("checked", "checked")
 
-    $(document).delegate ".go_design_store", "click", ->
-      alert($(this).data("message"))
+    $(document).delegate ".go_design_store", "click", -> alert($(this).data("message"))
 
-    $(document).delegate ".show_all", "click", ->
-      alert($(this).data("message"))
+    $(document).delegate ".show_all", "click", -> alert($(this).data("message"))
 
     $(document).delegate "li.layout_template", "mouseenter", ->
       $(this).find(".info_container").stop().animate({top: 0}, "fast", "easeInCubic")
 
   	$(document).delegate "li.layout_template", "mouseleave", ->
-    	$(this).find(".info_container").stop().animate({top: '210px'}, "fast", "easeOutCubic")
+    	$(this).find(".info_container").stop().animate({top: 210}, "fast", "easeOutCubic")
 
-    $(document).delegate "#select_layout_buttom", "click", ->
-      alert("Go Next!")
+    $(document).delegate "#select_layout_buttom", "click", -> alert("Go Next!")
 
   form: ->
     $("select").each ->
@@ -69,5 +66,26 @@ class BrandsController
         else if i + 1 == step
           $(this).addClass("current")
       ), 400
+
+  customize_tutorial: ->
+    options = {
+      autoPlay: false,
+      nextButton: true,
+      prevButton: true,
+      navigationSkip: true,
+      fadeFrameWhenSkipped: false,
+      cycle: false,
+    }
+    $("#tutorial_sequence").sequence(options)
+
+    $("a.prev").click ->
+      tutorial_sequence = $("#tutorial_sequence").data("sequence")
+      if tutorial_sequence.currentFrameID != 1
+        console.log(tutorial_sequence.currentFrameID)
+
+    $("a.next").click ->
+      tutorial_sequence = $("#tutorial_sequence").data("sequence")
+      if tutorial_sequence.currentFrameID < tutorial_sequence.numberOfFrames
+        $("#tutorial_sequence").data("sequence").goTo(2)
 
 this.freso.brands_controller = new BrandsController

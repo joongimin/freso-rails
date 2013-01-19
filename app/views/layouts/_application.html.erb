@@ -17,7 +17,7 @@
     :"title-prefix" => title_prefix
   } do %>
     <ul id="body_slider">
-      <li class="current_slide">
+      <li>
         <%= render "shared/flash", :flash => flash %>
         <%= yield :body %>
       </li>

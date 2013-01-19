@@ -1,39 +1,16 @@
-<%
-@layout = @brand.layouts.last
-layout_templates = LayoutTemplate.with_translations(I18n.locale).offset(0).limit(8) if layout_templates.nil?
-total_count = LayoutTemplate.all.count if total_count.nil?
-@total_page = total_count/8 + 1
-current_page = 1 if current_page.nil?
-%>
+<% @layout_templates = layout_templates %>
 <div class="brands _select_layout">
   <div class="brands-make-shop-step-1-title"></div>
-  <%= form_for(@layout, :url => update_layout_brand_path(@brand), :remote => true, :html => {:id => "select_layout"}) do |f| %>
+  <%= form_for(@brand.current_layout, :url => update_layout_brand_path(@brand), :remote => true, :html => {:id => "select_layout"}) do |f| %>
+    <%= f.hidden_field(:layout_template_id) %>
     <%= content_tag :div, :class => "step_content" do %>
-      <%= link_to "", layout_templates_list_layout_templates_path(:page_number => current_page - 1, :total_count => total_count, :brand_id => @brand.id, :direction => "left"), :remote => true, :class => "arrow prev" if current_page != 1 || true %>
-      <%= link_to "", layout_templates_list_layout_templates_path(:page_number => current_page + 1, :total_count => total_count, :brand_id => @brand.id), :remote => true, :class => "arrow next" if current_page != @total_page %>
-      <div class="item_container">
-        <ul class="item_list">
-          <% layout_templates.each do |layout_template| %>
-            <%= content_tag_for :li, layout_template do %>
-              <div class="inner">
-                <%= f.radio_button(:layout_template_id, layout_template.id) %>
-                <div class="preview_container">
-                  <%= image_tag(layout_template.image.image_url) if layout_template.image.image? %></br>
-                </div>
-                <div class="info_container">
-                  <div class="name"><%= layout_template.name%></div>
-                  <div class="description"><%= layout_template.description%></div>
-                  <a class="show_sample"><%= t("brands.show_sample") %></a>
-                  <div class="made_by"><%= t("brands.made_by", :author => layout_template.user.name) %></div>
-                </div>
-                <div class="check"></div>
-              </div>
-              <div class="selected_frame">
-                <div class="ribbon"></div>
-                <div class="check"></div>
-              </div>
-            <% end %>
-          <% end %>
+      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page - 1, :prev => true), :remote => true, :class => "arrow prev", :style => @layout_templates.first_page? ? "display: none;" : nil %>
+      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page + 1), :remote => true, :class => "arrow next", :style => @layout_templates.last_page? ? "display: none;" : nil %>
+      <div id="layout_templates">
+        <ul id="layout_template_slider">
+          <li>
+            <%= render "brands/layout_templates" %>
+          </li>
         </ul>
       </div>
       <div class="bottom_area">
@@ -43,7 +20,7 @@ current_page = 1 if current_page.nil?
         <%= content_tag :a, nil, :class => "button go_design_store", :id => "go_design_store_button", :data => {:"message" => t("brands.now_under_construction")} do %>
           <%= t("brands.select_layout.go_design_store") %>
         <% end %>
-        <div class="page_indicator"><span class="current_page"><%= current_page %></span>/<%= @total_page %></div>
+        <div class="page_indicator"><span class="current_page"><%= @layout_templates.current_page %></span>/<%= @layout_templates.total_pages %></div>
       </div>
     <% end %>
     <div class="button_area">

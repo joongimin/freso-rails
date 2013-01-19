@@ -423,13 +423,8 @@ $icons-sprite-dimensions: true;
 
   #intro_sequence {
     height: 100%;
-    position: relative;
     max-width: 1400px;
     width: 100%;
-  }
-
-  #intro_sequence li > * {
-    position: absolute;
   }
 
   .intro_first, .intro_second, .intro_third {
@@ -527,12 +522,7 @@ $icons-sprite-dimensions: true;
 
   #strength_sequence {
     height: 100%;
-    position: relative;
     width: 100%;
-  }
-
-  #strength_sequence li > * {
-    position: absolute;
   }
 
   .strength_first, .strength_second, .strength_third, .strength_fourth, .strength_fifth, .strength_sixth {

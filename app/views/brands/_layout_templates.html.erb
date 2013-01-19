@@ -1,0 +1,24 @@
+<div class="brands _layout_templates">
+  <ul class="item_list">
+    <% @layout_templates.each do |layout_template| %>
+      <%= content_tag_for :li, layout_template do %>
+        <div class="inner">
+          <div class="preview_container">
+            <%= image_tag(layout_template.image.image_url) if layout_template.image.image? %>
+          </div>
+          <div class="info_container">
+            <div class="name"><%= layout_template.name%></div>
+            <div class="description"><%= layout_template.description%></div>
+            <a class="show_sample"><%= t("brands.show_sample") %></a>
+            <div class="made_by"><%= t("brands.made_by", :author => layout_template.user.name) %></div>
+          </div>
+          <div class="check"></div>
+        </div>
+        <div class="selected_frame">
+          <div class="ribbon"></div>
+          <div class="check"></div>
+        </div>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,7 @@
+.sequence {
+  position: relative;
+
+  li > * {
+    position: absolute;
+  }
+}
