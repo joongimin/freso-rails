@@ -75,7 +75,10 @@ class BrandsController < ApplicationController
 
 private
   def layout_templates
-    @layout_templates ||= LayoutTemplate.with_translations(I18n.locale).page(params[:page]).per(8)
+    if params[:page].nil? && !@brand.current_layout.layout_template.nil?
+      params[:page] = (LayoutTemplate.where("? >= id", @brand.current_layout.layout_template_id).count.to_f / 8).ceil
+    end
+    @layout_templates ||= LayoutTemplate.page(params[:page]).per(8)
   end
   helper_method :layout_templates
 end

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
         @next_path = new_brand_path
       else
         @brand = current_user.brands.first
-        if @brand.current_layout.nil?
+        if @brand.current_layout.layout_template.nil?
           @next_path = select_layout_brand_path(@brand)
         else
           @next_path = customize_tutorial_brand_path(@brand)

@@ -1,0 +1,4 @@
+en-US:
+  layouts:
+    validation:
+      layout_template: "Please select layout"

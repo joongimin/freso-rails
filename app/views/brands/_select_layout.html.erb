@@ -1,8 +1,7 @@
 <% @layout_templates = layout_templates %>
 <div class="brands _select_layout">
   <div class="brands-make-shop-step-1-title"></div>
-  <%= form_for(@brand.current_layout, :url => update_layout_brand_path(@brand), :remote => true, :html => {:id => "select_layout"}) do |f| %>
-    <%= f.hidden_field(:layout_template_id) %>
+  <%= form_for(@brand.current_layout, :validate => true, :url => update_layout_brand_path(@brand), :remote => true, :html => {:id => "select_layout"}) do |f| %>
     <%= content_tag :div, :class => "step_content" do %>
       <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page - 1, :prev => true), :remote => true, :class => "arrow prev", :style => @layout_templates.first_page? ? "display: none;" : nil %>
       <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page + 1), :remote => true, :class => "arrow next", :style => @layout_templates.last_page? ? "display: none;" : nil %>
@@ -14,17 +13,17 @@
         </ul>
       </div>
       <div class="bottom_area">
-        <%= content_tag :a, nil, :class => "button show_all", :id => "show_all_button", :data => {:"message" => t("brands.show_all.now_under_construction")} do %>
-          <%= t("brands.select_layout.show_all") %>
-        <% end %>
-        <%= content_tag :a, nil, :class => "button go_design_store", :id => "go_design_store_button", :data => {:"message" => t("brands.now_under_construction")} do %>
-          <%= t("brands.select_layout.go_design_store") %>
-        <% end %>
+        <%= content_tag :a, t("brands.select_layout.show_all"), :class => "button link_show_all", :data => {:"message" => t("brands.show_all.now_under_construction")} %>
+        <%= content_tag :a, t("brands.select_layout.design_store"), :class => "button link_design_store", :data => {:"message" => t("brands.now_under_construction")} %>
         <div class="page_indicator"><span class="current_page"><%= @layout_templates.current_page %></span>/<%= @layout_templates.total_pages %></div>
       </div>
     <% end %>
     <div class="button_area">
       <ul>
+        <li>
+          <%= f.hidden_field(:layout_template_id) %>
+          <%= f.validate(:layout_template_id) %>
+        </li>
         <li class="first">
           <%= link_to t("back"), edit_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
         </li>

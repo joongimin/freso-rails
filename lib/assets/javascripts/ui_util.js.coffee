@@ -5,6 +5,7 @@ class @UIUtil
       return
     args["direction"] ||= "right"
     args["margin"] ||= 0
+    args["duration"] ||= 1000
 
     slider_width = $slider.width()
 
@@ -28,7 +29,7 @@ class @UIUtil
       .css("width", slider_width * 2 + args["margin"])
       .animate {"margin-left": target_margin_left}, {
         easing: "easeInCubic",
-        duration: 1000,
+        duration: args["duration"],
         complete: ->
           $current_slide.remove()
           $next_slide.css("float", "").css("width", "").removeClass("next_slide")

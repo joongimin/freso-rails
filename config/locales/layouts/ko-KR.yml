@@ -1,0 +1,4 @@
+ko-KR:
+  layouts:
+    validation:
+      layout_template: "레이아웃을 선택해주세요"

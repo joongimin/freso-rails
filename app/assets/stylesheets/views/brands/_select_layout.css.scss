@@ -27,6 +27,9 @@
     overflow: hidden;
   }
 
+  $layout_template_width: 200px;
+  $layout_template_height: 250px;
+
   ul.item_list {
     @extend .clearfix;
     width: 864px;
@@ -41,26 +44,26 @@
         position: relative;
         border: 1px solid #d7d7d7;
         overflow: hidden;
-        width: 200px;
-        height: 250px;
+        width: $layout_template_width;
+        height: $layout_template_height;
+
+        .check {
+          display: none;
+        }
+
+        &:hover {
+          .check {
+            display: block;
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            @extend .brands-layout-select-over;
+          }
+        }
       }
 
       .selected_frame {
         display: none;
-      }
-
-      .check {
-        display: none;
-      }
-
-      &:hover {
-        .check {
-          display: block;
-          position: absolute;
-          right: 6px;
-          top: 6px;
-          @extend .brands-layout-select-over;
-        }
       }
 
       &.selected {
@@ -119,14 +122,16 @@
       }
 
       .info_container {
-        padding: 12px 0 0 10px;
+        $info_container_padding_h: 10px;
+        $info_container_padding_v: 12px;
+        padding: $info_container_padding_v $info_container_padding_h;
         color: black;
         font-size: 12px;
         color: #adadad;
         position: absolute;
         top: 210px;
-        width: 100%;
-        height: 100%;
+        width: $layout_template_width - $info_container_padding_v * 2;
+        height: $layout_template_height - $info_container_padding_h * 2;
         background-color: rgba(255, 255, 255, 0.9);
         text-align: left;
 
@@ -137,10 +142,10 @@
         }
 
         .show_sample {
-          position: absolute;
-          color: #6f9232;
-          padding-top: 18px;
-          padding-left: 4px;
+          a {
+            color: #6f9232;
+          }
+          margin-top: 18px;
         }
 
         .description {
@@ -150,8 +155,7 @@
 
         .made_by {
           position: absolute;
-          padding-top: 65px;
-          bottom: 0;
+          bottom: 14px;
           left: 18px;
         }
       }
@@ -162,12 +166,12 @@
     margin-top: 11px;
     @extend .clearfix;
 
-    .show_all {
+    .link_show_all {
       float: left;
       color: #939133;
     }
 
-    .go_design_store {
+    .link_design_store {
       float: left;
       margin-left: 25px;
       color: #e74224;
@@ -187,6 +191,13 @@
       .current_page {
         font-size: 20px;
       }
+    }
+  }
+
+  .field_with_errors {
+    .message {
+      position: static;
+      margin-right: 20px;
     }
   }
 }
