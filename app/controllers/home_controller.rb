@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
+  before_filter :validate_access_token, :only => [:index]
+
   def index
     if current_user
       if current_user.brands.count == 0
         @next_path = new_brand_path
-      elsif current_user.brands.count == 1
+      else
         @brand = current_user.brands.first
         if @brand.current_layout.nil?
           @next_path = select_layout_brand_path(@brand)

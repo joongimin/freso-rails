@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
-  before_filter :renew_access_token
   layout :user_layout
 
 protected
@@ -17,9 +16,20 @@ protected
     I18n.locale = params[:current_locale]
   end
 
-  def renew_access_token
-    if !request.xhr? && current_user && current_user.nuvo_access_token_expires_at < Time.now
-      redirect_to "/auth/nuvo?current_locale=#{I18n.locale}"
+  def validate_access_token
+    if current_user
+      begin
+        current_user.nuvo.me
+      rescue
+        @auth_path = "/auth/nuvo?current_locale=#{I18n.locale}&rp=#{request.fullpath}"
+        if request.xhr?
+          respond_to do |format|
+            format.js { render "application/validate_access_token" }
+          end
+        else
+          redirect_to @auth_path
+        end
+      end
     end
   end
 

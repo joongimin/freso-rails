@@ -1,6 +1,4 @@
 Freso::Application.routes.draw do
-
-
   match 'auth/:provider/callback' => 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'logout', to: 'sessions#destroy', as: 'logout'
@@ -10,9 +8,11 @@ Freso::Application.routes.draw do
     resources :brands do
       member do
         get "select_layout"
+        put "update_layout"
+        get "customize_tutorial"
+        get "slide_back_to_select_layout"
       end
     end
-    resources :users
     resources :translations, :except => :show
     resources :layout_templates do
       collection do
@@ -33,17 +33,15 @@ Freso::Application.routes.draw do
     end
 
     resources :faq_categories
-    resources :brands do
-      member do
-        get "select_layout"
-        put "update_layout"
-        get "customize_tutorial"
-      end
-    end
+    resources :users
 
     root :to => "home#index"
 
     match "*a", :to => "home#no_route_matched"
+  end
+
+  controller :javascript_exception do
+    post "javascript_exception" => :create
   end
 
   match "*path", :to => "home#no_locale_matched"

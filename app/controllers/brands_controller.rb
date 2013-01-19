@@ -1,4 +1,6 @@
 class BrandsController < ApplicationController
+  before_filter :validate_access_token, :only => [:new, :edit]
+
   def index
     @brands = Brand.all
   end
@@ -26,17 +28,6 @@ class BrandsController < ApplicationController
   end
 
   def select_layout
-    @brand = Brand.find(params[:id])
-    if params.include?(:page_number)
-      @total_count = params[:total_count].to_i
-      @current_page = params[:page_number].to_i
-      @layout_templates = LayoutTemplate.with_translations(I18n.locale).
-          offset((params[:page_number].to_i - 1) * LAYOUT_TEMPLATES_PER_PAGE_COUNT).
-          limit(LAYOUT_TEMPLATES_PER_PAGE_COUNT)
-      respond_to do |format|
-        format.js { render "layout_templates/layout_templates_list" }
-      end
-    end
   end
 
   def update_layout
@@ -45,7 +36,7 @@ class BrandsController < ApplicationController
     #@layout = Layout.find(params[:id])
     if @layout.update_attributes(params[:layout])
       respond_to do |format|
-        format.js
+        format.js { render :slide_to_customize_tutorial }
       end
     end
   end
@@ -76,5 +67,13 @@ class BrandsController < ApplicationController
   end
 
   def customize
+  end
+
+  def slide_back_to_select_layout
+    @brand = Brand.find(params[:id])
+    @layout = @brand.layouts.last
+    respond_to do |format|
+      format.js
+    end
   end
 end

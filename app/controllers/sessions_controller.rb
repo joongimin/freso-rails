@@ -4,8 +4,13 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
-    @referer = params[:referer]
-    render :create, :layout => false
+
+    if env["omniauth.params"].include?("rp")
+      redirect_to env["omniauth.params"]["rp"]
+    else
+      @referer = params[:referer]
+      render :create, :layout => false
+    end
   end
 
   def destroy

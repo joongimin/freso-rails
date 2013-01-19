@@ -1,0 +1,4 @@
+freso.ui_util.slide_content($("ul#step_slider"), "<%=j render("brands/select_layout", :layout => @brand.layouts.last, :brand => @brand) %>", {direction: "left", margin: 100});
+freso.ui_util.scroll_to("top");
+freso.brands_controller.set_step(<%= GuideStep::SELECT_LAYOUT %>);
+<%= render("shared/history", :path => select_layout_brand_path(@brand)) %>

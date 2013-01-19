@@ -13,10 +13,10 @@ class BrandsController
       alert($(this).data("message"))
 
     $(document).delegate "li.layout_template", "mouseenter", ->
-    	$(this).find(".info_container").animate({top: 0}, 120)
+      $(this).find(".info_container").stop().animate({top: 0}, "fast", "easeInCubic")
 
   	$(document).delegate "li.layout_template", "mouseleave", ->
-    	$(this).find(".info_container").animate({top: '210px'}, 120)
+    	$(this).find(".info_container").stop().animate({top: '210px'}, "fast", "easeOutCubic")
 
     $(document).delegate "#select_layout_buttom", "click", ->
       alert("Go Next!")
@@ -29,6 +29,7 @@ class BrandsController
       $select.on "change", (e) ->
         # Trigger validation
         $select.trigger("focusout.ClientSideValidations")
+    $("form").enableClientSideValidations();
 
   new: ->
     @form()

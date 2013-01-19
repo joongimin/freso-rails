@@ -1,0 +1,3 @@
+freso.ui_util.slide_content($("ul#step_slider"), "<%=j render("brands/customize_tutorial") %>", {margin: 100});
+freso.brands_controller.set_step(<%= GuideStep::CUSTOMIZE %>);
+<%= render("shared/history", :path => customize_tutorial_brand_path(@brand)) %>

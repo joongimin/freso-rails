@@ -1,0 +1,32 @@
+.brands._customize_tutorial {
+  .step_content {
+    position: relative;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .arrow {
+    top: 246px;
+    position: absolute;
+
+    &.prev {
+      left: 18px;
+      @extend .brands-prev-arrow;
+    }
+
+    &.next {
+      right: 18px;
+      @extend .brands-next-arrow;
+    }
+  }
+
+  .tutorial_container {
+    width: 850px;
+    height: 478px;
+  }
+
+  .bottom_area {
+    margin-top: 11px;
+    @extend .clearfix;
+  }
+}
