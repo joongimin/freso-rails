@@ -10,7 +10,11 @@ class HomeController < ApplicationController
         if @brand.current_layout.layout_template.nil?
           @next_path = select_layout_brand_path(@brand)
         else
-          @next_path = customize_tutorial_brand_path(@brand)
+          if !@brand.current_layout.layout_option.nil?
+            @next_path = customize_tutorial_brand_path(@brand)
+          else
+            @next_path = menu_brand_path(@brand)
+          end
         end
       end
 

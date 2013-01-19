@@ -10,7 +10,7 @@ Freso::Application.routes.draw do
         get "select_layout"
         put "update_layout"
         get "customize_tutorial"
-        get "slide_back_to_select_layout"
+        get "menu"
       end
     end
     resources :translations, :except => :show

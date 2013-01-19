@@ -28,6 +28,11 @@ class BrandsController < ApplicationController
 
   def select_layout
     @brand = Brand.find(params[:id])
+    if params[:transition] == "slide_back"
+      respond_to do |format|
+        format.js { render :slide_to_select_layout }
+      end
+    end
   end
 
   def update_layout
@@ -61,16 +66,14 @@ class BrandsController < ApplicationController
   end
 
   def customize_tutorial
+    @brand = Brand.find(params[:id])
   end
 
   def customize
   end
 
-  def slide_back_to_select_layout
+  def menu
     @brand = Brand.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
 private

@@ -1,5 +1,5 @@
 <div class="brands _customize_tutorial">
-  <div class="brands-make-shop-step-1-title"></div>
+  <div class="brands-make-shop-step-3-title"></div>
   <%= content_tag :div, :class => "step_content" do %>
     <%= content_tag :a, nil, :class => "arrow prev" %>
     <%= content_tag :a, nil, :class => "arrow next" %>
@@ -28,13 +28,13 @@
     </div>
   <% end %>
   <div class="button_area">
-      <ul>
-        <li class="first">
-          <%= link_to t("back"), slide_back_to_select_layout_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
-        </li>
-        <li>
-          <%= link_to t("next"), "", :remote => true, :class => "button confirm" %>
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li class="first">
+        <%= link_to t("back"), select_layout_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
+      </li>
+      <li>
+        <%= link_to t("next"), "", :remote => true, :class => "button confirm" %>
+      </li>
+    </ul>
+  </div>
 </div>
