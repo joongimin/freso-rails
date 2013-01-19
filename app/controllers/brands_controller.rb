@@ -72,6 +72,7 @@ class BrandsController < ApplicationController
 
   def customize
     @brand = current_resource
+    @no_topbar = true
   end
 
   def menu

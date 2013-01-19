@@ -2,7 +2,7 @@
   <%
   render(:template => "brands/customize_tutorial", :formats => [:html], :layout => "layouts/application_login")
   %>
-  freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {direction: "left"});
+  freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {direction: "left", nofog: true});
   <%= render("shared/history") %>
 <% else %>
   <% content_for :step do render("brands/customize_tutorial") end %>
