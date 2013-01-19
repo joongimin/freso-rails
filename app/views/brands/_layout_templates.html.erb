@@ -9,7 +9,9 @@
           <div class="info_container">
             <div class="name"><%= layout_template.name%></div>
             <div class="description"><%= layout_template.description%></div>
-            <a class="show_sample"><%= t("brands.show_sample") %></a>
+            <div class="show_sample">
+              <a><%= t("brands.show_sample") %></a>
+            </div>
             <div class="made_by"><%= t("brands.made_by", :author => layout_template.user.name) %></div>
           </div>
           <div class="check"></div>
