@@ -7,7 +7,12 @@
       <ul>
         <li class="tutorial" id="1">
           <div class="tutorial_1">
-            <div>tutorial 1</div>
+            <div class="image_frame small"><%= image_tag("https://d3pczqvwan8kmr.cloudfront.net/development/uploads/image/image/10/screenshot002.png") %></div>
+            <div class="text_frame title">Title : You can change layout.</div>
+            <div class="text_frame description">Description : Very Easy.</div>
+            <div class="image_frame small"><%= image_tag("https://d3pczqvwan8kmr.cloudfront.net/development/uploads/image/image/12/screenshot001.png") %></div>
+            <div class="text_frame title">Title : Click an element.</div>
+            <div class="text_frame description">Description : You can change all option.</div>
           </div>
         </li>
         <li class="tutorial" id="2">
@@ -19,12 +24,25 @@
         </li>
         <li class="tutorial" id="3">
           <div class="tutorial_3">
-            <div>tutorial 3</div>
+            <div class="image_frame"><%= image_tag("https://d3pczqvwan8kmr.cloudfront.net/development/uploads/image/image/14/mzl.osmceivo.800x500-75.jpg") %></div>
           </div>
         </li>
       </ul>
     </div>
     <div class="pager_container">
+      <ul>
+        <% (0...3).each do |i| %>
+          <li class="tutorial_nav">
+            <%= content_tag :a, :class => "dot" do %>
+              <% if i == 0 %>
+                <%= image_tag "home/side-menu-dot.png", :class => "scroll_button current_page", :id => i+1, :data => {:index => i + 1} %>
+              <% else %>
+                <%= image_tag "home/side-menu-dot.png", :id => i+1, :class => "scroll_button", :data => {:index => i + 1} %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
   <div class="button_area">
