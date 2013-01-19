@@ -37,6 +37,7 @@ Freso::Application.routes.draw do
       member do
         get "select_layout"
         put "update_layout"
+        get "customize_tutorial"
       end
     end
 

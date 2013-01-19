@@ -1,4 +1,7 @@
-<% render(:template => @next_path, :formats => [:html], :layout => "layouts/application_login") %>
+<%
+r = Rails.application.routes.recognize_path(@next_path)
+render(:template => "#{r[:controller]}/#{r[:action]}", :formats => [:html], :layout => "layouts/application_login")
+%>
 freso.ui_util.slide_content($("ul#body_slider"), "<%=j content_for :body %>");
 $("div.parallax").each(function() {
   if ($(this).attr("id") != "home") {

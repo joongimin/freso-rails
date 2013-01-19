@@ -1,6 +1,7 @@
 class @UIUtil
   slide_content: ($slider, html, args = {}) ->
     args["direction"] ||= "right"
+    args["margin"] ||= 0
 
     slider_width = $slider.width()
 
@@ -13,13 +14,15 @@ class @UIUtil
     if args["direction"] == "right"
       $slider.append($next_slide)
       target_margin_left = "-100%"
+      $current_slide.css("margin-right", args["margin"])
     else
       $slider.prepend($next_slide)
       $slider.css("margin-left": "-100%")
       target_margin_left = 0
+      $current_slide.css("margin-left", args["margin"])
 
     $slider
-      .css("width", slider_width * 2)
+      .css("width", slider_width * 2 + args["margin"])
       .animate {"margin-left": target_margin_left}, {
         easing: "easeInCubic",
         duration: 1000,
@@ -56,5 +59,14 @@ class @UIUtil
           args.callback()
     else
       $target.hide()
+
+  scroll_to: (target) ->
+    $html = $("html")
+    if target == "top"
+      scroll_top = 0
+    else
+      scroll_top = $(target).offset().top
+
+    $("html, body").animate {scrollTop: scroll_top}, "fast"
 
 this.util.ui_util = new UIUtil
