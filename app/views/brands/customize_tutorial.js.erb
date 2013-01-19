@@ -1,5 +1,11 @@
-<%
-render(:template => "brands/customize_tutorial", :formats => [:html], :layout => "layouts/application_login")
-%>
-freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {direction: "left"});
-<%= render("shared/history") %>
+<% if params[:ref] == "customize" %>
+  <%
+  render(:template => "brands/customize_tutorial", :formats => [:html], :layout => "layouts/application_login")
+  %>
+  freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {direction: "left", nofog: true});
+  <%= render("shared/history") %>
+<% else %>
+  <% content_for :step do render("brands/customize_tutorial") end %>
+  <%= render("brands/step", :step => GuideStep::CUSTOMIZE) %>
+  <%= render("shared/history", :path => customize_tutorial_brand_path(@brand)) %>
+<% end %>

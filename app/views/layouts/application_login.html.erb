@@ -1,5 +1,7 @@
 <% content_for :body do %>
-  <%= render "shared/topbar" %>
+  <% if @no_topbar.nil? %>
+    <%= render "shared/topbar" %>
+  <% end %>
   <%= content_tag :div, :id => "content", :class => @content_type do %>
     <%= yield %>
   <% end %>

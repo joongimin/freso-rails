@@ -19,7 +19,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(params[:brand].merge(:user_id => current_user.id))
     if @brand.save
       respond_to do |format|
-        format.js { render :slide_to_select_layout }
+        format.js { render :select_layout }
       end
     else
       render :action => 'new'
@@ -28,9 +28,10 @@ class BrandsController < ApplicationController
 
   def select_layout
     @brand = current_resource
-    if params[:prev] == "true"
+    if params[:layout_template].nil?
       respond_to do |format|
-        format.js { render :slide_to_select_layout }
+        format.js { render :select_layout }
+        format.html
       end
     end
   end
@@ -39,7 +40,7 @@ class BrandsController < ApplicationController
     @brand = current_resource
     if @brand.current_layout.update_attributes(params[:layout])
       respond_to do |format|
-        format.js { render :slide_to_customize_tutorial }
+        format.js { render :customize_tutorial }
       end
     end
   end
@@ -52,7 +53,7 @@ class BrandsController < ApplicationController
     @brand = current_resource
     if @brand.update_attributes(params[:brand])
       respond_to do |format|
-        format.js { render :slide_to_select_layout }
+        format.js { render :select_layout }
       end
     else
       render :action => 'edit'
@@ -71,6 +72,7 @@ class BrandsController < ApplicationController
 
   def customize
     @brand = current_resource
+    @no_topbar = true
   end
 
   def menu

@@ -1,4 +1,47 @@
 <div class="brands customize">
-  Customize!!
-  <%= link_to "back", customize_tutorial_brand_path(@brand), :remote => true %>
+  <div id="leftContainer">
+    <div id="leftTop">
+      <div id="leftTopButtonContainer">
+        <div class="float_right">
+          <%= link_to customize_tutorial_brand_path(@brand, :ref => "customize"), :remote => true do %>
+            <button class="green_button">저장</button>
+          <% end %>
+          <%= link_to customize_tutorial_brand_path(@brand, :ref => "customize"), :remote => true do %>
+            <button class="dark_button">닫기</button>
+          <% end %>
+        </div>
+        <div class="float_left">
+          <button class="light_dark_button">저장된 디자인보기</button>
+        </div>
+      </div>
+    </div>
+    <div class="bwEmbossLine"></div>
+    <div id="leftEditElementContainer">
+      <div id="leftEditElement">
+        <div class="lineContainer">
+          <div class="radioBox"></div>
+          <div class="radioBox"><div class="radioBoxSelected"></div></div>
+            <div class="checkBox"></div>
+            <div class="checkBox"><div class="checkBoxSelected"></div></div>
+        </div>
+        <div class="bwEmbossLine"></div>
+        <div class="lineContainer">
+          <button class="grayButton">버튼입니다</button>&nbsp;&nbsp;
+            <button class="grayButton CircleButton">동그래요</button>&nbsp;&nbsp;
+            <button class="grayButton cicle">&nbsp;</button>&nbsp;&nbsp;
+            <button class="grayButton square">&nbsp;</button> 
+        </div>
+        <div class="lineContainer">
+          <input type="text" value="입력하세요" class="inputbox" />
+          <button class="grayButton">색은</button>
+            <button class="colorButtonColor colorButton">c</button>
+            <button class="colorButtonColorChange colorButton">d</button>
+        </div>
+        <div class="bwEmbossLine"></div>
+      </div>
+    </div>
+  </div>
+  <div id="rightContainer">
+    <%= image_tag "brands/customize/sample-shop.png" %>
+  </div>
 </div>
