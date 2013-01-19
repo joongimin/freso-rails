@@ -89,17 +89,4 @@ public
       format.json { head :no_content }
     end
   end
-
-  def layout_templates_list
-    @brand = Brand.find(params[:brand_id])
-    @layout = @brand.layouts.last
-    @total_count = params[:total_count].to_i
-    @current_page = params[:page_number].to_i
-    @layout_templates = LayoutTemplate.with_translations(I18n.locale).
-        offset((params[:page_number].to_i - 1) * LAYOUT_TEMPLATES_PER_PAGE_COUNT).
-        limit(LAYOUT_TEMPLATES_PER_PAGE_COUNT)
-    respond_to do |format|
-      format.js { render :layout_templates_list }
-    end
-  end
 end

@@ -20,9 +20,11 @@
     }
   }
 
-  .item_container {
-    width: 859px;
-    height: 519px;
+  #layout_templates {
+    width: 852px;
+    height: 521px;
+    padding: 1px; // For selected_frame
+    overflow: hidden;
   }
 
   ul.item_list {

@@ -128,6 +128,9 @@ GEM
     json (1.7.6)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.7.4)
     libv8 (3.11.8.13)
     mail (2.4.4)
@@ -278,6 +281,7 @@ DEPENDENCIES
   globalize3
   i18n-js
   jquery-rails
+  kaminari
   mocha
   nested_form
   nifty-generators

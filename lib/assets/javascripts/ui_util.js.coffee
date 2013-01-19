@@ -1,23 +1,26 @@
 class @UIUtil
-  slide_content: ($slider, html, args = {}) ->
+  slide_content: (slider_path, html, args = {}) ->
+    $slider = $(slider_path)
+    if $slider.length != 1
+      return
     args["direction"] ||= "right"
     args["margin"] ||= 0
 
     slider_width = $slider.width()
 
     $slider.addClass("sliding")
-    $current_slide = $slider.children("li.current_slide").css("float", "left").css("width", slider_width)
+    $current_slide = $slider.children("li").css("float", "left").css("width", slider_width)
 
     $next_slide = $("<li class='next_slide'></li>")
     $next_slide.css("float", "left").css("width", slider_width).html(html)
 
     if args["direction"] == "right"
       $slider.append($next_slide)
-      target_margin_left = "-100%"
+      target_margin_left = -slider_width - args["margin"]
       $current_slide.css("margin-right", args["margin"])
     else
       $slider.prepend($next_slide)
-      $slider.css("margin-left": "-100%")
+      $slider.css("margin-left": -slider_width - args["margin"])
       target_margin_left = 0
       $current_slide.css("margin-left", args["margin"])
 
@@ -28,7 +31,7 @@ class @UIUtil
         duration: 1000,
         complete: ->
           $current_slide.remove()
-          $next_slide.css("float", "").css("width", "").removeClass("next_slide").addClass("current_slide")
+          $next_slide.css("float", "").css("width", "").removeClass("next_slide")
           $slider.css("margin-left", "").css("width", "")
           $slider.removeClass("sliding").trigger("nv:slide:end")
       }

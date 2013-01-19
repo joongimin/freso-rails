@@ -9,7 +9,7 @@ if local_assigns.include?(:path)
     action_name = r[:action]
   end
 else
-  path = request.fullpath
+  path = request.fullpath.html_safe
   controller_path = controller.controller_path unless local_assigns.include?(:controller_path)
   action_name = controller.action_name unless local_assigns.include?(:action_name)
 end

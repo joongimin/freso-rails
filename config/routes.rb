@@ -13,11 +13,7 @@ Freso::Application.routes.draw do
       end
     end
     resources :translations, :except => :show
-    resources :layout_templates do
-      collection do
-        get "layout_templates_list"
-      end
-    end
+    resources :layout_templates
     resources :layouts
     resources :faq_categories
 

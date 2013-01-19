@@ -13,4 +13,19 @@ class Brand < ActiveRecord::Base
   def self.guide_steps
     4
   end
+
+  def current_layout
+    result = super
+
+    if result.nil?
+      if !layouts.empty?
+        result = layouts.last
+      else
+        result = Layout.create(:brand => self)
+      end
+      update_attribute(:current_layout_id, result.id)
+    end
+
+    result
+  end
 end

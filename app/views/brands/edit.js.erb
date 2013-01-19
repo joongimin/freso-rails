@@ -1,4 +1,4 @@
-freso.ui_util.slide_content($("ul#step_slider"), "<%=j render("brands/form") %>", {direction: "left", margin: 100});
+freso.ui_util.slide_content("ul#step_slider", "<%=j render("brands/form") %>", {direction: "left", margin: 100});
 freso.ui_util.scroll_to("top");
 freso.brands_controller.set_step(<%= GuideStep::CREATE_BRAND %>);
 <%= render("shared/history", :path => edit_brand_path(@brand)) %>

@@ -18,7 +18,6 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(params[:brand].merge(:user_id => current_user.id))
     if @brand.save
-      @layout = Layout.create(:brand_id => @brand.id)
       respond_to do |format|
         format.js { render :slide_to_select_layout }
       end
@@ -29,23 +28,11 @@ class BrandsController < ApplicationController
 
   def select_layout
     @brand = Brand.find(params[:id])
-    if params.include?(:page_number)
-      @total_count = params[:total_count].to_i
-      @current_page = params[:page_number].to_i
-      @layout_templates = LayoutTemplate.with_translations(I18n.locale).
-          offset((params[:page_number].to_i - 1) * LAYOUT_TEMPLATES_PER_PAGE_COUNT).
-          limit(LAYOUT_TEMPLATES_PER_PAGE_COUNT)
-      respond_to do |format|
-        format.js { render "layout_templates/layout_templates_list" }
-      end
-    end
   end
 
   def update_layout
     @brand = Brand.find(params[:id])
-    @layout = @brand.layouts.last
-    #@layout = Layout.find(params[:id])
-    if @layout.update_attributes(params[:layout])
+    if @brand.current_layout.update_attributes(params[:layout])
       respond_to do |format|
         format.js
       end
@@ -58,7 +45,6 @@ class BrandsController < ApplicationController
 
   def update
     @brand = Brand.find(params[:id])
-    @layout = @brand.layouts.last
     if @brand.update_attributes(params[:brand])
       respond_to do |format|
         format.js { render :slide_to_select_layout }
@@ -79,4 +65,10 @@ class BrandsController < ApplicationController
 
   def customize
   end
+
+private
+  def layout_templates
+    @layout_templates ||= LayoutTemplate.with_translations(I18n.locale).page(params[:page]).per(8)
+  end
+  helper_method :layout_templates
 end
