@@ -34,11 +34,7 @@
     .tutorial_1, .tutorial_2, .tutorial_3 {
       left: 1000px;
       top: 0;
-      -webkit-transition-duration: 1s;
-      -moz-transition-duration: 1s;
-      -o-transition-duration: 1s;
-      -ms-transition-duration: 1s;
-      transition-duration: 1s;
+      @include sequence_animate(1s);
     }
 
     .tutorial_2 {
@@ -51,22 +47,13 @@
 
     .animate-in .tutorial_1, .animate-in .tutorial_2, .animate-in .tutorial_3 {
       left: 0;
-      top: 0;
-      -webkit-transition-duration: 2s;
-      -moz-transition-duration: 2s;
-      -o-transition-duration: 2s;
-      -ms-transition-duration: 2s;
-      transition-duration: 2s;
+      top: 0;@include sequence_animate(2s);
     }
 
     .animate-out .tutorial_1, .animate-out .tutorial_2, .animate-out .tutorial_3 {
       top: 0;
       left: -1000px;
-      -webkit-transition-duration: 1.5s;
-      -moz-transition-duration: 1.5s;
-      -o-transition-duration: 1.5s;
-      -ms-transition-duration: 1.5s;
-      transition-duration: 1.5s;
+      @include sequence_animate(1.5s);
     }
   }
 

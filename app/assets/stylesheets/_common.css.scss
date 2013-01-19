@@ -10,6 +10,14 @@
   }
 }
 
+@mixin sequence_animate($duration) {
+  -webkit-transition-duration: $duration;
+  -moz-transition-duration: $duration;
+  -o-transition-duration: $duration;
+  -ms-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
 $screen_width: 980px;
 
 .clearfix {
