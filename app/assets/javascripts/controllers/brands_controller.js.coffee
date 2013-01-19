@@ -81,11 +81,22 @@ class BrandsController
     tutorial_sequence = $("#tutorial_sequence").sequence(options)
 
     $("a.next").click ->
-      if tutorial_sequence.currentFrameID < tutorial_sequence.numberOfFrames
-        tutorial_sequence.goTo(tutorial_sequence.currentFrameID + 1)
+      tutorial_sequence = $("#tutorial_sequence").data("sequence")
+      next_page = tutorial_sequence.currentFrameID + 1
+      if $("#tutorial_sequence").data("sequence").currentFrameID < $("#tutorial_sequence").data("sequence").numberOfFrames
+        $(".current_page").removeClass("current_page")
+        $("#"+next_page+".scroll_button").addClass("current_page")
 
     $("a.prev").click ->
-      if tutorial_sequence.currentFrameID > 1
-        tutorial_sequence.goTo(tutorial_sequence.currentFrameID - 1)
+      tutorial_sequence = $("#tutorial_sequence").data("sequence")
+      prev_page = tutorial_sequence.currentFrameID - 1
+      if $("#tutorial_sequence").data("sequence").currentFrameID > 1
+        $(".current_page").removeClass("current_page")
+        $("#"+prev_page+".scroll_button").addClass("current_page")
+
+    $(".scroll_button").click ->
+      $(this).closest("ul").find(".current_page").removeClass("current_page")
+      $("#tutorial_sequence").data("sequence").goTo($(this).data("index"))
+      $(this).addClass("current_page")
 
 this.freso.brands_controller = new BrandsController
