@@ -8,7 +8,7 @@ en-US:
     hub_type_field_description: "무엇을 판매하시나요?\n가장 비슷한 항목을 선택해주세요"
     select_layout:
       show_all: "Show All"
-      go_design_store: "Go Design Center"
+      design_store: "Design Center"
     hub_field_description: "무엇을 판매하시나요?\n가장 비슷한 항목을 선택해주세요"
     now_under_construction: "Now Under Construction"
     cancel:
@@ -32,8 +32,6 @@ en-US:
       next: "Next"
       create_shop: "Create Shop"
       select_layout: "Select Layout"
-      show_all: "Show All"
-      go_design_store: "Design Store"
     select_hub: "-Select Category-"
     validation:
       hub: "Must select category"

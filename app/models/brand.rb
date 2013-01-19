@@ -21,7 +21,8 @@ class Brand < ActiveRecord::Base
       if !layouts.empty?
         result = layouts.last
       else
-        result = Layout.create(:brand => self)
+        result = Layout.new(:brand_id => self.id)
+        result.save(:validate => false)
       end
       update_attribute(:current_layout_id, result.id)
     end

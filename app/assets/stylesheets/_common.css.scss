@@ -77,15 +77,16 @@ $screen_width: 980px;
   vertical-align: middle;
 }
 
-div.field_with_errors {
-  div.message_anchor {
+.field_with_errors {
+  .message_anchor {
     position: relative;
-    label.message {
-      position: absolute;
-      color: #d00;
-      font-size: 11px;
-      right: 5px;
-      top: 4px;
-    }
+  }
+
+  .message {
+    position: absolute;
+    color: #d00;
+    font-size: 11px;
+    right: 5px;
+    top: 4px;
   }
 }

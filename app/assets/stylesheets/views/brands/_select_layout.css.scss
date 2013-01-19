@@ -165,12 +165,12 @@
     margin-top: 11px;
     @extend .clearfix;
 
-    .show_all {
+    .link_show_all {
       float: left;
       color: #939133;
     }
 
-    .go_design_store {
+    .link_design_store {
       float: left;
       margin-left: 25px;
       color: #e74224;
@@ -190,6 +190,13 @@
       .current_page {
         font-size: 20px;
       }
+    }
+  }
+
+  .field_with_errors {
+    .message {
+      position: static;
+      margin-right: 20px;
     }
   }
 }
