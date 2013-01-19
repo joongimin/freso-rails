@@ -3,8 +3,8 @@
   <div class="brands-make-shop-step-2-title"></div>
   <%= form_for(@brand.current_layout, :validate => true, :url => update_layout_brand_path(@brand), :remote => true, :html => {:id => "select_layout"}) do |f| %>
     <%= content_tag :div, :class => "step_content" do %>
-      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page - 1, :prev => true), :remote => true, :class => "arrow prev", :style => @layout_templates.first_page? ? "display: none;" : nil %>
-      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page + 1), :remote => true, :class => "arrow next", :style => @layout_templates.last_page? ? "display: none;" : nil %>
+      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page - 1, :ref => "layout_templates", :prev => true), :remote => true, :class => "arrow prev", :style => @layout_templates.first_page? ? "display: none;" : nil %>
+      <%= link_to "", select_layout_brand_path(@brand, :page => @layout_templates.current_page + 1, :ref => "layout_templates"), :remote => true, :class => "arrow next", :style => @layout_templates.last_page? ? "display: none;" : nil %>
       <div id="layout_templates">
         <ul id="layout_template_slider">
           <li>
