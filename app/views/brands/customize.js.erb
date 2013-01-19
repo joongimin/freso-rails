@@ -1,0 +1,5 @@
+<%
+render(:template => "brands/customize", :formats => [:html], :layout => "layouts/application_login")
+%>
+freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>");
+<%= render("shared/history") %>

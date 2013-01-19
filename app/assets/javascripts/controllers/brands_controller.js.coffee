@@ -33,7 +33,10 @@ class BrandsController
   edit: ->
     @form()
 
-  set_step: (step) ->
+  set_step: (step, html, prev) ->
+    freso.ui_util.scroll_to("top")
+    freso.ui_util.slide_content("ul#step_slider", html, {margin: 500, direction: if prev then "left" else "right"})
+
     $("ul.steps li.step").each (i) ->
       current_step = i + 1
       $this = $(this)

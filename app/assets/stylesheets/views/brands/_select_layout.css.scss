@@ -164,15 +164,12 @@
 
   .bottom_area {
     margin-top: 11px;
-    @extend .clearfix;
 
     .link_show_all {
-      float: left;
       color: #939133;
     }
 
     .link_design_store {
-      float: left;
       margin-left: 25px;
       color: #e74224;
     }

@@ -6,7 +6,7 @@ class BrandsController < ApplicationController
   end
 
   def show
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
   end
 
   def new
@@ -27,11 +27,16 @@ class BrandsController < ApplicationController
   end
 
   def select_layout
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
+    if params[:prev] == "true"
+      respond_to do |format|
+        format.js { render :slide_to_select_layout }
+      end
+    end
   end
 
   def update_layout
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
     if @brand.current_layout.update_attributes(params[:layout])
       respond_to do |format|
         format.js { render :slide_to_customize_tutorial }
@@ -40,11 +45,11 @@ class BrandsController < ApplicationController
   end
 
   def edit
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
   end
 
   def update
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
     if @brand.update_attributes(params[:brand])
       respond_to do |format|
         format.js { render :slide_to_select_layout }
@@ -55,23 +60,21 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
     @brand.destroy
     redirect_to brands_url, :notice => "Successfully destroyed brand."
   end
 
   def customize_tutorial
-    @brand = Brand.find(params[:id])
+    @brand = current_resource
   end
 
   def customize
+    @brand = current_resource
   end
 
-  def slide_back_to_select_layout
-    @brand = Brand.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
+  def menu
+    @brand = current_resource
   end
 
 private
@@ -82,4 +85,8 @@ private
     @layout_templates ||= LayoutTemplate.page(params[:page]).per(8)
   end
   helper_method :layout_templates
+
+  def current_resource
+    @current_resource ||= Brand.find(params[:id]) if params[:id]
+  end
 end

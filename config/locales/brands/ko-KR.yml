@@ -20,13 +20,13 @@ ko-KR:
     guide:
       steps:
         "1":
-          title: "기본정보 입력"
+          title: "상점 기본 정보 입력"
         "2":
-          title: "레이아웃 선택"
+          title: "기본 Layout 선택"
         "3":
-          title: "세부 디자인"
+          title: "상점꾸미기"
         "4":
-          title: "상품등록/판매시작"
+          title: "상품 등록 및 판매 시작"
       cancel: "취소"
       back: "뒤로"
       next: "다음"
@@ -35,3 +35,5 @@ ko-KR:
     select_hub: "-카테고리를 선택해주세요-"
     validation:
       hub: "카테고리를 선택해야 합니다"
+    customize_tutorial:
+      customize: "상점 꾸미기"
