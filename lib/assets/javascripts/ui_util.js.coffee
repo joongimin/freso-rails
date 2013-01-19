@@ -3,6 +3,8 @@ class @UIUtil
     $slider = $(slider_path)
     if $slider.length != 1
       return
+
+    $("body").append("<div class='fog left'></div>").append("<div class='fog right'></div>")
     args["direction"] ||= "right"
     args["margin"] ||= 0
     args["duration"] ||= 1000
@@ -36,6 +38,7 @@ class @UIUtil
           $next_slide.css("float", "").css("width", "").removeClass("next_slide")
           $slider.css("margin-left", "").css("width", "")
           $slider.removeClass("sliding").trigger("nv:slide:end")
+          $(".fog").remove()
       }
 
   show: ($target, args = {}) ->

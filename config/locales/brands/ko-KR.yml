@@ -35,3 +35,5 @@ ko-KR:
     select_hub: "-카테고리를 선택해주세요-"
     validation:
       hub: "카테고리를 선택해야 합니다"
+    customize_tutorial:
+      customize: "상점 꾸미기"

@@ -100,6 +100,14 @@
     padding: 47px 69px;
   }
 
+  .bottom_area {
+    @extend .clearfix;
+
+    .button {
+      float: left;
+    }
+  }
+
   .button_area {
     text-align: right;
     margin-top: 12px;

@@ -25,7 +25,7 @@
           <%= f.validate(:layout_template_id) %>
         </li>
         <li class="first">
-          <%= link_to t("back"), edit_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
+          <%= link_to t("back"), edit_brand_path(@brand, :prev => true), :remote => true, :class => "button cancel" %>
         </li>
         <li>
           <%= f.submit :class => "button confirm", :id => "select_layout_button", :value => t("brands.guide.select_layout") %>

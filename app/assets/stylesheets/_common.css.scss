@@ -90,3 +90,20 @@ $screen_width: 980px;
     top: 4px;
   }
 }
+
+.fog {
+  width: 50%;
+  height: 100%;
+  position: fixed;
+  top: 45px; // Don't hide Topbar
+  z-index: 1000;
+  &.left {
+    left: -490px;
+    @include background-image(linear-gradient(right, rgba(228,229,230,0) 0, rgba(228,229,230,1) 200px));
+  }
+
+  &.right {
+    right: -490px;
+    @include background-image(linear-gradient(left, rgba(228,229,230,0) 0, rgba(228,229,230,1) 200px));
+  }
+}

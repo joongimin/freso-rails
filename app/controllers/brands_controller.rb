@@ -28,7 +28,7 @@ class BrandsController < ApplicationController
 
   def select_layout
     @brand = Brand.find(params[:id])
-    if params[:transition] == "slide_back"
+    if params[:prev] == "true"
       respond_to do |format|
         format.js { render :slide_to_select_layout }
       end

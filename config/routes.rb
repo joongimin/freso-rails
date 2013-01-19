@@ -7,10 +7,11 @@ Freso::Application.routes.draw do
     resources :authentications
     resources :brands do
       member do
-        get "select_layout"
-        put "update_layout"
-        get "customize_tutorial"
-        get "menu"
+        get :select_layout
+        put :update_layout
+        get :customize_tutorial
+        get :customize
+        get :menu
       end
     end
     resources :translations, :except => :show

@@ -26,11 +26,14 @@
     </div>
     <div class="pager_container">
     </div>
+    <div class="bottom_area">
+      <%= link_to t("brands.customize_tutorial.customize"), customize_brand_path(@brand), :remote => true, :class => "button link_customize" %>
+    </div>
   <% end %>
   <div class="button_area">
     <ul>
       <li class="first">
-        <%= link_to t("back"), select_layout_brand_path(@brand, :transition => "slide_back"), :remote => true, :class => "button cancel" %>
+        <%= link_to t("back"), select_layout_brand_path(@brand, :prev => true), :remote => true, :class => "button cancel" %>
       </li>
       <li>
         <%= link_to t("next"), "", :remote => true, :class => "button confirm" %>

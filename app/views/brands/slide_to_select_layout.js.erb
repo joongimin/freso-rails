@@ -1,4 +1,3 @@
-freso.ui_util.slide_content("ul#step_slider", "<%=j render("brands/select_layout") %>", {margin: 100, direction: "<%= params[:transition] == "slide_back" ? "left" : "right" %>"});
-freso.ui_util.scroll_to("top");
-freso.brands_controller.set_step(<%= GuideStep::SELECT_LAYOUT %>);
+<% content_for :step do render("brands/select_layout") end %>
+<%= render("brands/step", :step => GuideStep::SELECT_LAYOUT) %>
 <%= render("shared/history", :path => select_layout_brand_path(@brand)) %>
