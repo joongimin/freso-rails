@@ -14,11 +14,11 @@
 //= require exception_notifier
 //= require jquery_ujs
 //= require jquery-ui
+//= require rails.validations
 //= require select2
 //= require i18n
 //= require i18n/translations
 //= require main
-//= require rails.validations
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree ../../../lib/assets/javascripts/.
 //= require_tree .
