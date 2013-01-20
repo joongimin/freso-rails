@@ -2,7 +2,3 @@ $brands-sprite-dimensions: true;
 @import "brands/*.png";
 @include all-brands-sprites;
 @import "../views/brands/*";
-
-body[data-controller="brands"] {
-  background: rgb(228, 229, 230);
-}
