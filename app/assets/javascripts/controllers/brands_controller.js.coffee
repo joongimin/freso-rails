@@ -74,25 +74,33 @@ class BrandsController
       autoPlay: false,
       nextButton: true,
       prevButton: true,
+      showPrevButtonOnInit: false,
       navigationSkip: true,
       fadeFrameWhenSkipped: false,
       cycle: false,
     }
     tutorial_sequence = $("#tutorial_sequence").sequence(options)
+    tutorial = $("#tutorial_sequence").data("sequence")
 
     $("a.next").click ->
-      tutorial_sequence = $("#tutorial_sequence").data("sequence")
-      next_page = tutorial_sequence.currentFrameID + 1
-      if $("#tutorial_sequence").data("sequence").currentFrameID < $("#tutorial_sequence").data("sequence").numberOfFrames
+      next_page = $(".current_page").data("index") + 1
+      if next_page <= tutorial.numberOfFrames
         $(".current_page").removeClass("current_page")
         $("#"+next_page+".scroll_button").addClass("current_page")
+        if next_page == tutorial.numberOfFrames
+          $(this).fadeOut()
+        else if next_page == 2
+          $("a.prev").fadeIn()
 
     $("a.prev").click ->
-      tutorial_sequence = $("#tutorial_sequence").data("sequence")
-      prev_page = tutorial_sequence.currentFrameID - 1
-      if $("#tutorial_sequence").data("sequence").currentFrameID > 1
+      prev_page = $(".current_page").data("index") - 1
+      if prev_page >= 1
         $(".current_page").removeClass("current_page")
         $("#"+prev_page+".scroll_button").addClass("current_page")
+        if prev_page == 1
+          $(this).fadeOut()
+        else if prev_page == 2
+          $("a.next").fadeIn()
 
     $(".scroll_button").click ->
       $(this).closest("ul").find(".current_page").removeClass("current_page")
