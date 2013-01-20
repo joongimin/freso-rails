@@ -1,4 +1,8 @@
 class HomeController
+  constructor: ->
+    $(document).delegate "a#link_logout", "click", ->
+      $("<iframe></iframe>").attr("id", "logout_from_nuvo").attr("src", freso.data_util.get("nuvo-logout-url")).appendTo($("body"))
+
   draw_pane = ($canvas, args = {}) ->
     tilt = 400
     canvas = $canvas[0]
@@ -241,8 +245,10 @@ class HomeController
         $logo_container.find(".login").animate({opacity: 0}, "fast", -> $(this).hide())
       else if e.data == "relogin"
         $("iframe#relogin").attr("src", $("div#home_data").data("login-url"))
-      else if e.data == "success"
+      else if e.data == "logged_in"
         $.getScript DataUtil::get("root-url")
+      else if e.data == "logged_out"
+        $("iframe#logout_from_nuvo").remove()
 
     $(window).resize =>
       frame_height = $(window).height()

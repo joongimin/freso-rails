@@ -23,7 +23,7 @@
           <div class="toggle_menu_content">
             <div class="inner_wrap">
               <%= link_to t("shared.account_settings"), edit_user_path(current_user), :remote => true, :class => "menu_item", :title => t("shared.account_settings") %>
-              <%= link_to t("shared.log_out"), logout_path, :method => :delete, :remote => true, :class => "menu_item", :title => t("shared.log_out") %>
+              <%= link_to t("shared.log_out"), logout_path, :method => :delete, :remote => true, :class => "menu_item", :id => "link_logout", :title => t("shared.log_out") %>
               <div class="menu_separator"></div>
               <%= link_to t("faqs.title"), faq_categories_path, :remote => true, :class => "menu_item", :title => t("faqs.title") %>
             </div>

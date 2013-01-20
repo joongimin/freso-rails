@@ -559,3 +559,10 @@ a.current_page {
   position: relative;
   overflow: hidden;
 }
+
+iframe#logout_from_nuvo {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+}

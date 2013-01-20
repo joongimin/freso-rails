@@ -20,4 +20,8 @@ class SessionsController < ApplicationController
       format.html { redirect_to root_url }
     end
   end
+
+  def logged_out
+    render :logged_out, :layout => false
+  end
 end

@@ -4,9 +4,9 @@ class @AjaxUtil
     $body = $("body")
     AjaxUtil::action($body.data("controller").replace(/\//g, "_"), $body.data("action"))
 
-    History = window.History;
+    History = window.History
     if !History.enabled
-      return false;
+      return false
 
     History.Adapter.bind window, 'statechange', ->
       AjaxUtil::on_statechange()

@@ -14,6 +14,7 @@
     :"default-locale" => I18n.default_locale,
     :locale => I18n.locale,
     :"root-url" => root_url,
+    :"nuvo-logout-url" => "#{Settings.nuvo_site}/#{I18n.locale}/users/sign_out?next=#{sessions_logged_out_url}",
     :"title-prefix" => title_prefix
   } do %>
     <ul id="body_slider">
