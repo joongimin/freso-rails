@@ -17,14 +17,11 @@
     :"nuvo-logout-url" => "#{Settings.nuvo_site}/#{I18n.locale}/users/sign_out?next=#{sessions_logged_out_url}",
     :"title-prefix" => title_prefix
   } do %>
-    <% if current_user %>
-      <div id="login_background"></div>
-    <% end %>
     <ul id="body_slider">
-      <li>
+      <%= content_tag :li, :class => "body_slide #{controller.controller_path} #{controller.action_name}" do %>
         <%= render "shared/flash", :flash => flash %>
         <%= yield :body %>
-      </li>
+      <% end %>
     </ul>
   <% end %>
 </html>

@@ -1,3 +1,2 @@
 <% render(:template => "home/index", :formats => [:html], :layout => "layouts/application_logout") %>
-freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {direction: "left", nofog: true});
-<%= render("shared/history", :path => root_url) %>
+<%= render("shared/history", :path => root_url, :slide_body => :prev) %>

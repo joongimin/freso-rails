@@ -15,5 +15,15 @@ else
 end
 %>
 
+<%
+if local_assigns.include?(:slide_body)
+  args = {}
+  args["direction"] = "left" if slide_body == :prev
+  args["slide_class"] = "body_slide #{controller_path} #{action_name}"
+  args["nofog"] = "true"
+%>
+  freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", <%=raw args.to_json %>);
+<% end %>
+
 freso.ajax_util.push("<%=j yield(:title) %>", "<%=j path %>");
 freso.ajax_util.action("<%= controller_path %>", "<%= action_name %>");

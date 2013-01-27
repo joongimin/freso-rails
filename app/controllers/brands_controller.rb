@@ -7,6 +7,7 @@ class BrandsController < ApplicationController
 
   def show
     @brand = current_resource
+    render :show, :layout => false
   end
 
   def new

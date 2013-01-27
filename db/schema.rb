@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118012049) do
+ActiveRecord::Schema.define(:version => 20130127044143) do
 
   create_table "brand_translations", :force => true do |t|
     t.integer  "brand_id"
@@ -83,20 +83,20 @@ ActiveRecord::Schema.define(:version => 20130118012049) do
   add_index "layout_template_translations", ["locale"], :name => "index_layout_template_translations_on_locale"
 
   create_table "layout_templates", :force => true do |t|
-    t.string   "layout_option_template"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.text     "option_value_encoded"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "user_id"
   end
 
   add_index "layout_templates", ["user_id"], :name => "index_layout_templates_on_user_id"
 
   create_table "layouts", :force => true do |t|
-    t.string   "layout_option"
+    t.text     "option_value_encoded"
     t.integer  "brand_id"
     t.integer  "layout_template_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   add_index "layouts", ["brand_id"], :name => "index_layouts_on_brand_id"
@@ -115,15 +115,15 @@ ActiveRecord::Schema.define(:version => 20130118012049) do
   add_index "user_translations", ["user_id"], :name => "index_user_translations_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                     :default => "", :null => false
-    t.integer  "sign_in_count",                             :default => 0
+    t.string   "email",                        :default => "", :null => false
+    t.integer  "sign_in_count",                :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
-    t.string   "locale",                       :limit => 5
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "locale"
     t.string   "image_url"
     t.string   "nuvo_uid"
     t.string   "nuvo_access_token"

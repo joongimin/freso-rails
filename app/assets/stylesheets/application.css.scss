@@ -70,8 +70,11 @@ ul, li {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  td, th {
-    border: 1px solid black;
+
+  &.admin_table {
+    td, th {
+      border: 1px solid black;
+    }
   }
 }
 
@@ -163,17 +166,19 @@ div.admin-tool {
 }
 
 #content {
+  height: 100%;
   &.admin {
     padding: 30px;
   }
 }
 
-#login_background {
+#body_slider {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  background: rgb(228, 229, 230);
-  z-index: -1;
+
+  .body_slide {
+    height: 100%;
+    overflow: auto;
+  }
 }

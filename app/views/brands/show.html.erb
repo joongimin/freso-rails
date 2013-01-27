@@ -1,24 +1,28 @@
-<% title "Brand" %>
+<% if @brand.current_layout.nil? %>
+  <% title "Brand" %>
 
-<p>
-  <strong>Uid:</strong>
-  <%= @brand.uid %>
-</p>
-<p>
-  <strong>Hub:</strong>
-  <%= @brand.hub %>
-</p>
-<p>
-  <strong>Layout:</strong>
-  <%= @brand.layout_id %>
-</p>
-<p>
-  <strong>Uri:</strong>
-  <%= @brand.uri %>
-</p>
+  <p>
+    <strong>Uid:</strong>
+    <%= @brand.uid %>
+  </p>
+  <p>
+    <strong>Hub:</strong>
+    <%= @brand.hub %>
+  </p>
+  <p>
+    <strong>Layout:</strong>
+    <%= @brand.layout_id %>
+  </p>
+  <p>
+    <strong>Uri:</strong>
+    <%= @brand.uri %>
+  </p>
 
-<p>
-  <%= link_to "Edit", edit_brand_path(@brand) %> |
-  <%= link_to "Destroy", @brand, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", brands_path %>
-</p>
+  <p>
+    <%= link_to "Edit", edit_brand_path(@brand) %> |
+    <%= link_to "Destroy", @brand, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "View All", brands_path %>
+  </p>
+<% else %>
+  <%=raw @brand.current_layout.html %>
+<% end %>

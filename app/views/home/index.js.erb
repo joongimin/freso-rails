@@ -2,11 +2,10 @@
 r = Rails.application.routes.recognize_path(@next_path)
 render(:template => "#{r[:controller]}/#{r[:action]}", :formats => [:html], :layout => "layouts/application_login")
 %>
-freso.ui_util.slide_content("ul#body_slider", "<%=j content_for :body %>", {nofog: true});
 $("div.parallax").each(function() {
   if ($(this).attr("id") != "home") {
     $(this).hide();
   }
 });
 $("#nav").fadeOut();
-<%= render("shared/history", :path => @next_path) %>
+<%= render("shared/history", :path => @next_path, :slide_body => :next) %>
