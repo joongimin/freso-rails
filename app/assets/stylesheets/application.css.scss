@@ -56,13 +56,20 @@ ul, li {
 .tooltip_container {
   position: relative;
   .tooltip {
-    display: none;
+    position: absolute;
   }
+}
 
-  &:hover {
-    div.tooltip {
-      display: block;
-      position: absolute;
+.no_js {
+  .tooltip_container {
+    .tooltip {
+      display: none;
+    }
+
+    &:hover {
+      div.tooltip {
+        display: block;
+      }
     }
   }
 }
@@ -176,4 +183,10 @@ div.admin-tool {
   left: 0;
   background: rgb(228, 229, 230);
   z-index: -1;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
 }

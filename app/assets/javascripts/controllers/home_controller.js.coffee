@@ -34,7 +34,7 @@ class HomeController
       ctx.lineTo(5, canvas.height)
 
     ctx.closePath()
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
     ctx.shadowBlur = 13;
 
     if args.left
@@ -58,6 +58,7 @@ class HomeController
       $login_with_nuvo = $("<iframe id='login_with_nuvo' height='100%'></iframe>").attr("src", $("div#home_data").data("login-url"))
       $login_with_nuvo.prependTo($("#home"))
       $login_with_nuvo.hide()
+      $("#right_bar").fadeOut()
 
   close_login_with_nuvo = ->
     speed = 1000
@@ -75,9 +76,10 @@ class HomeController
       $("iframe#login_with_nuvo").remove()
       $background_container.find("div.solid").show().animate({opacity: 1}, 80, "linear")
       $background_container.find("div.split").animate({opacity: 0}, 80, "linear", -> $(this).hide())
-      $("ul#nav").show().animate({opacity: 1}, 400, "linear")
+      $("ul.nav").show().animate({opacity: 1}, 400, "linear")
 
       # Show all parallax scrolls
+      $("#right_bar").fadeIn()
       $("div.parallax").show()
 
     $right.animate({right: 0}, speed, easing)
@@ -89,18 +91,32 @@ class HomeController
     $logo_container.attr("style", org_style)
     $logo_container.animate({top: target_offset.top, left: target_offset.left}, speed, easing, -> $logo_container.removeAttr("style"))
 
-  display_tooltip: ->
-    $(".tooltip_container").closest("ul").find('.tooltip').attr("style", "display: none")
+  set_menu: (new_menu) ->
+    if @current_menu == new_menu
+      return
 
-    if @current_menu == 0
-      $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 0")
-      $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
-    else
-      $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 1")
-      $(".tooltip_container").closest("ul").find('.'+ @menu[@current_menu]).closest('.tooltip').attr("style", "display: block; position: absolute")
+    if new_menu == 0
+      $(".home_button").fadeOut()
+    else if @current_menu == 0
+      $(".home_button").fadeIn()
+
+    if !((@current_menu == 0 && new_menu == 1) || (@current_menu == 1 && new_menu == 0))
+      $nav = $(".nav")
+      if new_menu == 0
+        tooltip_index = 1
+      else
+        tooltip_index = new_menu
+
+      $prev_tooltip = $nav.find(".tooltip.always_show").removeClass("always_show")
+      $next_tooltip = $nav.find(".tooltip."+ @menu[tooltip_index]).addClass("always_show")
+
+      util.ui_util.fade_out $prev_tooltip, => util.ui_util.fade_in($next_tooltip)
+
+    @current_menu = new_menu
+    console.log("change current_page")
 
   index: ->
-    $nav = $('#nav').localScroll(800)
+    $nav = $(".nav").localScroll(800)
     $slider = $("ul#body_slider")
     if $slider.hasClass("sliding")
       $nav.hide()
@@ -136,31 +152,64 @@ class HomeController
       AjaxUtil::push $this.data("title"), $this.data("url")
       close_login_with_nuvo()
 
-    @menu = ['home', 'intro', 'strength', 'business_model', 'donation']
+    @menu = ["home", "intro", "strength", "business_model", "donation"]
     @current_menu = 0
     mousewheel_enable = true
-    $('#home-index').mousewheel (event, delta, deltaX, deltaY) =>
-      if deltaY != 0 && mousewheel_enable
+    $("#home-index").mousewheel (event, delta, deltaX, deltaY) =>
+      console.log("event occur", event.isPropagationStopped(), event.isDefaultPrevented())
+      #event.stopPropagation()
+      event.preventDefault()
+      if !mousewheel_enable
+        return
+      if deltaY != 0 && mousewheel_enable && event.offsetY > 0 && event.offsetY < 500
+        console.log("mousewheel event locked", deltaY, event.offsetY)
         mousewheel_enable = false
-        $(document).unbind('scroll')
-        $('body').addClass('stop-scrolling')
+        $(document).unbind("scroll")
+        #$("body").addClass("stop-scrolling")
         if deltaY < 0 && @current_menu < 4
-          @current_menu++
-          $.scrollTo "#"+@menu[@current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
-              mousewheel_enable = true
-              $(document).bind('scroll')
-              $('body').removeClass('stop-scrolling')
-            }
+          @set_menu(@current_menu + 1)
+          if @current_menu == 1
+            $(".nav.white").show()
+            $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onBegin: ((attr) ->
+                $(".nav.white").css("-webkit-mask-position-y", attr.scrollTop).animate({"-webkit-mask-position-y": 0}, 1000, "easeInOutExpo")
+              ), onAfter: ->
+                $(document).bind("scroll")
+                #$("body").removeClass("stop-scrolling")
+                setTimeout( ->
+                  mousewheel_enable = true
+                , 400)
+              }
+          else
+            $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onAfter: ->
+                $(document).bind("scroll")
+                #$("body").removeClass("stop-scrolling")
+                setTimeout( ->
+                  mousewheel_enable = true
+                , 400)
+              }
         else if deltaY > 0 && @current_menu > 0
-          @current_menu--
-          $.scrollTo "#"+@menu[@current_menu], 1000, {easing:'easeInOutExpo', onAfter: ->
-              mousewheel_enable = true
-              $(document).bind('scroll')
-              $('body').removeClass('stop-scrolling')
-            }
+          @set_menu(@current_menu - 1)
+          if @current_menu == 0
+            $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onBegin: ((attr) ->
+                $(".nav.white").css("-webkit-mask-position-y": 0).animate({"-webkit-mask-position-y": $(window).scrollTop()}, 1000, "easeInOutExpo")
+              ), onAfter: ->
+                $(document).bind("scroll")
+                $("body").removeClass("stop-scrolling")
+                setTimeout( ->
+                  mousewheel_enable = true
+                  $(".nav.white").hide()
+                , 400)
+              }
+          else
+            $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onAfter: ->
+                $(document).bind("scroll")
+                $("body").removeClass("stop-scrolling")
+                setTimeout( ->
+                  mousewheel_enable = true
+                , 400)
+              }
         else
           mousewheel_enable = true
-        @display_tooltip()
 
     $("a.icons-sub-nav-button").click ->
       if $(this).data("id") == "intro"
@@ -222,7 +271,7 @@ class HomeController
         $background_container.find("div.solid").animate({opacity: 0}, 80, "linear", -> $(this).hide())
         $background_container.find("div.split").show().animate({opacity: 1}, 80, "linear")
 
-        $("ul#nav").animate({opacity: 0}, 400, "linear", -> $(this).hide())
+        $("ul.nav").animate({opacity: 0}, 400, "linear", -> $(this).hide())
 
         $logo_container
           .css("top", offset.top + "px")
@@ -249,30 +298,43 @@ class HomeController
         $.getScript DataUtil::get("root-url")
       else if e.data == "logged_out"
         $("iframe#logout_from_nuvo").remove()
+      else if e.data == "login_with_facebook"
+        console.log("login_with_facebook")
+      else if e.data == "login_with_twitter"
+        console.log("login_with_twitter")
 
     $(window).resize =>
       frame_height = $(window).height()
       if frame_height < 700
         frame_height = 700
       $("div.parallax").height(frame_height)
-      $.scrollTo( "#"+@menu[@current_menu], 0, {easing:'easeInOutExpo'})
+      $.scrollTo( "#"+@menu[@current_menu], 0, {easing:"easeInOutExpo"})
       $(".right_end_bg").attr("style", "border-top-width: " + frame_height + "px")
       $(".left_end_bg").attr("style", "border-bottom-width: " + frame_height + "px")
 
-    $(document).ready ->
-      window_height = $(window).height()
-      $("div.parallax").height(window_height)
-      $(".tooltip_container").closest("ul").find(".home_button").attr("style", "opacity: 0")
-      $(".tooltip_container").closest("ul").find(".intro").closest('.tooltip').attr("style", "display: block; position: absolute")
-      $(".right_end_bg").attr("style", "border-top-width: " + $(window).height() + "px")
-      $(".left_end_bg").attr("style", "border-bottom-width: " + $(window).height() + "px")
+    # Scroll to top when hitting reload
+    $(window).load ->
+      setTimeout (-> $(window).scrollTop(0)), 0
+
+    window_height = $(window).height()
+    $("div.parallax").height(window_height)
+    $nav = $(".nav")
+    $(".home_button").hide()
+    util.ui_util.show($(".nav .intro").addClass("always_show"))
+    $(".right_end_bg").attr("style", "border-top-width: " + $(window).height() + "px")
+    $(".left_end_bg").attr("style", "border-bottom-width: " + $(window).height() + "px")
 
     $(".scroll_button").click (e) =>
-      @current_menu = @menu.indexOf($(e.target).data("id"))
-      @display_tooltip()
+      @set_menu(@menu.indexOf($(e.target).data("id")))
 
-    $(".home_button").click =>
-      @current_menu = 0
-      @display_tooltip()
+    $(".home_button").click => @set_menu(0)
+
+    $(".login_with_facebook").click ->
+      $.postMessage "login_with_facebook"
+      console.log("login_with_facebook")
+
+    $(".login_with_twitter").click ->
+      $.postMessage "login_with_twitter"
+      console.log("login_with_twitter")
 
 this.freso.home_controller = new HomeController

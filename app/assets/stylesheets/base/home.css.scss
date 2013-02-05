@@ -391,7 +391,7 @@ $icons-sprite-dimensions: true;
     }
   }
 
-  ul#nav {
+  #right_bar {
     position: fixed;
     top: 0;
     right: 0;
@@ -400,22 +400,65 @@ $icons-sprite-dimensions: true;
     background-color: rgba(0, 0, 0, 0.15);
     z-index: 200;
 
-    li {
-      text-align: center;
-      margin-top: 20px;
+    .nav {
+      position: absolute;
+      width: 265px;
+      height: 100%;
+      right: 0px;
 
-      div.tooltip {
-        top: 5px;
-        right: 45px;
+      li {
+        text-align: right;
+        margin-top: 20px;
+        margin-right: 24px;
 
-        .description {
+        &.first {
+          margin-top: 28px;
+          height: 40px;
+          margin-right: 15px;
+        }
+
+        a {
+          color: transparent;
+          text-decoration: none;
+        }
+
+        div.tooltip {
           top: 5px;
-          left: 50px;
-          width: 110px;
-          height: 46px;
-          position: absolute;
-          color: white;
-          font-size: 13px;
+          right: 26px;
+
+          .description {
+            top: 5px;
+            left: 50px;
+            width: 110px;
+            height: 46px;
+            position: absolute;
+            color: white;
+            font-size: 13px;
+            text-align: center;
+          }
+        }
+
+        .scroll_button {
+          display: inline-block;
+          background: rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      &.white {
+        //background-color: red;
+        -webkit-mask-image: -webkit-linear-gradient(top, white 0%, white 100%);
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: 0 30000px;
+
+        .scroll_button {
+          background: rgba(255, 255, 255, 0.7);
+        }
+
+        div.tooltip {
+          .description {
+            color: black;
+            font-weight: bold;
+          }
         }
       }
     }
@@ -555,6 +598,20 @@ a.current_page {
   overflow: hidden;
 }
 
+.custom_scrollbar {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    width: 101%;
+  }
+}
+
+
 .parallax {
   position: relative;
   overflow: hidden;
@@ -565,4 +622,8 @@ iframe#logout_from_nuvo {
   left: -10000px;
   width: 1px;
   height: 1px;
+}
+
+.ui-tooltip {
+  position: absolute;
 }

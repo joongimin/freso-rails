@@ -15,5 +15,7 @@ else
 end
 %>
 
-freso.ajax_util.push("<%=j yield(:title) %>", "<%=j path %>");
+<% if !params.include?(:history) %>
+  freso.ajax_util.push("<%=j yield(:title) %>", "<%=j path %>");
+<% end %>
 freso.ajax_util.action("<%= controller_path %>", "<%= action_name %>");

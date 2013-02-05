@@ -117,7 +117,7 @@
 
 			var elem = this,
 				$elem = $(elem),
-				targ = target, toff, attr = {},
+				targ = target, toff, attr = settings.attr || {},
 				win = $elem.is('html,body');
 
 			switch( typeof targ ){
@@ -183,9 +183,10 @@
 				}
 			});
 
-			animate( settings.onAfter );
+			animate(settings.onBegin, settings.onAfter);
 
-			function animate( callback ){
+			function animate(callbackBegin, callback){
+				callbackBegin && callbackBegin.call(this, attr)
 				$elem.animate( attr, duration, settings.easing, callback && function(){
 					callback.call(this, target, settings);
 				});

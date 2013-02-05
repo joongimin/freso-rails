@@ -23,30 +23,12 @@
     </div>
     <div class="back_container"><%= content_tag :a, :id => "link_back", :data => {:title => t(".title"), :url => root_path} do %>Back<br /><%= image_tag "home/back.png" %><% end %></div>
   </div>
-  <% menu.each do |menu_item| %>
+  <% menu.each_with_index do |menu_item, i| %>
     <% next if menu_item[:id] == "home" %>
     <%= content_tag :div, :id => menu_item[:id], :class => "parallax", :"data-parallax-speed" => 0.1 do %>
       <%= render "home/#{menu_item[:id]}", :menu_item => menu_item %>
     <% end %>
   <% end %>
-  <ul id="nav">
-    <% menu.each do |menu_item| %>
-      <li class="tooltip_container">
-        <%= content_tag :a, :href => "##{menu_item[:id]}", :title => menu_item[:title] do %>
-          <% if menu_item[:id] == "home" %>
-            <%= image_tag "home/nuvoButton.png", :class => "home_button", :data => {:id => menu_item[:id]} %>
-          <% else %>
-            <%= image_tag "home/side-menu-dot.png", :class => "scroll_button", :data => {:id => menu_item[:id]} %>
-          <% end %>
-        <% end %>
-        <% if menu_item.include?(:title) %>
-          <div class="tooltip">
-            <%= image_tag "home/side-menu-indicator.png", :class => menu_item[:id] %>
-            <div class="description"><%= menu_item[:title] %></div>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <%= render "home/right_bar", :menu => menu %>
   <iframe id="relogin" style="display: none;"></iframe>
 </div>

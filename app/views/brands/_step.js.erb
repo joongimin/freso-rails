@@ -1,1 +1,13 @@
-freso.brands_controller.set_step(<%= step %>, "<%=j content_for :step %>", <%= params[:prev] || "false" %>);
+<%
+if params.include?(:history)
+  if params[:history] == "back"
+    prev = "true"
+  else
+    prev = "false"
+  end
+else
+  prev = params[:prev] || "false"
+end
+
+%>
+freso.brands_controller.set_step(<%= step %>, "<%=j content_for :step %>", <%= prev %>);

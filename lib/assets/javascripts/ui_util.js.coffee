@@ -47,31 +47,10 @@ class @UIUtil
       }
 
   show: ($target, args = {}) ->
-    if args.transition == "vertical"
-      $target.show()
-      if args.height
-        natural_height = args.height
-      else
-        $target.css("height", "auto")
-        natural_height = $target.height()
+    $target.css("opacity", 1).show()
 
-      $target.css("height", 0)
-      $target.animate {height: natural_height}, args.transition_speed || 400, ->
-        if args.height
-          $target.height(args.height)
-        else
-          $target.css("height", "auto")
-    else
-      $target.show()
-
-  hide: ($target, args = {}) ->
-    if args.transition == "vertical"
-      $target.animate {height: 0}, args.transition_speed || 400, ->
-        $target.hide()
-        if args.callback
-          args.callback()
-    else
-      $target.hide()
+  hide: ($target) ->
+    $target.css("opacity", 0).hide()
 
   scroll_to: (target) ->
     $html = $("html")
@@ -81,5 +60,14 @@ class @UIUtil
       scroll_top = $(target).offset().top
 
     $("html, body").animate {scrollTop: scroll_top}, "fast"
+
+  fade_in: ($target, complete = null) ->
+    $target.stop().show().animate({opacity: 1}, "slow", complete)
+
+  fade_out: ($target, complete = null) ->
+    $target.stop().animate {opacity: 0}, "fast", ->
+      $(this).hide()
+      if complete
+        complete()
 
 this.util.ui_util = new UIUtil

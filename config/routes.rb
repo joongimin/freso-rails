@@ -4,6 +4,8 @@ Freso::Application.routes.draw do
   match 'logout', to: 'sessions#destroy', as: 'logout'
   controller :sessions do
     get "sessions/logged_out" => :logged_out
+    get "sessions/facebook" => :facebook
+    get "sessions/twitter" => :twitter
   end
 
   scope ":current_locale", current_locale: /#{I18n.available_locales.join("|")}/ do
