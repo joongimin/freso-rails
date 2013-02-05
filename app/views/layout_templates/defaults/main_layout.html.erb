@@ -1,0 +1,32 @@
+<header>
+  <div id="logo">
+    {{{logo}}}
+  </div>
+  <div id="login">
+    {{{login}}}
+  </div>
+</header>
+<div id="product_categories">
+  <ul>
+    {{#product_categories}}
+      <li class="product_category">
+        <div class="name">
+          {{product_category}}
+        </div>
+      </li>
+      {{/product_categories}}
+  </ul>
+</div>
+<div id="products">
+  <ul>
+    {{#products}}
+      <li class="product">
+        <div class="name">{{name}}</div>
+        <div class="price">{{price}}</div>
+      </li>
+    {{/products}}
+  </ul>
+</div>
+<footer>
+  {{{footer}}}
+</footer>

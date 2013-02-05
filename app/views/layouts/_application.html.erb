@@ -7,6 +7,13 @@
     <%= javascript_include_tag "application" %>
     <%= yield :head %>
     <%= csrf_meta_tags %>
+    <% view_path = "#{Rails.root}/app/views/" %>
+    <% Dir.glob("#{view_path}**/*.mustache", File::FNM_PATHNAME).each do |f| %>
+      <% f = f.gsub(view_path, "") %>
+      <%= content_tag :script, :type => "text/html", :id => f.gsub("/", "_").gsub(".html.mustache", "") do %>
+        <%= render :template => f %>
+      <% end %>
+    <% end %>
   </head>
   <%= content_tag :body, :data => {
     :controller => controller.controller_path,

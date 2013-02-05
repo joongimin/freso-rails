@@ -2,17 +2,28 @@
 
 <p>
 	<b>Layout Author:</b>
-	<%= @layout_template.user.name %></br>
+	<%= @layout_template.user.name %><br />
 	<b>Layout name:</b>
-  <%= @layout_template.name %></br>
+  <%= @layout_template.name %><br />
   <b>Layout description:</b>
-  <%= @layout_template.description %></br>
+  <%= @layout_template.description %><br />
   <b>Layout preview:</b>
-  <%= image_tag(@layout_template.image.image_url) if !@layout_template.image.nil? %></br>
-  <b>Layout option template:</b>
-  <%= @layout_template.option_value_encoded %>
+  <%= image_tag(@layout_template.image.image_url) if !@layout_template.image.nil? %><br />
+  <b>Script:</b>
+  <%= content_tag :div, @layout_template.script, :class => "ace_editor", :id => "script_editor" %>
+  <br />
+  <b>Main Layout:</b>
+  <%= content_tag :div, @layout_template.main_layout, :class => "ace_editor", :id => "main_layout_editor" %>
+  <br />
+  <b>Option Value:</b>
+  <br />
+  <% @layout_template.option_value.each do |section_key, section_value| %>
+    <%= section_key %>
+    <ul>
+    </ul>
+  <% end %>
+  <br />
 </p>
-
 
 <%= link_to 'Edit', edit_layout_template_path(@layout_template) %> |
 <%= link_to 'Back', layout_templates_path %>

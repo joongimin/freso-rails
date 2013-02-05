@@ -83,4 +83,7 @@ class @UIUtil
 
     $("html, body").animate {scrollTop: scroll_top}, "fast"
 
+  alert: (message) ->
+    alert(message)
+
 this.util.ui_util = new UIUtil
