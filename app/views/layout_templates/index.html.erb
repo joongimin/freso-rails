@@ -1,6 +1,6 @@
 <h1>Listing layout_templates</h1>
 
-<table>
+<table class="admin_table">
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -15,7 +15,7 @@
     <td><%= layout_template.name %></td>
     <td><%= layout_template.description %></td>
     <td><%= image_tag(layout_template.image.image_url) if layout_template.image.image? %></td>
-    <td><%= layout_template.layout_option_template %></td>
+    <td><%= layout_template.option_value_encoded %></td>
     <td><%= link_to 'Show', layout_template %></td>
     <td><%= link_to 'Edit', edit_layout_template_path(layout_template) %></td>
     <td><%= link_to 'Destroy', layout_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>

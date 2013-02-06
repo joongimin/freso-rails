@@ -13,13 +13,14 @@ class @UIUtil
     if !args["nofog"]
       $("body").append("<div class='fog left'></div>").append("<div class='fog right'></div>")
 
-
     slider_width = $slider.width()
 
     $slider.addClass("sliding")
     $current_slide = $slider.children("li").css("float", "left").css("width", slider_width)
 
     $next_slide = $("<li class='next_slide'></li>")
+    if args.slide_class
+      $next_slide.addClass(args.slide_class)
     $next_slide.css("float", "left").css("width", slider_width).html(html)
 
     if args["direction"] == "right"

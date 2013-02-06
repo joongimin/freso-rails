@@ -2,7 +2,7 @@
   <% @layout_templates = layout_templates %>
 
   <%# Slide %>
-  freso.ui_util.slide_content("#layout_template_slider", "<%=j render('brands/layout_templates') %>", {direction: "<%= params[:prev] ? "left" : "right" %>", margin: 14, duration: 800, easing: "easeOutCubic"});
+  freso.ui_util.slide_content("ul#layout_template_slider", "<%=j render('brands/layout_templates') %>", {direction: "<%= params[:prev] ? "left" : "right" %>", margin: 14, duration: 800, easing: "easeOutCubic"});
 
   <%# Arrow %>
   <% if @layout_templates.first_page? %>

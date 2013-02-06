@@ -6,4 +6,8 @@ class Layout < ActiveRecord::Base
 
   validates :layout_template_id, :presence => {:message => Proc.new {I18n.t("layouts.validation.layout_template")}}
   validates :brand_id, :presence => true
+
+  def html
+    layout_template.main_layout
+  end
 end

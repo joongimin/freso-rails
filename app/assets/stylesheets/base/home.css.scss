@@ -206,7 +206,7 @@ $icons-sprite-dimensions: true;
 
     .left_end_bg {
       position: absolute;
-      left: 49.95%;
+      left: 50%;
       width: 40px;
       border-bottom-width: 700px;
       border-bottom-style: solid;
@@ -217,16 +217,16 @@ $icons-sprite-dimensions: true;
     .left_bg {
       background-color: #303838;
       position: absolute;
-      left: -30%;
-      width: 80%;
+      left: 0%;
+      width: 50%;
       height: 100%;
     }
 
     .right_bg {
       background-color: #303838;
       position: absolute;
-      right: -30%;
-      width: 80%;
+      right: 0%;
+      width: 50%;
       height: 100%;
     }
 
@@ -414,7 +414,7 @@ $icons-sprite-dimensions: true;
         &.first {
           margin-top: 28px;
           height: 40px;
-          margin-right: 15px;
+          margin-right: 14px;
         }
 
         a {
@@ -445,11 +445,7 @@ $icons-sprite-dimensions: true;
       }
 
       &.white {
-        //background-color: red;
-        -webkit-mask-image: -webkit-linear-gradient(top, white 0%, white 100%);
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-position: 0 30000px;
-
+        // background-color: blue;
         .scroll_button {
           background: rgba(255, 255, 255, 0.7);
         }
@@ -460,6 +456,9 @@ $icons-sprite-dimensions: true;
             font-weight: bold;
           }
         }
+      }
+
+      &.black {
       }
     }
   }
@@ -549,12 +548,12 @@ $icons-sprite-dimensions: true;
   }
 
   .animate-out .strength_first {
-    left: -2000px;
+    left: -100%;
     @include sequence_animate(1s);
   }
 
   .strength_first, .strength_second, .strength_third, .strength_fourth, .strength_fifth, .strength_sixth {
-    left: 2000px;
+    left: 100%;
     top: 0;
     @include sequence_animate(1s);
   }
@@ -570,12 +569,12 @@ $icons-sprite-dimensions: true;
   .animate-in .strength_first, .animate-in .strength_second, .animate-in .strength_third, .animate-in .strength_fourth, .animate-in .strength_fifth, .animate-in .strength_sixth {
     left: 0;
     top: 0;
-    @include sequence_animate(2s);
+    @include sequence_animate(1.5s);
   }
 
   .animate-out .strength_first, .animate-out .strength_second, .animate-out .strength_third, .animate-out .strength_fourth, .animate-out .strength_fifth, .animate-out .strength_sixth {
     top: 0;
-    left: -2000px;
+    left: -100%;
     @include sequence_animate(1.5s);
   }
 }

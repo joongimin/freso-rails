@@ -1,12 +1,19 @@
-.brands.customize {
+.body_slide.brands.customize {
   background-color: white;
 
+  table#main_table {
+    width: 100%;
+    height: 100%;
+    td {
+      vertical-align: top;
+    }
+  }
+
   #leftContainer {
-    position: fixed;
-    height:100%;
-    width:320px;
-    background-image:url(brands/customize/design-edit-menu-background-image.png);
-    border-right:1px solid #151515;
+    height: 100%;
+    width: 320px;
+    background-image: url(brands/customize/design-edit-menu-background-image.png);
+    border-right: 1px solid #151515;
   }
 
   #leftTop {
@@ -28,11 +35,7 @@
 
   #leftTopButtonContainer {
     padding: 8px 20px 0 20px;
-  }
-
-  #leftEditElementContainer {
-    width: 100%;
-    height:100%;
+    @extend .clearfix;
   }
 
   #leftEditElement {
@@ -331,7 +334,9 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e4e5e6', endColorstr='#e4e5e6',GradientType=1 ); /* IE6-9 */
   }
 
-  #rightContainer {
-    text-align: center;
+  iframe#preview {
+    border: none;
+    width: 100%;
+    height: 100%;
   }
 }

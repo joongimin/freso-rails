@@ -113,7 +113,6 @@ class HomeController
       util.ui_util.fade_out $prev_tooltip, => util.ui_util.fade_in($next_tooltip)
 
     @current_menu = new_menu
-    console.log("change current_page")
 
   index: ->
     $nav = $(".nav").localScroll(800)
@@ -156,25 +155,20 @@ class HomeController
     @current_menu = 0
     mousewheel_enable = true
     $("#home-index").mousewheel (event, delta, deltaX, deltaY) =>
-      console.log("event occur", event.isPropagationStopped(), event.isDefaultPrevented())
-      #event.stopPropagation()
       event.preventDefault()
       if !mousewheel_enable
         return
-      if deltaY != 0 && mousewheel_enable && event.offsetY > 0 && event.offsetY < 500
-        console.log("mousewheel event locked", deltaY, event.offsetY)
+      if deltaY != 0 && mousewheel_enable# && event.offsetY > 0 && event.offsetY < 500
         mousewheel_enable = false
         $(document).unbind("scroll")
-        #$("body").addClass("stop-scrolling")
         if deltaY < 0 && @current_menu < 4
           @set_menu(@current_menu + 1)
           if @current_menu == 1
-            $(".nav.white").show()
             $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onBegin: ((attr) ->
-                $(".nav.white").css("-webkit-mask-position-y", attr.scrollTop).animate({"-webkit-mask-position-y": 0}, 1000, "easeInOutExpo")
+                $(".nav.black").animate({"height": 0}, 1000, "easeInOutExpo")
               ), onAfter: ->
                 $(document).bind("scroll")
-                #$("body").removeClass("stop-scrolling")
+                $(".nav.black").hide()
                 setTimeout( ->
                   mousewheel_enable = true
                 , 400)
@@ -182,7 +176,6 @@ class HomeController
           else
             $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onAfter: ->
                 $(document).bind("scroll")
-                #$("body").removeClass("stop-scrolling")
                 setTimeout( ->
                   mousewheel_enable = true
                 , 400)
@@ -190,20 +183,18 @@ class HomeController
         else if deltaY > 0 && @current_menu > 0
           @set_menu(@current_menu - 1)
           if @current_menu == 0
+            $(".nav.black").show()
             $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onBegin: ((attr) ->
-                $(".nav.white").css("-webkit-mask-position-y": 0).animate({"-webkit-mask-position-y": $(window).scrollTop()}, 1000, "easeInOutExpo")
+                $(".nav.black").animate({"height": $(window).height()}, 1000, "easeInOutExpo")
               ), onAfter: ->
                 $(document).bind("scroll")
-                $("body").removeClass("stop-scrolling")
                 setTimeout( ->
                   mousewheel_enable = true
-                  $(".nav.white").hide()
                 , 400)
               }
           else
             $.scrollTo "#"+@menu[@current_menu], 1000, {easing:"easeInOutExpo", onAfter: ->
                 $(document).bind("scroll")
-                $("body").removeClass("stop-scrolling")
                 setTimeout( ->
                   mousewheel_enable = true
                 , 400)

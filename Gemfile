@@ -19,7 +19,7 @@ group :assets do
   gem "compass-rails"
 end
 
-gem "jquery-rails"
+gem "jquery-rails", "2.1.4" # set jquery-rails version to 2.1.4
 
 # To use ActiveModel has_secure_password
 # gem "bcrypt-ruby", "~> 3.0.0"
@@ -30,6 +30,9 @@ gem "jquery-rails"
 group :development do
   gem "thin"
   gem "nifty-generators"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "meta_request"
 end
 
 group :production do
@@ -67,8 +70,6 @@ gem "globalize3"
 gem "rmagick"
 gem "nested_form"
 
-gem "client_side_validations", :git => "git@github.com:joongimin/client_side_validations.git", :branch => "3-2-stable"
-
 # Internationalize Javascript
 gem "i18n-js"
 
@@ -77,3 +78,9 @@ gem "select2-rails"
 
 # Pagination
 gem "kaminari"
+
+# Template
+gem "mustache"
+
+# Forms
+gem "client_side_validations", :git => "git@github.com:joongimin/client_side_validations.git", :branch => "3-2-stable"
