@@ -17,6 +17,8 @@ Freso::Application.routes.draw do
         get :customize_tutorial
         get :customize
         get :menu
+        get :preview
+        put :update_layout_option
       end
     end
     resources :translations, :except => :show

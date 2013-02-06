@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127044143) do
+ActiveRecord::Schema.define(:version => 20130202095844) do
 
   create_table "brand_translations", :force => true do |t|
     t.integer  "brand_id"
@@ -30,13 +30,15 @@ ActiveRecord::Schema.define(:version => 20130127044143) do
     t.integer  "layout_id"
     t.integer  "user_id"
     t.string   "uri"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "current_layout_id"
+    t.integer  "temporary_layout_id"
   end
 
   add_index "brands", ["current_layout_id"], :name => "index_brands_on_current_layout_id"
   add_index "brands", ["layout_id"], :name => "index_brands_on_layout_id"
+  add_index "brands", ["temporary_layout_id"], :name => "index_brands_on_temporary_layout_id"
   add_index "brands", ["user_id"], :name => "index_brands_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
@@ -70,6 +72,27 @@ ActiveRecord::Schema.define(:version => 20130127044143) do
     t.datetime "updated_at",                   :null => false
   end
 
+  create_table "layout_options", :force => true do |t|
+    t.string  "key",               :limit => 30
+    t.string  "option_type",       :limit => 30
+    t.integer "layout_section_id"
+    t.text    "value"
+  end
+
+  add_index "layout_options", ["key"], :name => "index_layout_options_on_key"
+  add_index "layout_options", ["layout_section_id"], :name => "index_layout_options_on_layout_section_id"
+
+  create_table "layout_sections", :force => true do |t|
+    t.string  "key",                     :limit => 30
+    t.text    "mustache"
+    t.integer "layout_sectionable_id"
+    t.string  "layout_sectionable_type"
+  end
+
+  add_index "layout_sections", ["key"], :name => "index_layout_sections_on_key"
+  add_index "layout_sections", ["layout_sectionable_id"], :name => "index_layout_sections_on_layout_sectionable_id"
+  add_index "layout_sections", ["layout_sectionable_type"], :name => "index_layout_sections_on_layout_sectionable_type"
+
   create_table "layout_template_translations", :force => true do |t|
     t.integer  "layout_template_id"
     t.string   "locale"
@@ -87,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20130127044143) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "user_id"
+    t.text     "mustache"
   end
 
   add_index "layout_templates", ["user_id"], :name => "index_layout_templates_on_user_id"
@@ -97,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130127044143) do
     t.integer  "layout_template_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.text     "mustache"
   end
 
   add_index "layouts", ["brand_id"], :name => "index_layouts_on_brand_id"

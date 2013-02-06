@@ -10,6 +10,11 @@ class BrandsController < ApplicationController
     render :show, :layout => false
   end
 
+  def preview
+    @brand = current_resource
+    render :preview, :layout => false
+  end
+
   def new
     respond_to do |format|
       format.html
@@ -46,6 +51,12 @@ class BrandsController < ApplicationController
     end
   end
 
+  def update_layout_option
+    @brand = current_resource
+    @layout_option = @brand.temporary_layout.layout_options.find(params[:layout_option][:id])
+    @layout_option.update_attribute(:value, params[:layout_option][:value])
+  end
+
   def edit
     @brand = current_resource
   end
@@ -73,6 +84,16 @@ class BrandsController < ApplicationController
 
   def customize
     @brand = current_resource
+    if @brand.current_layout.layout_template
+      if @brand.temporary_layout
+        # TODO: Ask if user wants to use temporary
+      else
+        @brand.temporary_layout = Layout.clone(@brand.current_layout)
+        if !@brand.save
+          # TODO: Error handling
+        end
+      end
+    end
     @no_topbar = true
   end
 

@@ -5,6 +5,7 @@ class Brand < ActiveRecord::Base
   belongs_to :user
   has_many :layouts
   belongs_to :current_layout, :class_name => "Layout"
+  belongs_to :temporary_layout, :class_name => "Layout"
 
   validates :name, :presence => true, :length => { :minimum => 2 }
   validates :uri, :presence => true, :uniqueness => true, :uri_format => true, :length => { :minimum => 3, :maximum => 20 }
@@ -28,5 +29,9 @@ class Brand < ActiveRecord::Base
     end
 
     result
+  end
+
+  def html(args = {})
+    current_layout.html(args)
   end
 end

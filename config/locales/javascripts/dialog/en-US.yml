@@ -1,0 +1,5 @@
+en-US:
+  javascripts:
+    dialog:
+      ok: "OK"
+      warning: "Warning"

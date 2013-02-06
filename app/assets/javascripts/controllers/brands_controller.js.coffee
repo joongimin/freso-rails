@@ -96,7 +96,7 @@ class BrandsController
       prev_page = $(".current_page").data("index") - 1
       if prev_page >= 1
         $(".current_page").removeClass("current_page")
-        $("#"+prev_page+".scroll_button").addClass("current_page")
+        $("#" + prev_page + ".scroll_button").addClass("current_page")
         if prev_page == 1
           $(this).fadeOut()
         else if prev_page == 2
@@ -106,5 +106,40 @@ class BrandsController
       $(this).closest("ul").find(".current_page").removeClass("current_page")
       $("#tutorial_sequence").data("sequence").goTo($(this).data("index"))
       $(this).addClass("current_page")
+
+  customize: ->
+    $("div.layout_section_title").click ->
+      $this = $(this)
+      $layout_section = $this.closest(".layout_section")
+      if $layout_section.hasClass("collapsed")
+        $layout_section.removeClass("collapsed")
+        $this.text($this.text().replace("+", "-"))
+      else
+        $layout_section.addClass("collapsed")
+        $this.text($this.text().replace("-", "+"))
+
+    $(".radio_button").click ->
+      $this = $(this)
+      $radio = $this.prev("input:radio")
+      if !$this.hasClass("checked")
+        $checked_radio = $("input:radio[name='" + $radio.attr("name") + "']:checked")
+        $checked_radio.removeAttr("checked").next(".radio_button").removeClass("checked")
+        $this.addClass("checked")
+        $radio.attr("checked", "checked")
+
+    $inputs = $("#form_editor").find("input, select")
+    $inputs.each ->
+      $(this).data("value", $(this).val())
+
+    $inputs.bind "focusout change keyup keydown", ->
+      $this = $(this)
+      if $this.val() != $this.data("value")
+        $this.data("value", $this.val())
+        $form = $("form#update_layout_option")
+        $fields = $form.find(".fields").empty()
+        $id = $this.closest("form").find("input[name='" + $this.attr("name").replace(/\[value\]$/g, "[id]") + "']")
+        $fields.append($("<input type='hidden'></input>").attr("name", "layout_option[id]").val($id.val()))
+        $fields.append($("<input type='hidden'></input>").attr("name", "layout_option[value]").val($this.val()))
+        $form.submit()
 
 this.freso.brands_controller = new BrandsController

@@ -1,0 +1,21 @@
+.admin {
+  .section {
+    margin-top: 10px;
+
+    .section_title {
+      border-bottom: 1px solid grey;
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .field {
+    margin-top: 10px;
+
+    .field_title {
+      display: block;
+      font-size: 12px;
+    }
+  }
+}

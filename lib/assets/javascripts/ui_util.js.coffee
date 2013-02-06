@@ -71,4 +71,7 @@ class @UIUtil
       if complete
         complete()
 
+  alert: (message) ->
+    alert(message)
+
 this.util.ui_util = new UIUtil
