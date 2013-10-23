@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :create
   before_action :set_route, only: [:show, :edit, :update, :destroy]
 
   # GET /routes
@@ -26,7 +27,7 @@ class RoutesController < ApplicationController
       return
     end
 
-    @route = Route.new(route_params)
+    @route = Route.new(url: params[:url])
 
     if @route.save
       render text: "#{root_url}#{@route.key}", status: 200
@@ -67,6 +68,6 @@ class RoutesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def route_params
-      params.require(:route).permit(:key, :url)
+      params.require(:route).permit(:url)
     end
 end
