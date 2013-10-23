@@ -1,7 +1,0 @@
-<% if @brand.temporary_layout.errors.any? %>
-  <% @brand.temporary_layout.errors.full_messages.each do |message| %>
-    freso.ui_util.alert("<%= message %>");
-  <% end %>
-<% else %>
-  $("iframe#preview").contents().find("#<%= @layout_option.layout_section.key %>").css("<%= @layout_option.option_type.gsub("css@", "") %>", "<%= @layout_option.value %>")
-<% end %>

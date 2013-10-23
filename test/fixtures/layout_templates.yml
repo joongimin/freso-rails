@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  layout_option_template: MyString
-
-two:
-  layout_option_template: MyString

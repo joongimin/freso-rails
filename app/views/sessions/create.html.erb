@@ -1,7 +1,0 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%= javascript_include_tag "application" %>
-  </head>
-  <%= content_tag :body, nil, :data => {:controller => controller.controller_path, :action => controller.action_name, :referer => login_url} %>
-</html>
