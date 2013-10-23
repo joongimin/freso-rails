@@ -10,9 +10,10 @@
       </ul>
     </div>
   <% end %>
+  <%= hidden_field_tag 'secret', @secret %>
   <div class="field">
     <%= f.label :url %><br>
-    <%= f.text_area :url %>
+    <%= text_area_tag :url, @route.url %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -15,7 +15,8 @@ class RoutesController < ApplicationController
 
   # GET /routes/new
   def new
-    @route = Route.new(secret: SECRET)
+    @route = Route.new
+    @secret = SECRET
   end
 
   # GET /routes/1/edit
@@ -24,7 +25,10 @@ class RoutesController < ApplicationController
 
   # POST /routes
   def create
+    logger.debug "params[:secret] #{params[:secret]}"
+    logger.debug "SECRET #{SECRET}"
     if params[:secret] != SECRET
+      logger.debug "haha"
       render nothing: true, status: 401
       return
     end
@@ -34,13 +38,14 @@ class RoutesController < ApplicationController
     if @route.save
       render text: "#{root_url}#{@route.key}", status: 200
     else
+      logger.debug "#{@route.errors.full_messages}"
       render nothing: true, status: 404
     end
   end
 
   # PATCH/PUT /routes/1
   def update
-    if @route.update(route_params)
+    if @route.update(url: params[:url])
       redirect_to @route, notice: 'Route was successfully updated.'
     else
       render action: 'edit'
@@ -66,10 +71,5 @@ class RoutesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_route
       @route = Route.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def route_params
-      params.require(:route).permit(:url)
     end
 end
