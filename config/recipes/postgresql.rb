@@ -28,7 +28,7 @@ namespace :postgresql do
 
   desc "Backup PostgreSQL Database"
   task :backup, roles: :db do
-    run "pg_dump -U#{postgresql_user} #{postgresql_database} -h #{postgresql_host} -W#{postgresql_password} --clean > #{shared_path}/backups/#{release_name}.sql"
+    run "pg_dump #{postgresql_database} -U#{postgresql_user} -h#{postgresql_host} --clean > #{shared_path}/backups/#{release_name}.sql"
   end
   before "deploy:migrate", "postgresql:backup"
 end

@@ -2,6 +2,8 @@ class RoutesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   before_action :set_route, only: [:show, :edit, :update, :destroy]
 
+  SECRET = 'e6902c80c51b5ddb2612ada39d3a8b60'
+
   # GET /routes
   def index
     @routes = Route.all
@@ -13,7 +15,7 @@ class RoutesController < ApplicationController
 
   # GET /routes/new
   def new
-    @route = Route.new
+    @route = Route.new(secret: SECRET)
   end
 
   # GET /routes/1/edit
@@ -22,7 +24,7 @@ class RoutesController < ApplicationController
 
   # POST /routes
   def create
-    if params[:secret] != 'e6902c80c51b5ddb2612ada39d3a8b60'
+    if params[:secret] != SECRET
       render nothing: true, status: 401
       return
     end
