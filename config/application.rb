@@ -22,6 +22,8 @@ module FresoRails
 
     config.time_zone = 'Seoul'
 
+    config.action_mailer.delivery_method = :amazon_ses
+
     config.assets.initialize_on_precompile = false
     config.assets.precompile = [
       "application.css",

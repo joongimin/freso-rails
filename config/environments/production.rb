@@ -77,4 +77,10 @@ FresoRails::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.middleware.use ExceptionNotification::Rack, email: {
+    email_prefix: '[Freso Exception] ',
+    sender_address: %{"Exception Notifier" <noreply@the-nuvo.com>},
+    exception_recipients: %w{freso-developers@the-nuvo.com}
+  }
 end

@@ -19,9 +19,13 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'exception_notification'
 end
 
 # Use Capistrano for deployment
 group :development do
   gem 'capistrano', '2.15.5'
 end
+
+# AWS integration
+gem 'aws-sdk'
