@@ -14,8 +14,10 @@ set :unicorn_workers, 16
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-set :postgresql_database, 'freso'
-set :postgresql_host, 'db1.fre.so'
+set :mysql_database, 'freso'
+set :mysql_host, 'db1.fre.so'
+set :mysql_user, 'nuvo'
+set :mysql_password, ENV['NUVO_MYSQL_PASSWORD']
 set :branch, 'master'
 server 'fre.so', :app, :web, :db, :primary => true
 
@@ -27,7 +29,7 @@ load "config/recipes/git"
 load "config/recipes/nginx"
 load "config/recipes/unicorn"
 load "config/recipes/rbenv"
-load "config/recipes/postgresql"
+load "config/recipes/mysql"
 
 after "deploy:update_code", "deploy:migrate"
 

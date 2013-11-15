@@ -2,7 +2,7 @@ FresoRails::Application.routes.draw do
   resources :routes
 
   root :to => "routes#index"
-  get ':key' => 'routes#redirect'
+  get ':hash_key' => 'routes#redirect'
 
   resources :routes do
 

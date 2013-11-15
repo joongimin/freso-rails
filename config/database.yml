@@ -1,21 +1,6 @@
 development:
-  adapter: postgresql
-  encoding: unicode
+  host: localhost
+  adapter: mysql2
+  encoding: utf8
   database: freso_development
-  host: localhost
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: freso_test
-  host: localhost
-  pool: 5
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: freso
-  username: nuvo
-  password: welcome2nv
-  host: db1.fre.so
-  pool: 5
+  collation: utf8_general_ci

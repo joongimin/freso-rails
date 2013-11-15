@@ -38,7 +38,13 @@ GEM
     highline (1.6.19)
     hike (1.2.3)
     i18n (0.6.5)
+    jquery-rails (3.0.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.8.1)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -46,6 +52,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
+    mysql2 (0.3.13)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -53,7 +60,6 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    pg (0.17.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -105,7 +111,9 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (= 2.15.5)
-  pg
+  jquery-rails
+  kaminari
+  mysql2
   rails (= 4.0.0)
   sdoc
   unicorn

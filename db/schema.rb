@@ -13,11 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20131023112236) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "routes", force: true do |t|
-    t.string   "key"
+    t.string   "hash_key"
     t.text     "url"
     t.datetime "created_at"
     t.datetime "updated_at"

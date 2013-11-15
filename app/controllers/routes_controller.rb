@@ -6,7 +6,7 @@ class RoutesController < ApplicationController
 
   # GET /routes
   def index
-    @routes = Route.all
+    @routes = Route.order(id: :desc).page(params[:page])
   end
 
   # GET /routes/1
@@ -25,10 +25,7 @@ class RoutesController < ApplicationController
 
   # POST /routes
   def create
-    logger.debug "params[:secret] #{params[:secret]}"
-    logger.debug "SECRET #{SECRET}"
     if params[:secret] != SECRET
-      logger.debug "haha"
       render nothing: true, status: 401
       return
     end
@@ -36,9 +33,8 @@ class RoutesController < ApplicationController
     @route = Route.new(url: params[:url])
 
     if @route.save
-      render text: "#{root_url}#{@route.key}", status: 200
+      render text: "#{root_url}#{@route.hash_key}", status: 200
     else
-      logger.debug "#{@route.errors.full_messages}"
       render nothing: true, status: 404
     end
   end
@@ -59,7 +55,7 @@ class RoutesController < ApplicationController
   end
 
   def redirect
-    @route = Route.where(key: params[:key]).first
+    @route = Route.where(hash_key: params[:hash_key]).first
     if @route
       redirect_to @route.url, status: 301
     else

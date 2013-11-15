@@ -18,6 +18,11 @@
 # Ignore OS generated files
 Thumbs.db
 
+# Ignore production files
+.sass-cache/
+public/assets/
+backups/
+
 # Ignore files for development
 .routes
 
