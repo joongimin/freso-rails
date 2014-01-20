@@ -9,20 +9,6 @@ class RoutesController < ApplicationController
     @routes = Route.order(id: :desc).page(params[:page])
   end
 
-  # GET /routes/1
-  def show
-  end
-
-  # GET /routes/new
-  def new
-    @route = Route.new
-    @secret = SECRET
-  end
-
-  # GET /routes/1/edit
-  def edit
-  end
-
   # POST /routes
   def create
     if params[:secret] != SECRET
@@ -37,21 +23,6 @@ class RoutesController < ApplicationController
     else
       render nothing: true, status: 404
     end
-  end
-
-  # PATCH/PUT /routes/1
-  def update
-    if @route.update(url: params[:url])
-      redirect_to @route, notice: 'Route was successfully updated.'
-    else
-      render action: 'edit'
-    end
-  end
-
-  # DELETE /routes/1
-  def destroy
-    @route.destroy
-    redirect_to routes_url, notice: 'Route was successfully destroyed.'
   end
 
   def redirect

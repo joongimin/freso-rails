@@ -4,7 +4,5 @@ FresoRails::Application.routes.draw do
   root :to => "routes#index"
   get ':hash_key' => 'routes#redirect'
 
-  resources :routes do
-
-  end
+  resources :routes, only: [:index, :create]
 end
