@@ -36,7 +36,7 @@ server {
     proxy_pass http://unicorn;
   }
 
-  access_log <%= shared_path %>/log/nginx.access.log;
+  access_log off;
   error_log <%= shared_path %>/log/nginx.error.log;
 
   error_page 500 502 503 504 /500.html;
