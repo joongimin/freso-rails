@@ -22,7 +22,6 @@ set :branch, 'master'
 server 'fre.so', :app, :web, :db, :primary => true
 
 require "bundler/capistrano"
-require "capistrano/maintenance"
 
 load "config/recipes/base"
 load "config/recipes/git"
