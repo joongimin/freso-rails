@@ -19,6 +19,10 @@ server {
   listen 80 default deferred;
   root <%= current_path %>/public;
 
+  location = / {
+    return 301 http://thecrema.net;
+  }
+
   if (-f $document_root/system/maintenance.html) {
     return 503;
   }
