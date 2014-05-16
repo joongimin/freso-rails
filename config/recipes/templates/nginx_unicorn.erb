@@ -3,19 +3,6 @@ upstream unicorn {
 }
 
 server {
-  listen 80;
-  server_name mc.the-nuvo.com$;
-
-  location = /robots.txt {
-    return 301 http://mc.the-nuvo.com/robots.txt;
-  }
-
-  location / {
-    return 301 http://mc.the-nuvo.com$request_uri;
-  }
-}
-
-server {
   listen 80 default deferred;
   root <%= current_path %>/public;
 
