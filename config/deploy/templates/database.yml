@@ -3,8 +3,8 @@
   encoding: utf8
   host: <%= fetch(:secrets)[fetch(:stage)]['mysql_host'] %>
   port: 3306
-  database: crema
-  username: crema
-  password: <%= ENV['CREMA_MYSQL_PASSWORD'] %>
+  database: <%= fetch(:secrets)[fetch(:stage)]['mysql_database'] %>
+  username: <%= fetch(:secrets)[fetch(:stage)]['mysql_username'] %>
+  password: <%= fetch(:secrets)[fetch(:stage)]['mysql_password'] %>
   socket: /var/run/mysqld/mysqld.sock
   collation: utf8_general_ci
