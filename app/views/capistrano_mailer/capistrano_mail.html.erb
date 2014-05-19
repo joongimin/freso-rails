@@ -1,0 +1,10 @@
+<p>
+  Release Name: <%= @release_name %>
+</p>
+<p>
+  Revision: <%= content_tag :a, "#{@github_prefix}/commit/#{@current_revision}", href: "#{@github_prefix}/commit/#{@current_revision}" %>
+</p>
+<p>
+  Log:<br>
+  <%=raw @log.gsub("\n", "<br>") %>
+</p>
