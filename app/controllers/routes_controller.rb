@@ -4,11 +4,6 @@ class RoutesController < ApplicationController
 
   SECRET = 'e6902c80c51b5ddb2612ada39d3a8b60'
 
-  # GET /routes
-  def index
-    @routes = Route.order(id: :desc).page(params[:page])
-  end
-
   # POST /routes
   def create
     if params[:secret] != SECRET

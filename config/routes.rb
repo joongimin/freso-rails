@@ -1,8 +1,6 @@
 FresoRails::Application.routes.draw do
-  resources :routes
-
-  root :to => "routes#index"
+  root to: redirect('http://crema.me')
   get ':hash_key' => 'routes#redirect'
 
-  resources :routes, only: [:index, :create]
+  resources :routes, only: :create
 end

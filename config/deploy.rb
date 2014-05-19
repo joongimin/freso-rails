@@ -1,37 +1,29 @@
-set :rails_env, ENV["RAILS_ENV"] || "production"
-set :application, "freso-rails"
+set :application, 'freso-rails'
 set :user, 'ubuntu'
-set :use_sudo, false
-set :deploy_to, "/home/#{user}/#{application}"
-set :scm, :git
-set :repository, "git@github.com:joongimin/freso-rails.git"
-set :deploy_via, :remote_cache
-set :normalize_asset_timestamps, false
-set :whenever_command, "bundle exec whenever"
-set :maintenance_template_path, File.expand_path("../recipes/templates/maintenance.html.erb", __FILE__)
+set :github, 'joongimin/freso-rails'
+set :repo_url, "git@github.com:#{fetch(:github)}.git"
+set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
+set :ssh_options, {forward_agent: true}
+set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/carrierwave backups}
+set :rbenv_ruby, '2.1.1'
 set :unicorn_workers, 16
+set :format, :notification
+set :notify_from, 'Crema <crema@the-nuvo.com>'
+set :notify_to, 'crema@the-nuvo.com'
+set :unicorn_port, 8000
+set :secrets, Settingslogic.new('config/secrets.yml')
 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+# in RAILS_ROOT/config/deploy.rb:
 
-set :mysql_database, 'freso'
-set :mysql_host, 'db1.fre.so'
-set :mysql_user, 'nuvo'
-set :mysql_password, ENV['NUVO_MYSQL_PASSWORD']
-set :branch, 'master'
-server 'fre.so', :app, :web, :db, :primary => true
-
-require "bundler/capistrano"
-
-load "config/recipes/base"
-load "config/recipes/git"
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/rbenv"
-load "config/recipes/mysql"
-
-after "deploy:update_code", "deploy:migrate"
-
-task :copy_manifest do
-  run "cp #{shared_path}/assets/#{rails_env}/manifest.yml #{shared_path}/assets/"
+namespace :deploy do
+  desc 'Symlinks the linked_files'
+  before :check, :symlink_templates do
+    on roles(:app) do
+      upload! StringIO.new(ERB.new(File.read(File.join(File.dirname(__FILE__), "deploy/templates/database.yml"))).result(binding)), "#{shared_path}/config/database.yml"
+      upload! File.join(File.dirname(__FILE__), "../config/secrets.yml"), "#{shared_path}/config/secrets.yml"
+    end
+  end
 end
+
+after 'deploy:publishing', 'deploy:restart'

@@ -1,1 +1,1 @@
-AWS.config(access_key_id: ENV['NUVO_AWS_ACCESS_KEY_ID'], secret_access_key: ENV['NUVO_AWS_SECRET_ACCESS_KEY'])
+AWS.config(access_key_id: Settings.aws_access_key_id, secret_access_key: Settings.aws_secret_access_key)

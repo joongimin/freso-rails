@@ -1,0 +1,79 @@
+def template(template_name, target)
+  config_file = "#{fetch(:templates_path)}/#{template_name}"
+  upload! StringIO.new(ERB.new(File.read(config_file)).result(binding)), target
+end
+
+namespace :load do
+  task :defaults do
+    set :templates_path, "lib/capistrano/tasks/templates"
+
+    set :unicorn_pid, -> { "#{current_path}/tmp/pids/unicorn.pid" }
+    set :unicorn_config, -> { "#{shared_path}/config/unicorn.rb" }
+    set :unicorn_log, -> { "#{shared_path}/log/unicorn.log" }
+    set :unicorn_user, -> { fetch(:user) }
+    set :unicorn_workers, 4
+  end
+end
+
+namespace :nginx do
+  desc "Setup nginx configuration for this application"
+  task :setup do
+    on roles(:web) do
+      template("nginx.conf.erb", "/tmp/#{fetch(:application)}.conf")
+      execute "sudo mv /tmp/#{fetch(:application)}.conf /etc/nginx/sites-available/#{fetch(:application)}.conf"
+      execute "sudo ln -fs /etc/nginx/sites-available/#{fetch(:application)}.conf /etc/nginx/sites-enabled/#{fetch(:application)}.conf"
+    end
+  end
+
+  desc "Reload nginx configuration"
+  task :reload do
+    on roles(:web) do
+      execute "mkdir -p #{shared_path}/log"
+      execute "sudo /etc/init.d/nginx reload"
+    end
+  end
+
+  after "deploy:check", "nginx:setup"
+  after "deploy:finished", "nginx:reload"
+end
+
+namespace :unicorn do
+  desc "Setup Unicorn initializer and app configuration"
+  task :setup do
+    on roles(:app) do
+      execute "echo #{fetch(:rails_env)}"
+      execute "mkdir -p #{shared_path}/config"
+      execute "mkdir -p #{shared_path}/tmp/pids"
+      template "unicorn.rb.erb", fetch(:unicorn_config)
+      template "unicorn_init.erb", "/tmp/unicorn_init"
+      execute "chmod +x /tmp/unicorn_init"
+      execute "sudo mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}"
+      execute "sudo update-rc.d -f unicorn_#{fetch(:application)} defaults"
+    end
+  end
+
+  after "deploy:check", "unicorn:setup"
+end
+
+namespace :deploy do
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn"
+    task command do
+      on roles(:app) do
+        execute "service unicorn_#{fetch(:application)} #{command}"
+      end
+    end
+  end
+  after :publishing, "deploy:restart"
+end
+
+desc "Setup logs rotation for nginx and unicorn"
+task :logrotate do
+  on roles([:web, :app]) do
+    template("logrotate.erb", "/tmp/#{fetch(:application)}_logrotate")
+    execute "sudo mv /tmp/#{fetch(:application)}_logrotate /etc/logrotate.d/#{fetch(:application)}"
+    execute "sudo chown root:root /etc/logrotate.d/#{fetch(:application)}"
+  end
+end
+
+after "deploy:check", "logrotate"
