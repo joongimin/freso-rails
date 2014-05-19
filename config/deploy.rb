@@ -5,7 +5,7 @@ set :repo_url, "git@github.com:#{fetch(:github)}.git"
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 set :ssh_options, {forward_agent: true}
 set :linked_files, %w{config/database.yml config/secrets.yml}
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/carrierwave backups}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system backups}
 set :rbenv_ruby, '2.1.1'
 set :unicorn_workers, 16
 set :format, :notification
