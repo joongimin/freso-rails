@@ -1,18 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails'
 
 # Database
 gem 'mysql2'
 
-# Paging
-gem 'kaminari'
+# Setting utility - config/Application.yml
+gem 'settingslogic'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+# AWS integration
+gem 'aws-sdk'
 
 group :production do
   gem 'unicorn'
@@ -21,8 +19,12 @@ end
 
 # Use Capistrano for deployment
 group :development do
-  gem 'capistrano', '2.15.5'
-end
+  # Deploy
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
 
-# AWS integration
-gem 'aws-sdk'
+  # Speed up loading
+  gem 'spring'
+end

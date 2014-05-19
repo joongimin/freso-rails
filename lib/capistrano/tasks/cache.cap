@@ -1,0 +1,13 @@
+namespace :cache do
+  desc 'Flush cache'
+  task :clear do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'cache:clear'
+        end
+      end
+    end
+  end
+  after :deploy, 'cache:clear'
+end

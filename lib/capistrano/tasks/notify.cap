@@ -1,0 +1,99 @@
+require 'action_mailer'
+require 'settingslogic'
+
+load File.join(File.dirname(__FILE__), '../../..', 'app/mailers/capistrano_mailer.rb')
+
+secrets = Settingslogic.new('config/secrets.yml')
+
+ActionMailer::Base.smtp_settings = {
+  address: 'email-smtp.us-east-1.amazonaws.com',
+  user_name: secrets['defaults']['aws_ses_smpt_user_name'],
+  password: secrets['defaults']['aws_ses_smpt_password'],
+  authentication: :login,
+  enable_starttls_auto: true
+}
+
+module SSHKit
+  module Formatter
+    class Notification < Pretty
+      def initialize(oio)
+        @string_io = StringIO.new
+        super oio
+      end
+
+      def full_message
+        @string_io.string
+      end
+
+      def write(obj)
+        return if obj.verbosity < SSHKit.config.output_verbosity
+        case obj
+        when SSHKit::Command    then write_command_local(obj)
+        when SSHKit::LogMessage then write_log_message_local(obj)
+        else
+          @string_io << "Output formatter doesn't know how to handle #{obj.class}\n"
+        end
+        super obj
+      end
+      alias :<< :write
+
+      private
+
+      def write_command_local(command)
+        unless command.started?
+          @string_io << "Running #{String(command)} on #{command.host.to_s}\n"
+          if SSHKit.config.output_verbosity == Logger::DEBUG
+            @string_io << "Command: #{command.to_command}" + "\n"
+          end
+        end
+
+        if SSHKit.config.output_verbosity == Logger::DEBUG
+          unless command.stdout.empty?
+            command.stdout.lines.each do |line|
+              @string_io << line
+              @string_io << "\n" unless line[-1] == "\n"
+            end
+          end
+
+          unless command.stderr.empty?
+            command.stderr.lines.each do |line|
+              @string_io << line
+              @string_io << "\n" unless line[-1] == "\n"
+            end
+          end
+        end
+
+        if command.finished?
+          @string_io << "Finished in #{sprintf('%5.3f seconds', command.runtime)} with exit status #{command.exit_status} (#{command.failure? ? 'failed' : 'successful'}).\n"
+        end
+      end
+
+      def write_log_message_local(log_message)
+        @string_io << log_message.to_s + "\n"
+      end
+    end
+  end
+end
+
+namespace :notify do
+  desc 'Send notification email when a new version is deployed'
+  task :mail do
+    on roles(:app) do
+      user = `git config --get user.name`.chomp
+      email = `git config --get user.email`.chomp
+      CapistranoMailer.capistrano_mail({
+        from: fetch(:notify_from),
+        to: fetch(:notify_to),
+        application: fetch(:application),
+        release_name: fetch(:release_name),
+        current_revision: fetch(:current_revision),
+        github: fetch(:github),
+        stage: fetch(:stage),
+        user: user,
+        email: email,
+        log: output.full_message,
+        }).deliver
+    end
+  end
+  after :deploy, 'notify:mail'
+end
