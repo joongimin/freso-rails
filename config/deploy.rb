@@ -17,11 +17,13 @@ set :secrets, Settingslogic.new('config/secrets.yml')
 # in RAILS_ROOT/config/deploy.rb:
 
 namespace :deploy do
-  desc 'Symlinks the linked_files'
-  before :check, :symlink_templates do
-    on roles(:app) do
-      upload! StringIO.new(ERB.new(File.read(File.join(File.dirname(__FILE__), "deploy/templates/database.yml"))).result(binding)), "#{shared_path}/config/database.yml"
-      upload! File.join(File.dirname(__FILE__), "../config/secrets.yml"), "#{shared_path}/config/secrets.yml"
+  namespace :check do
+    desc 'Symlinks the linked_files'
+    before :linked_files, :symlink_templates do
+      on roles(:app) do
+        upload! StringIO.new(ERB.new(File.read(File.join(File.dirname(__FILE__), "deploy/templates/database.yml"))).result(binding)), "#{shared_path}/config/database.yml"
+        upload! File.join(File.dirname(__FILE__), "../config/secrets.yml"), "#{shared_path}/config/secrets.yml"
+      end
     end
   end
 end
