@@ -7,11 +7,10 @@ set :ssh_options, {forward_agent: true}
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system backups}
 set :rbenv_ruby, '2.1.2'
-set :unicorn_workers, 16
+set :unicorn_workers, 4
 set :format, :notification
 set :notify_from, 'Crema <crema@the-nuvo.com>'
 set :notify_to, 'crema@the-nuvo.com'
-set :unicorn_port, 8000
 set :secrets, Settingslogic.new('config/secrets.yml')
 
 # in RAILS_ROOT/config/deploy.rb:

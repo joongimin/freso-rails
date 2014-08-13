@@ -1,7 +1,5 @@
 upstream unicorn_<%= fetch(:application) %> {
-  ip_hash;
-<% roles(:app).each do |host| %>
-  server <%= host %>:<%= fetch(:unicorn_port) %>;<% end %>
+  server unix:/tmp/unicorn.<%= fetch(:application) %>.sock fail_timeout=0;
 }
 
 server {
