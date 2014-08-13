@@ -17,6 +17,11 @@ group :production do
   gem 'exception_notification'
 end
 
+group :staging do
+  gem 'unicorn'
+  gem 'exception_notification'
+end
+
 # Use Capistrano for deployment
 group :development do
   # Deploy
