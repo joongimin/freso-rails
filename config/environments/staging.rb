@@ -79,7 +79,7 @@ FresoRails::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.middleware.use ExceptionNotification::Rack, email: {
-    email_prefix: '[Freso Exception] ',
+    email_prefix: '[Freso Staging Exception] ',
     sender_address: %{"Exception Notifier" <noreply@the-nuvo.com>},
     exception_recipients: %w{crema-dev@the-nuvo.com}
   }
