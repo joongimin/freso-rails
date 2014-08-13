@@ -3,5 +3,8 @@ defaults: &defaults
 development:
   <<: *defaults
 
+staging:
+  <<: *defaults
+
 production:
   <<: *defaults
