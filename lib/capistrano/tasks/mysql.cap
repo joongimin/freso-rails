@@ -1,0 +1,15 @@
+namespace :mysql do
+  desc 'Backup mysql database'
+  task :backup do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          secrets = Settingslogic.new('config/secrets.yml')
+          filename = "#{secrets['defaults']['mysql_database']}_#{Time.now.strftime('%Y%m%d%H%M%S')}.mysql"
+          path = "#{shared_path}/backups/#{filename}"
+          execute "mysqldump --opt --single-transaction -u#{secrets['defaults']['mysql_username']} -p#{secrets['defaults']['mysql_password']} #{secrets['defaults']['mysql_database']} -h#{secrets['defaults']['mysql_host']} > #{path}"
+        end
+      end
+    end
+  end
+end

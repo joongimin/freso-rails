@@ -12,14 +12,10 @@ gem 'settingslogic'
 # AWS integration
 gem 'aws-sdk'
 
+gem 'exception_notification'
+
 group :production do
   gem 'unicorn'
-  gem 'exception_notification'
-end
-
-group :staging do
-  gem 'unicorn'
-  gem 'exception_notification'
 end
 
 # Use Capistrano for deployment
