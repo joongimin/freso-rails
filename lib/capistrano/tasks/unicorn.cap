@@ -66,14 +66,3 @@ namespace :deploy do
   end
   after :publishing, "deploy:restart"
 end
-
-desc "Setup logs rotation for nginx and unicorn"
-task :logrotate do
-  on roles([:web, :app]) do
-    template("logrotate.erb", "/tmp/#{fetch(:application)}_logrotate")
-    execute "sudo mv /tmp/#{fetch(:application)}_logrotate /etc/logrotate.d/#{fetch(:application)}"
-    execute "sudo chown root:root /etc/logrotate.d/#{fetch(:application)}"
-  end
-end
-
-after "deploy:check", "logrotate"
